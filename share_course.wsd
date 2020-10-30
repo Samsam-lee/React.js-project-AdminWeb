@@ -1,0 +1,36 @@
+@startuml
+
+title YJU-capstone-team4
+footer Page %page% of %lastpage%
+
+actor 사용자 as User
+actor 관리자 as Admin
+
+control App
+control Web
+control 노드서버 as Node
+control 크롤링서버 as Lamda
+
+== 동선 공유 페이지 ==
+User -> App : 동선 공유 페이지 요청
+    alt default 값으로 동선 폴더 설정
+        App -> Node : <font color=red>[Req]</font> 동선이 포함된 지도와 해시태그 요청
+            Node -> Node : 필요한 데이터 \n select query
+        Node -> App : <font color=red>[Res]</font> 동선이 포함된 지도와 해시태그 반환
+    end
+App -> User : 동선 공유 페이지 렌더링
+
+== 공유하기 ==
+User -> App : 제목, 해시태그, 썸네일 추가, 공유하기
+    alt 제목 입력
+    else 해시태그 입력
+        App -> Node : <font color=red>[Req]</font> 해시태그 디비에 저장 요청
+            Node -> Node : 해시태그 \n insert, select query
+        Node -> App : <font color=red>[Res]</font> 저장된 해시태그 반환
+    else 썸네일 추가
+        App -> Node : <font color=red>[Req]</font> 썸네일 디비에 저장 요청
+            Node -> Node : 썸네일 \n insert query
+        Node -> App : <font color=red>[Res]</font> Ok
+    end
+App -> User : 동선 검색 페이지 렌더링
+@enduml

@@ -15,15 +15,20 @@ control 크롤링서버 as Lamda
 User -> App : 내 동선 페이지 요청
     alt 동선 폴더 선택
         App -> Node : <font color=red>[Req]</font> 동선 폴더, 맛집 위치 데이터, 동선 리스트 요청
+            Node --> Node : 요청 받은 데이터들 \n select query
         Node -> App : <font color=red>[Res]</font> 동선 폴더, 맛집 위치 데이터, 동선 리스트 반환
     else 동선 폴더가 없을 때
         App -> Node : <font color=red>[Req]</font> 지도 요청
+            Node --> Node : 지도 데이터 \n select query
         Node -> App : <font color=red>[Res]</font> 지도 반환
     end
 App -> User : 내 동선 페이지 렌더링
-    User -> App : 맛집 동선 변경 (Drag & Drop)
-        App -> Node : <font color=red>[Req]</font> 동선 변경 요청
-        Node -> App : <font color=red>[Res]</font> 변경된 동선 리스트와 지도 반환
-    App -> User : 변경된 동선을 적용하여 페이지 렌더링
+
+== 동선 배치 ==
+User -> App : 맛집 동선 변경 (Drag & Drop)
+    App -> Node : <font color=red>[Req]</font> 동선 변경 요청
+        Node --> Node : 동선 \n update query
+    Node -> App : <font color=red>[Res]</font> 변경된 동선 리스트와 지도 반환
+App -> User : 변경된 동선을 적용하여 페이지 렌더링
 
 @enduml
