@@ -1,0 +1,49 @@
+@startuml
+
+title YJU-capstone-team4
+footer Page %page% of %lastpage%
+
+actor 사용자 as User
+actor 관리자 as Admin
+
+control App
+control Web
+control 노드서버 as Node
+control 크롤링서버 as Lamda
+
+== 유튜버 상세 페이지 ==
+User -> App : 유튜버 상세 페이지 요청
+    App -> Node : <font color=red>[Req]</font> 유튜버 정보, 조회수 Top 5 영상, 지역별 영상, 해시태그 요청
+        alt
+        else <default> 1위 유튜버
+            Node --> Node : 1위 유튜버의 데이터 \n select query
+        else 선택한 유튜버
+            Node --> Node : 선택한 유튜버의 데이터 \n select query
+        end
+    Node -> App : <font color=red>[Res]</font> 유튜버 정보, 조회수 Top 5 영상, 지역별 영상, 해시태그 반환
+App -> User : 유튜버 상세 페이지 렌더링
+
+alt 영상 클릭
+else 지역별 Top 5 영상
+    User -> App : 조회수 Top 5 영상에서 영상 클릭
+        App -> Node : <font color=red>[Req]</font> 영상 요청
+            Node --> Node : 유튜브 영상 조회?
+        Node -> App : <font color=red>[Res]</font> 영상 반환
+    App -> User : 영상 반환 후 재생
+
+else 지역별 영상
+    User -> App : 지역별 영상에서 영상 클릭
+        App -> Node : <font color=red>[Req]</font> 영상 요청
+            Node --> Node : 유튜브 영상 조회?
+        Node -> App : <font color=red>[Res]</font> 영상 반환
+    App -> User : 영상 반환 후 재생
+end
+
+== 좋아요 ==
+User -> App : 좋아요 버튼 클릭
+    App -> Node : <font color=red>[Req]</font> 유튜버 좋아요 1 증가
+        Node --> Node : update query
+    Node -> App : <font color=red>[Res]</font> Ok
+App -> User : 좋아요 버튼 활성화
+
+@enduml
