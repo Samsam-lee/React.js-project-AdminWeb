@@ -24,11 +24,11 @@ end
         App -> Node : <font color=red>[Req] 동선 폴더 리스트 (1회)</font>, 폴더의 id 값 전달
             alt 동선 리스트 데이터 유무
                 else 동선 리스트가 있을 때
-                    Node --> Node : id -> 맛집 지도, 동선 리스트 \n select query
+                    Node --> Node : [Query-Select]\nid -> 맛집 지도, 동선 리스트
                 else 동선 리스트가 없을 때
-                    Node --> Node : statusCode :: 해당 리스트가 없습니다. \n select query
+                    Node --> Node : [Query-Select]\nstatusCode :: 해당 리스트가 없습니다.
             end
-        Node -> App : <font color=red>[Res]</font> 해당 폴더의 동선 리스트와 지도 반환
+        Node -> App : <font color=red>[Res]</font> 반환된 리스트 지도에 렌더링
     App -> User : 내 동선 페이지 렌더링
 deactivate User
 
@@ -36,7 +36,7 @@ deactivate User
 User -> App : 맛집 동선 변경 (Drag & Drop)
 activate User
     App -> Node : <font color=red>[Req]</font> 동선 변경 요청
-        Node --> Node : 동선 \n update query
+        Node --> Node : [Query-Update]\n동선
     Node -> App : <font color=red>[Res]</font> 변경된 동선 리스트와 지도 반환
 App -> User : 변경된 동선을 적용하여 페이지 렌더링
 deactivate User

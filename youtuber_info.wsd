@@ -12,9 +12,16 @@ control 노드서버 as Node
 control 크롤링서버 as Lamda
 
 ==유튜버 상세 페이지==
-User -> App : 유튜버 검색 OR default page(1위 유튜버)
-    App -> Node : <font color=red>[Req]</font> 유튜버 id 전달
-        Node --> Node : Request -> Response\nselect query
+User -> App : default page(1위 유튜버)
+    App -> Node : <font color=red>[Req]</font> 유튜버 이름
+        Node --> Node : [Query-Select]\n유튜버 정보 반환
+    Node -> App : <font color=red>[Res]</font>\n유튜버 정보, 조회수 Top 5 영상, 지역별 영상,\n영상 정보, 영상 url, 사용자의 좋아요 여부 반환
+App -> User : 유튜버 상세 페이지 렌더링
+
+==유튜버 검색==
+User -> App : 유튜버 검색
+    App -> Node : <font color=red>[Req]</font> 유튜버 이름
+        Node --> Node : [Query-Select]\n유튜버 정보 반환
     Node -> App : <font color=red>[Res]</font>\n유튜버 정보, 조회수 Top 5 영상, 지역별 영상,\n영상 정보, 영상 url, 사용자의 좋아요 여부 반환
 App -> User : 유튜버 상세 페이지 렌더링
 
@@ -26,7 +33,7 @@ App -> User : 영상 조회
 ==좋아요==
 User -> App : 좋아요 버튼 클릭
     App -> Node : <font color=red>[Req]</font> 좋아요 버튼 클릭
-        Node --> Node : update query
+        Node --> Node : [Query-Update]\n좋아요 상태 변경
     Node -> App : <font color=red>[Res]</font> statusCode :: 좋아요 활성화 or 비활성화
 App -> User : 좋아요 버튼 활성화 or 비활성화
 

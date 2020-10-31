@@ -13,8 +13,8 @@ control 크롤링서버 as Lamda
 
 ==동선 검색 페이지==
 User -> App : 동선 검색 페이지 요청
-    App -> Node : <font color=red>[Req]</font> statusCode :: 해시태그, 썸네일 요청
-    Node --> Node : select query
+    App -> Node : <font color=red>[Req]</font> 해시태그, 썸네일 요청
+    Node --> Node : [Query-Select]\ndefault 해시태그
     Node -> App : <font color=red>[Res]</font> (지역, 계절, 보기)별 해시태그 반환
 App -> User : 동선 검색 페이지 렌더링
 
@@ -24,15 +24,15 @@ alt 해시태그 추가
     User -> App : 해시태그 추가 요청
 activate User
     App --> App : 해시태그 추가
-    App -> User : 해시태그 노출
+    App -> User : 해시태그 렌더링
 deactivate User
 end
 
 
 User -> App : 해시태그 선택,\n동선 제목, 유튜버, 닉네임으로 검색
-    App -> Node : <font color=red>[Req]</font> 선택한 해시태그 id, 동선 제목, 유튜버, 닉네임 전달
-    Node --> Node : Request -> Response \n select query
+    App -> Node : <font color=red>[Req]</font> 선택한 해시태그 id 와 동선 제목 OR 유튜버 OR 닉네임 전달
+    Node --> Node : [Query-Select]\n검색 요청 값에 대한 동선, 해시태그
     Node -> App : <font color=red>[Res]</font> 동선 썸네일, 해시태그 반환
-App -> User : 검색 결과 노출
+App -> User : 검색 결과 렌더링
 
 @enduml
