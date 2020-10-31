@@ -11,39 +11,23 @@ control Web
 control 노드서버 as Node
 control 크롤링서버 as Lamda
 
-== 유튜버 상세 페이지 ==
-User -> App : 유튜버 상세 페이지 요청
-    App -> Node : <font color=red>[Req]</font> 유튜버 정보, 조회수 Top 5 영상, 지역별 영상, 해시태그 요청
-        alt
-        else <default> 1위 유튜버
-            Node --> Node : 1위 유튜버의 데이터 \n select query
-        else 선택한 유튜버
-            Node --> Node : 선택한 유튜버의 데이터 \n select query
-        end
-    Node -> App : <font color=red>[Res]</font> 유튜버 정보, 조회수 Top 5 영상, 지역별 영상, 해시태그 반환
+==유튜버 상세 페이지==
+User -> App : 유튜버 검색 OR default page(1위 유튜버)
+    App -> Node : <font color=red>[Req]</font> 유튜버 id 전달
+        Node --> Node : Request -> Response\nselect query
+    Node -> App : <font color=red>[Res]</font>\n유튜버 정보, 조회수 Top 5 영상, 지역별 영상,\n영상 정보, 영상 url, 사용자의 좋아요 여부 반환
 App -> User : 유튜버 상세 페이지 렌더링
 
-alt 영상 클릭
-else 지역별 Top 5 영상
-    User -> App : 조회수 Top 5 영상에서 영상 클릭
-        App -> Node : <font color=red>[Req]</font> 영상 요청
-            Node --> Node : 유튜브 영상 조회?
-        Node -> App : <font color=red>[Res]</font> 영상 반환
-    App -> User : 영상 반환 후 재생
+==영상 조회==
+User -> App : 영상 클릭
+    App --> App : 영상 url 반환
+App -> User : 영상 조회
 
-else 지역별 영상
-    User -> App : 지역별 영상에서 영상 클릭
-        App -> Node : <font color=red>[Req]</font> 영상 요청
-            Node --> Node : 유튜브 영상 조회?
-        Node -> App : <font color=red>[Res]</font> 영상 반환
-    App -> User : 영상 반환 후 재생
-end
-
-== 좋아요 ==
+==좋아요==
 User -> App : 좋아요 버튼 클릭
-    App -> Node : <font color=red>[Req]</font> 유튜버 좋아요 1 증가
+    App -> Node : <font color=red>[Req]</font> 좋아요 버튼 클릭
         Node --> Node : update query
-    Node -> App : <font color=red>[Res]</font> Ok
-App -> User : 좋아요 버튼 활성화
+    Node -> App : <font color=red>[Res]</font> statusCode :: 좋아요 활성화 or 비활성화
+App -> User : 좋아요 버튼 활성화 or 비활성화
 
 @enduml

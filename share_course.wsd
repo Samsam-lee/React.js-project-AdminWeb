@@ -11,27 +11,32 @@ control Web
 control 노드서버 as Node
 control 크롤링서버 as Lamda
 
-== 동선 공유 페이지 ==
+==동선 공유 페이지==
 User -> App : 동선 공유 페이지 요청
-    alt 
-    else default 값으로 마지막 동선 폴더 설정 \n OR 동선 폴더 선택
-        App -> Node : <font color=red>[Req]</font> 동선이 포함된 지도와 해시태그 요청
-            Node -> Node : 필요한 데이터 \n select query
-        Node -> App : <font color=red>[Res]</font> 동선이 포함된 지도와 해시태그 반환
-    end
+    App -> Node : <font color=red>[Req] 동선 폴더 리스트 (1회)</font>, 폴더의 id 값
+        Node --> Node : Request -> Response \n select query
+    Node -> App : <font color=red>[Res]</font> 해당 폴더의 동선 지도와 지역 해시태그 반환
 App -> User : 동선 공유 페이지 렌더링
 
-== 공유하기 ==
-User -> App : 제목, 해시태그, 썸네일 추가, 공유하기
-    alt 
-    else 해시태그 입력
-        App -> Node : <font color=red>[Req]</font> 해시태그 디비에 저장 요청
-            Node -> Node : 해시태그 \n insert, select query
-        Node -> App : <font color=red>[Res]</font> 저장된 해시태그 반환
-    else 썸네일 추가
-        App -> Node : <font color=red>[Req]</font> 썸네일 디비에 저장 요청
-            Node -> Node : 썸네일 \n insert query
-        Node -> App : <font color=red>[Res]</font> Ok
-    end
-App -> User : 동선 검색 페이지 렌더링
+==공유하기==
+alt 사용자 입력 데이터
+else 제목 입력
+    User -> App : 제목 입력
+activate User
+else 해시태그 입력
+    User -> App : 해시태그 입력 후 추가 버튼 클릭
+    App --> App : 사용자가 입력한 해시태그 추가
+else 썸네일 추가
+    User -> App : 썸네일 업로드
+    App --> App : 썸네일 저장
+end
+    App -> User : 동선 검색 페이지 렌더링
+deactivate User
+
+User -> App : 공유하기 버튼 클릭
+    App -> Node : <font color=red>[Req]</font> 제목, 해시태그, 썸네일 전달
+    Node --> Node : Request -> Response \n insert query
+    Node -> App : <font color=red>[Res]</font> statusCode :: 해당 동선이 공유되었습니다.
+App -> User : 초기 동선 검색 페이지 렌더링    
+
 @enduml

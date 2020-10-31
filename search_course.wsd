@@ -11,31 +11,28 @@ control Web
 control 노드서버 as Node
 control 크롤링서버 as Lamda
 
-== 동선 검색 페이지 ==
+==동선 검색 페이지==
 User -> App : 동선 검색 페이지 요청
-    App -> Node : <font color=red>[Req]</font> (지역, 계절, 보기)별 해시태그, 동선 썸네일 요청
-        alt
-        else 해시태그 값이 선택 되지 않은 경우
-            Node --> Node : default 데이터 (서울) \n select query
-        else 해시태그 값이 선택 된 경우
-            Node --> Node : 해당하는 데이터 \n select query
-        end
-    Node -> App : <font color=red>[Res]</font> (지역, 계절, 보기)별 해시태그, 동선 썸네일 반환
+    App -> Node : <font color=red>[Req]</font> statusCode :: 해시태그, 썸네일 요청
+    Node --> Node : select query
+    Node -> App : <font color=red>[Res]</font> (지역, 계절, 보기)별 해시태그 반환
 App -> User : 동선 검색 페이지 렌더링
 
 
-== 카테고리 별 검색 결과 ==
-alt
-else 카테고리에 해시태그 추가
+==카테고리 별 검색 결과==
+alt 해시태그 추가
     User -> App : 해시태그 추가 요청
-    App -> User : 반환된 해시태그와 함께 렌더링
+activate User
+    App --> App : 해시태그 추가
+    App -> User : 해시태그 노출
+deactivate User
 end
 
-User -> App : 해시태그 선택 후 검색 결과 요청
-    App -> Node : <font color=red>[Req]</font> 해시태그에 따른 검색결과 썸네일, 해시태그 요청
-        Node --> Node : 필요한 데이터 \n select query
-    Node -> App : <font color=red>[Res]</font> 해시태그에 따른 검색결과 썸네일, 해시태그 반환
-App -> User : 검색 결과를 토대로 페이지 렌더링
 
+User -> App : 해시태그 선택,\n동선 제목, 유튜버, 닉네임으로 검색
+    App -> Node : <font color=red>[Req]</font> 선택한 해시태그 id, 동선 제목, 유튜버, 닉네임 전달
+    Node --> Node : Request -> Response \n select query
+    Node -> App : <font color=red>[Res]</font> 동선 썸네일, 해시태그 반환
+App -> User : 검색 결과 노출
 
 @enduml
