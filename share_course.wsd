@@ -13,7 +13,8 @@ control 크롤링서버 as Lamda
 
 == 동선 공유 페이지 ==
 User -> App : 동선 공유 페이지 요청
-    alt default 값으로 동선 폴더 설정
+    alt 
+    else default 값으로 마지막 동선 폴더 설정 \n OR 동선 폴더 선택
         App -> Node : <font color=red>[Req]</font> 동선이 포함된 지도와 해시태그 요청
             Node -> Node : 필요한 데이터 \n select query
         Node -> App : <font color=red>[Res]</font> 동선이 포함된 지도와 해시태그 반환
@@ -22,7 +23,7 @@ App -> User : 동선 공유 페이지 렌더링
 
 == 공유하기 ==
 User -> App : 제목, 해시태그, 썸네일 추가, 공유하기
-    alt 제목 입력
+    alt 
     else 해시태그 입력
         App -> Node : <font color=red>[Req]</font> 해시태그 디비에 저장 요청
             Node -> Node : 해시태그 \n insert, select query
