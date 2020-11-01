@@ -1,0 +1,405 @@
+@startuml
+
+title YJU-capstone-team4
+footer Page %page% of %lastpage%
+
+actor 사용자 as User
+collections App
+control 노드서버 as Node #99FF99
+
+collections Web
+actor 관리자 as Admin
+control 크롤링서버 as Lamda
+
+== [유저] 메인 페이지 접속 - GPS 센서 활용 ==
+User -> App : 메인 페이지 접속
+alt 현재 위치정보를 가지고 있을 경우
+    App --> App : 로컬스토리지의 데이터 반환
+else 현재 위치정보를 가지고 있지 않을 경우
+    alt GPS 모듈이 꺼져있을 경우
+        App --> App : 서울특별시 위치정보 반환
+    else GPS 모듈이 켜져있을 경우
+        App --> App : 현재 위치정보 조회
+    end
+end
+
+App -> Node : [Req] 현재 위치정보
+Node --> Node : [Query-Select] Top3 유튜버, 동선 조회
+Node -> App : [Res] 유튜버, 동선 데이터 반환
+App -> User : 메인 페이지 렌더링
+
+
+== [유저] 지도 페이지 - 검색한 유튜버가 없을 때 ==
+User -> App : 유튜버 검색 요청
+activate User
+' activate User #FFBBBB
+activate App
+App --> App : [ Youtube-API ]\n유튜버 채널 검색
+App -> Node : [ Req ] 유튜버 channel id
+deactivate App
+alt 유튜버가 존재 할 경우
+    Node --> Node : [ Query-Select ] 해당 유튜버가 다녀간\n가게 조회
+else 유튜버가 존재하지 않을 경우
+    Node -> App : [ Res ] statusCode :: 해당 유튜버의 데이터가 없습니다.
+    App -> User : 해당 유튜버에 대한\n데이터 요청을 할 것인가?
+    alt 유튜버 데이터 요청을 할 경우
+        User -> App : 유튜버 데이터 요청
+        App -> Node : [ Req ] 유튜버 Channel id, 이름, 구독자수, 전체 View
+        Node --> Node : [ Query-Create ] 유튜버 신청건 저장
+        Node -> App : [ Res ] statusCode :: 신청이 완료되었습니다.
+        App -> User : 상태코드 모달창으로 화면 렌더링                                                       
+    end
+end
+Node -> App : [ Res ] 지역별 가게의\n총 개수 반환
+App -> User : 지역별 갯수를\n버블형태로 렌더링
+deactivate User
+
+== [관리자] 유튜버 조회 페이지 - 신청된 유튜버 확인 ==
+Admin ->  Web : 유튜버 신청 관리 페이지 접속
+activate Admin #FFBBBB
+Web -> Node : [Req] 신청 된 리스트 조회 요청
+Node --> Node : [ Query-Select ]\n신청 된 유튜버 조회
+alt 신청 된 유튜버가 존재하지 않을 경우
+    Node -> Web : [Res] statusCode ::신청 된 유튜버가 없습니다.
+    Web -> Admin : 상태코드 모달창으로 화면 렌더링
+end
+Node -> Web : [Res] 신청 된 유튜버 리스트 반환
+Web -> Admin : 유튜버 리스트 화면 렌더링
+deactivate Admin
+
+== [관리자] 유튜버 조회 페이지 - 크롤링 승인 ==
+Admin -> Web : 유튜버 크롤링 승인 버튼 클릭
+Web -> Node : [Req] 유튜버 크롤링 요청
+Node -> Lamda : [Req] 크롤링 요청
+Node -> Web : [Res] 유튜버 크롤링 요청 승인
+Web -> Admin : 유튜버 조회 페이지 리렌더링\n(승인 결과 반영)
+Lamda --> Lamda : 크롤링 시작
+Lamda --> Node : [Res] 크롤링 결과 반영
+Node --> Node : [ Query-Create ]\n크롤링 된 유튜버 저장
+
+== [관리자] 데이터 수집 페이지 - 진행 상태 조회 ==
+Admin -> Web : 데이터 수집 페이지 접속
+Web -> Node : [Req] 현재 진행중인 데이터 수집 상태 요청
+Node --> Node : [ Query-Select ]\n진행 중 상태 조회
+alt 진행중인 유튜버가 존재하지 않을 경우
+    Node -> Web : [Res] statusCode ::진행중인 유튜버가 없습니다.
+    Web -> Admin : 상태코드 모달창으로 화면 렌더링
+end
+Node -> Web : [Res] 진행 중 유튜버 데이터 반영
+Web -> Admin : 진행중 / 에러 / 완료 별 화면 렌더링
+
+== 지도페이지 로딩 ==
+User --> App : [Req] 지도 버튼 클릭
+App --> Node : [Req] 지도 페이지 요청
+alt 유튜버가 검색 되어 있을 때
+    Node --> Node : [Query-Select] 해당 유튜버의 전국 맛집 정보
+else 유튜버가 검색 되지 않았을 때
+    Node --> Node : [Query-Select] 전국 맛집 정보
+end
+Node -> App : [Res] 맛집 정보 반환
+App --> User : [Res] 지도 페이지 렌더링
+
+== 지도페이지 - 지도 확대 ==
+User --> App : [Req] 지도에서 원하는 지역 확대
+activate User
+App --> Node : [Req] 해당 지역의 맛집 정보 요청
+Node --> Node : [Query-Select] 해당 지역의 맛집 이름, 맛집 좌표 정보
+Node -> App : [Res] 맛집 정보 반환
+App --> User : [Res] 지도 페이지 렌더링
+deactivate User
+
+== 지도페이지 - 유튜버 검색 ==
+User --> App : [Req] 유튜버 검색
+App --> Node : [Req] 유튜버 유무 확인 요청
+Node --> Node :  [Query-Select] 유튜버 유무 확인
+alt 해당 유튜버에 대한 정보가 없을 경우
+    Node --> App : [Res]해당 유튜버 관련 정보 없음을 반환
+    App --> User : [Res] 유튜버 검색 결과 없음, 유튜브 신청 페이지 렌더링
+    User --> App : [Req]유튜버 신청
+else 유튜버 정보가 있을 경우
+    Node --> App : [Res]해당 유튜버 정보 있음을 반환
+    App --> Node : [Req] 해당 유튜버 방문 맛집 요청
+    Node --> Node : [Query-Select] 해당 유튜버 방문 맛집 정보
+    Node --> App : [Res] 맛집 정보 반환
+    App --> User : [Res] 검색한 유튜버 방문 맛집 정보 렌더링
+end
+
+== 지도페이지 - 맛집을 클릭 했을 때 ==
+User --> App : [Req] 맛집을 클릭
+App --> Node : [Req] 클릭한 맛집의 썸네일 사진 요청
+Node --> Node : [Query-Select] 해당 맛집의 썸네일 사진
+Node -> App : [Res] 맛집 썸네일 사진 반환
+App --> User : [Res] 썸네일 렌더링
+
+== 지도페이지 - 식당 이름을 클릭 했을 때 ==
+User --> App : [Req] 식당 이름을 클릭
+App --> Node : [Req] 클릭한 맛집의 상세 정보 요청
+Node --> Node : [Query-Select] 맛집 상세 정보
+Node -> App : [Res] 맛집 상세 정보 반환
+App --> User : [Res] 맛집 상세 페이지 렌더링
+
+== 지도페이지 - 썸네일 사진을 클릭 했을 때 ==
+User --> App : [Req] 썸네일 사진을 클릭
+App --> User : [Res] 클릭한 맛집의 영상 재생
+
+== 지도페이지 - 즐겨찾기를 눌렀을 경우 ==
+User --> App : [Req] 선택된 동선에 추가 요청
+App --> Node : [Req] 해당 id를 통해 동선에 추가 요청
+Node --> Node : [Query-Insert] 선택 되어진 동선 폴더에 맛집 id 추가
+Node --> App : [Res] 성공 여부 반환
+App --> User : [Res] 즐겨 찾기 표시
+
+== 맛집 상세 페이지 로딩 ==
+User --> App : [Req] 맛집 상세 페이지 요청
+App --> Node : [Req] 자세히 보기 눌러진 맛집 정보 요청
+Node --> Node : [Query-Select] 해당 맛집 주소, 방문 유튜버, 맛집을 포함한 Top3 동선, 주변 명소(카페, 관광지)
+Node -> App : [Res] 맛집 상세 정보 반환
+App --> User : [Res] 맛집 상세 페이지 렌더링
+
+== 맛집 상세 페이지 로딩 - 유튜버 이름을 눌렀을 경우 ==
+User --> App : [Req] 유튜버 이름 클릭
+App --> Node : [Req] 유튜버 상세 정보 요청
+Node --> Node : [Query-Select] 유튜버 상세 조회 정보(유튜버 순위, 조회수 top3 영상, 야외 먹방 데이터)
+Node -> App : [Res] 유튜버 상세 조회 정보
+App --> User : [Res] 유튜버 상세 페이지 렌더링
+
+== 맛집 상세 페이지 로딩 - 유튜브 썸네일을 눌렀을 경우 ==
+User --> App : [Req] 유튜브 썸네일 클릭
+App --> User : [Res] 유튜브 영상 재생
+
+== 맛집 상세 페이지 로딩 - 동선 제목을 눌렀을 경우 ==
+User --> App : [Req] 동선 제목 클릭
+App --> Node : [Req] 해당 동선  요청
+Node --> Node : [Query-Select] 해당 동선 정보
+Node -> App : [Res] 해당 동선 정보 반환
+App --> User : [Res] 동선 페이지 렌더링
+
+== 맛집 상세 페이지 로딩 - 즐겨찾기를 눌렀을 경우 ==
+User --> App : [Req] 선택된 동선에 추가 요청
+App --> Node : [Req] 맛집 id를 통해 동선에 추가 요청
+Node --> Node : [Query-Insert] 선택 되어진 동선 폴더에 맛집 id를 통한 맛집 추가
+Node --> App : [Res] 성공 여부 반환
+App --> User : [Res] 즐겨 찾기 표시
+
+== 지도페이지 - 동선 폴더 미리보기 로딩 ==
+User --> App : [Req] Feb 버튼 클릭
+App --> Node : [Req] 동선 폴더 미리보기 요청
+Node --> Node : [Req] 최근 사용한 폴더 유무 확인
+alt 최근에 사용한 폴더 가 있을 경우
+    Node --> Node : [Query-Select] 해당 동선 폴더에 포함된 리스트
+else 최근에 사용한 폴더가 없을 경우
+    Node --> Node : [Query-Select] default 동선 폴더에 포함된 리스트
+end
+Node -> App : [Res] 동선 리스트 반환
+App --> User : [Res] 동선 폴더의 리스트 렌더링
+
+== 지도 페이지 - 선택된 동선 폴더 미리보기 로딩 ==
+User --> App : [Req] select box 에서 원하느 동선 선택
+App --> Node : [Req] 선택된 동선 폴더 안의 리스트 요청
+Node --> Node : [Query-Select] 해당 동선 폴더에 포함된 리스트
+Node -> App : [Res] 동선 리스트 반환
+App --> User : [Res] 선택된 동선 폴더의 리스트 렌더링
+
+== 지도페이지 - 동선 페이지 로딩 ==
+User --> App : [Req] 선택된 동선 폴더의 자세히 보기 요청
+App --> Node : [Req] 선택된 동선 폴더 안의 맛집 리스트 요청
+Node --> Node : [Query-Select] 해당 동선 폴더에 포함된 맛집 리스트
+Node -> App : [Res] 맛집 리스트 반환
+App --> User : [Res] 선택된 동선 폴더의 리스트 렌더링
+
+==내 동선 페이지==
+alt 동선 폴더 선택 유무
+else default 폴더
+    User -> App : 내 동선 페이지 요청
+else 폴더 선택
+    User -> App : 동선 폴더 선택
+    activate User
+    App --> App : 동선 폴더 리턴
+end
+App -> Node : <font color=red>[Req]</font> 동선 폴더 리스트 요청
+Node -> App :<font color=blue>[Res]</font> 동선 폴더 리스트 반환
+App -> Node : <font color=red>[Req]</font> 폴더의 id 값 전달
+alt 동선 리스트 데이터 유무
+else 동선 리스트가 있을 때
+    Node --> Node : [Query-Select]\nid -> 맛집 지도, 동선 리스트
+else 동선 리스트가 없을 때
+    Node --> Node : [Query-Select]\nstatusCode :: 해당 리스트가 없습니다.
+end
+Node -> App : <font color=blue>[Res]</font> 반환된 리스트 지도에 렌더링
+App -> User : 내 동선 페이지 렌더링
+deactivate User
+
+==동선 배치==
+User -> App : 맛집 동선 변경 (Drag & Drop)
+activate User
+App -> Node : <font color=red>[Req]</font> 동선 변경 요청
+Node --> Node : [Query-Update]\n동선
+Node -> App : <font color=blue>[Res]</font> 변경된 동선 리스트와 지도 반환
+App -> User : 변경된 동선을 적용하여 페이지 렌더링
+deactivate User
+
+==동선 공유 페이지==
+User -> App : 동선 공유 페이지 요청
+App -> Node : <font color=red>[Req]</font> 동선 폴더 리스트 요청
+Node -> App :<font color=blue>[Res]</font> 동선 폴더 리스트 반환
+App -> Node : <font color=red>[Req]</font> 폴더의 id 값 전달
+Node --> Node : [Query-Select]\n동선 지도, 해시태그 반환
+Node -> App : <font color=blue>[Res]</font> 해당 폴더의 동선 지도와 지역 해시태그 반환
+App -> User : 동선 공유 페이지 렌더링
+
+==공유하기==
+User -> App : 공유하기 버튼 클릭
+App -> Node : <font color=red>[Req]</font> 제목, 해시태그, 썸네일 전달
+Node --> Node : [Query-Insert]\n동선 데이터 저장
+Node -> App : <font color=blue>[Res]</font> statusCode :: 해당 동선이 공유되었습니다.
+App -> User : 초기 동선 검색 페이지 렌더링
+
+==동선 검색 페이지==
+User -> App : 동선 검색 페이지 요청
+App -> Node : <font color=red>[Req]</font> 해시태그, 썸네일 요청
+Node --> Node : [Query-Select]\ndefault 해시태그
+Node -> App : <font color=blue>[Res]</font> (지역, 계절, 보기)별 해시태그 반환
+App -> User : 동선 검색 페이지 렌더링
+
+==카테고리 별 검색 결과==
+alt 해시태그 추가
+    User -> App : 해시태그 추가 요청
+    activate User
+    App --> App : 해시태그 추가
+    App -> User : 해시태그 렌더링
+    deactivate User
+end
+User -> App : 해시태그 선택,\n동선 제목, 유튜버, 닉네임으로 검색
+App -> Node : <font color=red>[Req]</font> 선택한 해시태그 id 와 동선 제목 OR 유튜버 OR 닉네임 전달
+Node --> Node : [Query-Select]\n검색 요청 값에 대한 동선, 해시태그
+Node -> App : <font color=blue>[Res]</font> 동선 썸네일, 해시태그 반환
+App -> User : 검색 결과 렌더링
+
+== 통계 페이지 - 유튜버 카테고리 ==
+User -> App : 통계 페이지 요청
+alt 사용자가 인기 유튜버 선택했을 경우(Default)
+    App -> Node : [Req] 인기 유튜버 요청
+    Node -> Node : [Query-Select] Top3 구독자 수 유튜버 조회
+else 사용자가 급상승 유튜버 선택했을 경우
+    App --> Node : [Req] 급상승 유튜버 요청
+    Node --> Node : [Query-Select] Top3 일정 기간 내 구독자 급성장 유튜버 조회
+else 사용자가 급상승 동영상 선택했을 경우
+    App --> Node : [Req] 급상승 동영상 요청
+    Node --> Node : [Query-Select] Top3 일정 기간 내 조회수 급성장 동영상 조회
+end
+Node --> App : [Res] 유튜버 썸네일, 이름 데이터 반환
+
+App -> User : 유튜버 top3 컨텐츠 렌더링
+
+== 통계 페이지 - 유튜버 구독자 & 조회수 비교 ==
+User -> App : 유튜버 비교 그래프 요청
+
+App -> Node : [Req] 사용자가 원하는 유튜버 요청
+Node -> Node : [Query-Select] 요청한 유튜버 구독자 수 조회\n[Query-Select] 요청한 유튜버 영상 총 조회수 조회
+Node -> App : [Res] 유튜버 데이터 반환
+
+App -> Node : [Req] 데이터 조회 시 보고자 하는 기간 요청
+alt Default 날짜
+    Node -> Node : [Query-Select] 오늘부터 1년 전까지 날짜 조회
+else 사용자 설정 날짜
+    Node --> Node : [Query-Select] 사용자가 요청한 기간 조회
+end
+Node -> App : [Res] 날짜 데이터 반환
+
+App -> User : 유튜버 비교 그래프 랜더링
+
+== 통계 페이지 - 해시태그, 동선 카테고리 ==
+User -> App : 지역 데이터 요청(Default는 현재 위치)
+alt GPS 모듈이 켜져있을 경우(Default)
+    App -> Node : [Req] Default 지역의 해시태그 요청\n[Req] Default 지역의 TOP3 동선 요청
+    Node -> Node : [Query-Select] Default 지역 해시태그를 포함하는 동선의 해시태그 조회\n[Query-Select] Default 지역 해시태그를 포함하는 동선 조회
+else 현재 위치정보를 가지고 있지 않을 경우
+    alt GPS 모듈이 꺼져있을 경우
+        App --> Node : [Req] 서울특별시의 해시태그 요청\n[Req] 서울 지역의 TOP3 동선 요청
+        Node --> Node : [Query-Select] 서울 지역 해시태그를 포함하는 동선의 해시태그 조회\n[Query-Select] 서울 지역 해시태그를 포함하는 동선 조회
+    else 사용자가 직접 선택할 경우
+        App --> Node : [Req] 사용자가 요청한 지역의 해시태그 요청\n[Req] 사용자가 요청한 지역의 TOP3 동선 요청
+        Node --> Node : [Query-Select] 사용자가 요청한 지역 해시태그를 포함하는 동선의 해시태그 조회\n[Query-Select] 사용자가 요청한 지역 해시태그를 포함하는 동선 조회
+    end
+end
+
+Node -> App : [Res] 해당 해시태그 및 카운트 결과값 반환\n[Res] 해당 동선 제목, 썸네일, 해시태그 반환
+
+App -> User : 통계 페이지 랜더링
+
+== 데이터 수집 페이지 - 크롤링 현황 ==
+Admin -> Web : 데이터 수집 페이지 접속
+Web -> Node : [Req] 현재 크롤링 상태 요청
+Node --> Node : [ Query-Select ] \n크롤링 상태 조회
+Node -> Web : [Res] 상태별 크롤링 결과 반영
+Web -> Admin : 진행중 / 에러 / 완료 별 화면 렌더링
+
+== 데이터 2차 검수 페이지 - 더보기 정보 조회==
+Admin -> Web : 에러 리스트에서 유튜버 클릭
+Web -> Node : [Req] 에러 발생한 영상 정보 요청
+Node --> Node : [ Query-Select ]\n영상 정보 조회
+Node -> Web : [Res] 형태소 분석된 더보기 정보 반환
+Web-> Admin : 주소 분리 및 검색 화면 렌더링
+
+== 데이터 2차 검수 페이지 - 주소 조합 ==
+Admin -> Web : 형태소 별로 분리된 데이터 클릭
+Web --> Web : 클릭한 데이터 화면에 출력
+Web -> Admin : 주소 분리 및 검색 화면 리렌더링\n(선택한 데이터 반영)
+
+== 데이터 2차 검수 페이지 - 주소 검색 ==
+Admin -> Web : 조합된 주소 데이터 검색 버튼 클릭
+Web -> Node : [Req] 주소에 대한 검색 결과, 좌표값 요청
+Node -> Lamda : [Req] 크롤링 요청
+Lamda --> Lamda : 크롤링 시작
+Lamda -> Node : [Res] 크롤링 결과 반환
+Node --> Node : [ Query-Select ] \n크롤링 된 주소정보 조회
+Node -> Web : [Res] 구글, 네이버, 다음 검색 결과, 좌표값 반환
+Web -> Admin : 주소 검색 화면 렌더링
+
+alt 삭제 버튼 클릭 시
+    Admin -> Web : 삭제 버튼 클릭
+    Web -> Node : [Req] 해당 영상 정보 삭제 요청
+    Node --> Node : [ Query-Delete ] \n영상 정보 삭제
+    Node -> Web : [Res] 삭제 결과 응답
+    Web -> Admin : 주소 분리 및 검색 화면 리렌더링
+end
+
+== 데이터 2차 검수 페이지 - 주소 저장 ==
+Admin -> Web : 검색된 주소 선택 후 저장버튼 클릭
+Web -> Node : [Req] 주소 정보 저장 요청
+Node --> Node : [ Query-Create ]\n주소 정보 저장
+Node -> Web : [Res] 주소 정보 저장 응답
+Web -> Admin : 주소 검색 화면 리렌더링
+
+alt 재검색 버튼 클릭 시
+    Admin -> Web : 재검색 버튼 클릭
+    Web --> Web : 주소 분리 및 검색 Component 이동
+    Web -> Admin : 주소 분리 및 검색 화면 렌더링
+end
+
+==유튜버 상세 페이지==
+User -> App : default page(1위 유튜버)
+App -> Node : <font color=red>[Req]</font> 유튜버 이름
+Node --> Node : [Query-Select]\n유튜버 정보 반환
+Node -> App : <font color=blue>[Res]</font>\n유튜버 정보, 조회수 Top 5 영상, 지역별 영상,\n영상 정보, 영상 url, 사용자의 좋아요 여부 반환
+App -> User : 유튜버 상세 페이지 렌더링
+
+==유튜버 검색==
+User -> App : 유튜버 검색
+App -> Node : <font color=red>[Req]</font> 유튜버 이름
+Node --> Node : [Query-Select]\n유튜버 정보 반환
+Node -> App : <font color=blue>[Res]</font>\n유튜버 정보, 조회수 Top 5 영상, 지역별 영상,\n영상 정보, 영상 url, 사용자의 좋아요 여부 반환
+App -> User : 유튜버 상세 페이지 렌더링
+
+==영상 조회==
+User -> App : 영상 클릭
+App --> App : 영상 url 반환
+App -> User : 영상 조회
+
+==좋아요==
+User -> App : 좋아요 버튼 클릭
+App -> Node : <font color=red>[Req]</font> 좋아요 버튼 클릭
+Node --> Node : [Query-Update]\n좋아요 상태 변경
+Node -> App : <font color=blue>[Res]</font> statusCode :: 좋아요 활성화 or 비활성화
+App -> User : 좋아요 버튼 활성화 or 비활성화
+@enduml
