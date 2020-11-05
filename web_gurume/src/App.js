@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import Root from "./Routes/Root"
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+const App = () => {
+  return(
+    <>
+    <Root />
+    </>
+  )
 }
+
+export default App
