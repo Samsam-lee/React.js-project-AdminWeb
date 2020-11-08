@@ -2,8 +2,14 @@ import React from 'react'
 
 const hashtag = () => {
     return (
-        <div>
-            <h1>Hashtag</h1>
+        <div className="bodyFrame">
+            <div className="assist">
+
+            </div>
+
+            <div className="subFrame">
+                
+            </div>
         </div>
     )
 }

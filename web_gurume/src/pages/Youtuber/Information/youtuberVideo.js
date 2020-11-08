@@ -1,10 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import './youtuberVideo.css'
 
 const youtuberVideo = () => {
     return (
-        <div>
-            <h1>This page is youtuberVideo ~</h1>
+        <div className="bodyFrame">
+            <div className="assist">
+
+            </div>
+
+            <div className="subFrame">
+                
+            </div>
         </div>
     )
 }

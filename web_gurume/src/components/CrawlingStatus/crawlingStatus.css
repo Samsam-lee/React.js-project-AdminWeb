@@ -1,0 +1,14 @@
+.status{
+    background-color: blue;
+    width: 10%;
+    height: 4%;
+    position: relative;
+    top: 10%;
+    left: 10%;
+}
+
+.statusBox{
+    background-color: brown;
+    width: 20%;
+    height: 80%;
+}

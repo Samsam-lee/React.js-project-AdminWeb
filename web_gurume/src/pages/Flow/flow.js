@@ -2,8 +2,14 @@ import React from 'react'
 
 const flow = () => {
     return (
-        <div>
-            Flow
+        <div className="bodyFrame">
+            <div className="assist">
+
+            </div>
+
+            <div className="subFrame">
+                
+            </div>
         </div>
     )
 }

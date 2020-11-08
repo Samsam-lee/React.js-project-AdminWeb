@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Header from '../components/Header/Header'
+import Home from '../components/Home/Home'
 
 import {collectAddress, collectData, searchData} from '../pages/CollectData'
 import flow from '../pages/Flow/flow'
@@ -15,7 +16,7 @@ const Root = () => {
         <BrowserRouter>
             <Route path='/' component={Header}></Route>
             <Route exact path='/' component={youtuberInfo}></Route>
-
+            
             <Route path='/youtuberVideo' component={youtuberVideo}></Route>
             <Route path='/youtuberRequest' component={youtuberRequest}></Route>
 

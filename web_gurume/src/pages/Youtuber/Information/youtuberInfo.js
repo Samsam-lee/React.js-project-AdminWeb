@@ -1,17 +1,27 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import './youtuberInfo.css'
+import Youtuber from '../../../components/Youtuber/Youtuber'
 
 const youtuberInfo = () => {
     return (
-        <div>
-            {/* <h1>This page is youtuberInfo ~</h1> */}
-            
+        <div className="bodyFrame">
+            <div className="assist">
 
-            <div><Link to='/youtuberRequest'> 유튜버 신청 페이지 </Link></div>
+            </div>
 
-            <div><Link to='/youtuberVideo'> 유튜버 비디오 </Link></div>
+            <div className="subFrame">
+                {/* map 돌리기 */}
+                <Youtuber /> 
+                <button><Link to='/youtuberRequest'> 유튜버 신청 페이지 </Link></button>
+                <button><Link to='/youtuberVideo'> 유튜버 비디오 </Link></button>
+            </div>
         </div>
     )
 }
 
 export default youtuberInfo
+
+
+
+            

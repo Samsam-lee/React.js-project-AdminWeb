@@ -2,8 +2,14 @@ import React from 'react'
 
 const user = () => {
     return (
-        <div>
-            USER
+        <div className="bodyFrame">
+            <div className="assist">
+
+            </div>
+
+            <div className="subFrame">
+                
+            </div>
         </div>
     )
 }

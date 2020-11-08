@@ -1,0 +1,20 @@
+.headerBox{
+    display: flex;
+    width: 100vw;
+    height: 10vh;
+    background-color: lightgrey;
+}
+
+.title{
+    flex: 2;
+    font-size: 2em;
+    
+}
+
+button {
+    flex: 1;
+}
+
+.temp{
+    flex: 3;
+}
