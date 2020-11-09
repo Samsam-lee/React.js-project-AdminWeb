@@ -10,7 +10,7 @@ const youtuberVideo = () => {
             </div>
 
             <div className="subFrame">
-                
+                <h1> 유튜버 동영상 리스트 </h1>
             </div>
         </div>
     )

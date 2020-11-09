@@ -8,7 +8,7 @@ const user = () => {
             </div>
 
             <div className="subFrame">
-                
+                <h1> 유저 페이지 </h1>
             </div>
         </div>
     )

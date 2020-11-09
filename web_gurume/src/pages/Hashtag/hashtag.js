@@ -8,7 +8,7 @@ const hashtag = () => {
             </div>
 
             <div className="subFrame">
-                
+                <h1> 해시태그 페이지 </h1>
             </div>
         </div>
     )

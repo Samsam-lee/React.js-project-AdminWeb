@@ -8,7 +8,7 @@ const flow = () => {
             </div>
 
             <div className="subFrame">
-                
+                <h1> 동선 페이지 </h1>
             </div>
         </div>
     )
