@@ -1,30 +1,23 @@
 import React from 'react'
-import { ApolloClient } from "apollo-client"
-import { InMemoryCache } from "apollo-cache-inmemory"
-import { createHttpLink } from "apollo-link-http"
-
 import temp from './temp'
+import {useQuery} from '@apollo/react-hooks'
 
-const client = new ApolloClient({
-    link: createHttpLink({ uri: "http://localhost:4000/" }),
-    cache: new InMemoryCache(),
-});
-
-(async function () {
-    console.log(temp())
-    const { loading, error, data } = await client.query({
-      query: temp()
-    })
-  
-    console.log("loading:", loading)
-    console.log("error:", error)
-    console.log("data:", data)
-  })()
+const User = () => {
+    const { loading, error, data } = useQuery(temp);
+    if(loading) return <p> Loading ... </p>
+    if(error) return <p> error! </p>
+    const {ytbChannel} = data
+    return (
+        <>
+        {ytbChannel.map(v => <p>{v.ytbHits}</p>)}
+        </>
+    )
+}
 
 const Youtuber = () => {
     return (
         <div>
-            {}
+            <User />
         </div>
     )
 }
