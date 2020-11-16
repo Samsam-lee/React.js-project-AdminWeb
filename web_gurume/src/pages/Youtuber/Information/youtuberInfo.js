@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './youtuberInfo.css'
 import Youtuber from '../../../components/Youtuber/Youtuber'
 
 const youtuberInfo = () => {

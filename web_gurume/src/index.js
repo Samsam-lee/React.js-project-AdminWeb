@@ -4,8 +4,8 @@ import './index.css';
 import Root from './Routes/Root'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <Root />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
