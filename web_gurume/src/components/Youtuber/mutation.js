@@ -1,12 +1,16 @@
 import gql from 'graphql-tag'
 
 const mut = gql`
-mutation{
+mutation mutationUser(
+  $ytbChannel: String!
+  $ytbProfile: String!
+  $ytbLinkAddress: String!
+  $ytbHits: Int!){
    createChannel(channelInput:{
-    ytbChannel: "이름"
-    ytbProfile: "프로필 사진"
-    ytbLinkAddress: "링크 주소"
-    ytbHits: 98765
+    ytbChannel: $ytbChannel
+    ytbProfile: $ytbProfile
+    ytbLinkAddress: $ytbLinkAddress
+    ytbHits: $ytbHits
   }){
     ytbChannel
     ytbProfile
