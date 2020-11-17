@@ -27,9 +27,15 @@ const MutationUser = () => {
         <>
         <button
             onClick={() =>
-                addChannel()
+                addChannel({variables:{
+                    ytbChannel: "ls형",
+                    ytbProfile: "lsh",
+                    ytbLinkAddress: "address",
+                    ytbHits: 121343
+                }})
             }
         > 유튜버 추가 </button>
+        <div>{error ? JSON.stringify(error) : null}</div>
         </>
     )
 }
