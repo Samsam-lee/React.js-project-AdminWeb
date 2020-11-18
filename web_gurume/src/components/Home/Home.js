@@ -1,6 +1,5 @@
 import React from 'react'
 import './Home.css'
-import YoutuberInfo from '../../pages/Youtuber/Information/youtuberInfo'
 
 const Home = () => {
     return (

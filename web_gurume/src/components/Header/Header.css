@@ -6,15 +6,14 @@
 }
 
 .title{
-    flex: 2;
-    font-size: 2em;
-    
+    flex: 5;
+    font-size: 80px;
+    font-family: 'Jalnan';
+    color: rgb(249, 185, 173);
+    min-width: 500px;
 }
 
-button {
+li {
     flex: 1;
-}
-
-.temp{
-    flex: 3;
+    min-width: 150px;
 }
