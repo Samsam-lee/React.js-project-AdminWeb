@@ -373,6 +373,11 @@ template {
 
 /* Custom */
 
+@font-face { 
+  font-family: 'Jalnan'; 
+  src: url(./assets/font/Jalnan.ttf) format('truetype');
+}
+
 .bodyFrame{
   background-color: aliceblue;
   width: 98vw;
