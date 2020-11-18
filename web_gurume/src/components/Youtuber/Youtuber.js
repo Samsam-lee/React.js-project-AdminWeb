@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {useQuery, useMutation, Mutation} from "@apollo/react-hooks"
+import React from 'react'
+import {useQuery, useMutation} from "@apollo/react-hooks"
 import query from "./query"
 import mut from "./mutation"
 
@@ -28,10 +28,10 @@ const MutationUser = () => {
         <button
             onClick={() =>
                 addChannel({variables:{
-                    ytbChannel: "ls형",
-                    ytbProfile: "lsh",
-                    ytbLinkAddress: "address",
-                    ytbHits: 121343
+                    ytbChannel: "temp",
+                    ytbProfile: "temp",
+                    ytbLinkAddress: "temp",
+                    ytbHits: 1213431
                 }})
             }
         > 유튜버 추가 </button>
