@@ -1,12 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Youtuber from '../../../components/Youtuber/Youtuber'
+import SearchBox from '../../../components/SearchBox'
 
 const youtuberInfo = () => {
     return (
         <div className="bodyFrame">
             <div className="assist">
-
+                <SearchBox />
             </div>
 
             <div className="subFrame">

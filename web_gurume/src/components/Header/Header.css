@@ -1,19 +1,33 @@
+body{
+    font-weight: bold;
+}
+
 .headerBox{
     display: flex;
     width: 100vw;
-    height: 10vh;
-    background-color: lightgrey;
+    height: 14vh;
 }
 
 .title{
     flex: 5;
     font-size: 80px;
-    font-family: 'Jalnan';
-    color: rgb(249, 185, 173);
     min-width: 500px;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+
+.title > a {
+    color: rgb(249, 185, 173);
 }
 
 li {
-    flex: 1;
-    min-width: 150px;
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+    font-size: 23px;
+    padding-top: 40px;
+}
+
+ul {
+    min-width: 700px;
 }

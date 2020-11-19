@@ -1,0 +1,23 @@
+.sBox {
+    margin: 0 auto;
+    font-size: 20px;
+    display: flex;
+    margin: 0 20% 0 20%;
+}
+
+.search{
+    flex: 6;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    max-width: 580px;
+}
+
+.searchButton{
+    flex: 1;
+    background-color: rgb(160, 187, 113);
+    border: 0px;
+    border-radius: 5px;
+    margin-left: 10px;
+    max-width: 100px;
+}
