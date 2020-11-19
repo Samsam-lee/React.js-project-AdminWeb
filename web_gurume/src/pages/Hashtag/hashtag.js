@@ -4,10 +4,13 @@ import SearchBox from '../../components/SearchBox'
 const hashtag = () => {
     return (
         <div className="bodyFrame">
-            <SearchBox />
+            
+            <div className="assist">
+                <SearchBox />
+            </div>
 
             <div className="subFrame">
-                <h1> 해시태그 페이지 </h1>
+                
             </div>
         </div>
     )
