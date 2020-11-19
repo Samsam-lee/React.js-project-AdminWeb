@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBox from '../../components/SearchBox'
+import HashtagBox from '../../components/Hashtag/HashtagBox'
 
 const hashtag = () => {
     return (
@@ -10,7 +11,7 @@ const hashtag = () => {
             </div>
 
             <div className="subFrame">
-                
+                <HashtagBox/>
             </div>
         </div>
     )

@@ -1,0 +1,15 @@
+.hashTitle{
+    width: 150px;
+    height: 50px;
+    background-color: pink;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.hashBody{
+    width: 150px;
+    height: 60px;
+    background-color: orange;
+    text-align: center;
+}
