@@ -13,6 +13,7 @@ const hashtag = () => {
             <div className="subFrame">
                 <HashtagBox/>
             </div>
+            
         </div>
     )
 }

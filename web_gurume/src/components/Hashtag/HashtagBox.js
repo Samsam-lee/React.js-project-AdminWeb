@@ -1,16 +1,28 @@
 import React from 'react'
-import hash from './dummy'
+import adminTag from './dummy'
 import './HashtagBox.css'
 
 const HashtagBox = () => {
     return (
-        <div>
-        <div className='hashTitle'> {hash.hashTitle} </div>
-        <div> {hash.hashBody.map(v=>
-                <div className='hashBody'>{v}</div>
-            )}
-        </div>
-        </div>
+        <>
+            <div className='box'>
+                <div className='hashTitle'> 지역 </div>
+                <div className='hashBody'> {adminTag.regionTags.map(v=>
+                        <div className='hashElement'>{v}</div>
+                    )}
+                    <div className='hashElementPlus'> + </div>
+                </div>
+            </div>
+
+            <div className='box'>
+                <div className='hashTitle'> 계절 </div>
+                <div className='hashBody'> {adminTag.seasonTags.map(v=>
+                        <div className='hashElement'>{v}</div>
+                    )}
+                    <div className='hashElementPlus'> + </div>
+                </div>
+            </div>
+        </>
     )
 }
 
