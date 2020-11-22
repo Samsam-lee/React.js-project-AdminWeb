@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchBox from '../../components/SearchBox'
+// import SearchBox from '../../components/SearchBox'
 import HashtagBox from '../../components/Hashtag/HashtagBox'
 
 const hashtag = () => {
@@ -7,7 +7,7 @@ const hashtag = () => {
         <div className="bodyFrame">
             
             <div className="assist">
-                <SearchBox />
+                {/* <SearchBox /> */}
             </div>
 
             <div className="subFrame">

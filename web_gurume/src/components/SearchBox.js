@@ -1,11 +1,43 @@
-import React from 'react'
+import React,{useState,useEffect,useCallback,useMemo} from "react"
 import './SearchBox.css'
 
-const SearchBox = () => {
+
+const SearchBox = (props) => {
+    
+    const opt = (e) => {
+        props.setFlowOption(e.target.value)
+    }
+    
+    const handleChange = (e) => {
+        props.setSearchText(e.target.value)
+    }
+
     return (
         <div className='sBox'>
-            <input className='search' type='text' placeholder='해시태그를 입력해주세요'/>
+            {
+            props.search == 'flow' 
+            ? <>
+            {/* 동선 페이지 searchBox */}
+            <select name='flowSelect' id='flowSelect' onChange={opt}>
+                <option value='region'>지역</option>
+                <option value='nickname'>닉네임</option>
+                <option value='flowTitle'>동선 제목</option>
+            </select>
+            <input className='search' type='text' placeholder='동선을 검색해주세요' onChange={handleChange}/>
             <input className='searchButton' type='submit' value='검색'/>
+            </>
+            : <>
+            {/* 유저 페이지 searchBox */}
+            <select>
+                <option>닉네임</option>
+                <option>id</option>
+                <option>메모</option>
+            </select>
+            <input className='search' type='text' placeholder='유저를 검색해주세요'/>
+            <input className='searchButton' type='submit' value='검색'/>
+            </>
+            }
+            
         </div>
     )
 }

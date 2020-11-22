@@ -13,7 +13,7 @@
 }
 
 .hashTitle{
-    flex: 1;
+    
     width: 150px;
     background-color: pink;
     text-align: center;
@@ -45,6 +45,8 @@
     min-width: 130px;
     border: 1px solid grey;
     margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .hashElementPlus{
@@ -58,4 +60,6 @@
     min-width: 130px;
     border: 1px solid grey;
     margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }
