@@ -374,32 +374,43 @@ template {
 /* Custom */
 
 @font-face { 
-  font-family: 'Jalnan'; 
-  src: url(./assets/font/Jalnan.ttf) format('truetype');
+  font-family: 'nanumSquare'; 
+  src: url(./assets/font/NanumSquare_acLight.ttf) format('truetype');
+}
+
+html{
+  font-family: 'nanumSquare';
+  font-weight: 500;
+  
+  height: 100%;
+}
+
+body, #root{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .bodyFrame{
-  background-color: aliceblue;
-  width: 98vw;
-  height: 90vh;
-  position: relative;
-  left: 1%;
+  background-color: rgb(255, 240, 193);
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  min-width: 1000px;
+  /* min-height: 700px; */
 }
 
-.assist {
-  width: 90%;
-  height: 10%;
-  background-color: rgb(210, 255, 216);
-  position: relative;
-  top: 2%;
-  left: 5%;
+.assist{
+  flex: 1;
+  margin: 0 0 50px 0;
+  align-self: center;
 }
 
 .subFrame {
-  width: 90%;
-  height: 80%;
-  background-color: rgb(247, 255, 240);
-  position: relative;
-  top: 5%;
-  left: 5%;
+  flex: 9;
+  display: flex;
+  align-self: center;
+  display: flex;
 }

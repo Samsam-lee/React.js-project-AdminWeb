@@ -44,7 +44,6 @@ const Youtuber = () => {
     return (
         <>
         <User />
-        <MutationUser />
         </>
     )
 }
