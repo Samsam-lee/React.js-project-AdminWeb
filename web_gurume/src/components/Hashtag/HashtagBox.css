@@ -1,15 +1,65 @@
+.box{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    padding: 10px;
+    background-color: white;
+    border-radius: 30px;
+    margin: 10px;
+    border: 1px solid grey;
+    max-width: 600px;
+    min-width: 300px;
+    line-height: 60px;
+}
+
 .hashTitle{
+    
     width: 150px;
-    height: 50px;
     background-color: pink;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+    align-self: center;
+    margin: -40px 0 20px 0;
+    border: 1px solid grey;
 }
 
 .hashBody{
-    width: 150px;
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 0 5%;
+    align-self: center;
+}
+
+.hashElement{
+    flex: 1;
     height: 60px;
     background-color: orange;
+    font-size: 20px;
     text-align: center;
+    margin: 5px;
+    max-width: 130px;
+    min-width: 130px;
+    border: 1px solid grey;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.hashElementPlus{
+    flex: 1;
+    height: 60px;
+    background-color: gold;
+    font-size: 20px;
+    text-align: center;
+    margin: 5px;
+    max-width: 130px;
+    min-width: 130px;
+    border: 1px solid grey;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
 }

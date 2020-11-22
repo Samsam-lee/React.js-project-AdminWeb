@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBox from '../../components/SearchBox'
+import Table from '../../components/Table'
 
 const user = () => {
     return (
@@ -9,7 +10,7 @@ const user = () => {
             </div>
 
             <div className="subFrame">
-                <h1> 유저 페이지 </h1>
+                <Table />
             </div>
         </div>
     )

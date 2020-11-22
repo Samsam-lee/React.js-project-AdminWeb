@@ -2,7 +2,6 @@
     margin: 0 auto;
     font-size: 20px;
     display: flex;
-    margin: 0 20% 0 20%;
 }
 
 .search{
@@ -11,6 +10,7 @@
     border-radius: 5px;
     padding: 10px 15px;
     max-width: 580px;
+    min-width: 400px;
 }
 
 .searchButton{
@@ -19,5 +19,5 @@
     border: 0px;
     border-radius: 5px;
     margin-left: 10px;
-    max-width: 100px;
+    width: 100px;
 }
