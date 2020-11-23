@@ -399,7 +399,6 @@ body, #root{
   flex-direction: column;
   border-radius: 30px;
   min-width: 1000px;
-  /* min-height: 700px; */
 }
 
 .assist{

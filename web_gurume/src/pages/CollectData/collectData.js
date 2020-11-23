@@ -1,20 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import crawlingStatus from '../../components/CrawlingStatus/crawlingStatus'
+import CrawlingStatus from '../../components/Crawling/crawlingStatus'
 import './collectData.css'
 
 
-const collectData = () => {
+const CollectData = () => {
+    const [status] = useState(['진행 중', '에러', '완료'])
+
     return (
         <div className="bodyFrame">
+                {/* <button><Link to='/collectData/search'> 지도 검색 부분 </Link></button>
+                <button><Link to='/collectData/search/address'> 주소 선택 </Link></button> */}
             <div className="dataFrame">
-                <crawlingStatus />
-                <h1> 데이터 수집 페이지 </h1>
-                <button><Link to='/collectData/search'> 지도 검색 부분 </Link></button>
-                <button><Link to='/collectData/search/address'> 주소 선택 </Link></button>
+                <CrawlingStatus status={status}/>
             </div>
         </div>
     )
 }
 
-export default collectData
+export default CollectData

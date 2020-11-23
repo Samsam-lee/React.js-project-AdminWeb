@@ -1,8 +1,5 @@
 .dataFrame{
-    width: 90%;
-    height: 90%;
-    background-color: rgb(247, 255, 240);
-    position: relative;
-    top: 5%;
-    left: 5%;
+    flex: 1;
+    display: flex;
+    
 }
