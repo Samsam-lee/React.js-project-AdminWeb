@@ -1,0 +1,27 @@
+.cBox{
+    flex: 1;
+    display: flex;
+}
+
+.statusBox{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid grey;
+    margin: 15px;
+    border-radius: 30px;
+}
+
+.status{
+    background-color: pink;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 250px;
+    height: 50px;
+    margin: -25px 0 0 0;
+    align-self: center;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+}

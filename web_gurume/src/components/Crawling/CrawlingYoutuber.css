@@ -1,0 +1,6 @@
+.youtuber{
+    flex: 1;
+    background-color: rgb(230, 230, 230);
+    max-height: 200px;
+    margin: 20px;
+}
