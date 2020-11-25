@@ -1,21 +1,53 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
-import CrawlingStatus from '../../components/Crawling/crawlingStatus'
-import './collectData.css'
-
+import React, { useState, useEffect } from "react";
+import CrawlingStatus from "../../components/Crawling/crawlingStatus";
+import "./collectData.css";
+import data from "../../assets/ytbCrawlingData";
+import ConvertError from "../../utils/isThisError";
 
 const CollectData = () => {
-    const [status] = useState(['진행 중', '에러', '완료'])
+  const [status] = useState(["진행 중", "에러", "완료"]);
+  const [errorVideos, setErrorVideos] = useState([]);
+  const [completeVideos, setCompleteVideos] = useState([]);
+  const [onGoingVideos, setOnGoingVideos] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [countOfErr, setCountOfErr] = useState(null);
 
-    return (
-        <div className="bodyFrame">
-                {/* <button><Link to='/collectData/search'> 지도 검색 부분 </Link></button>
-                <button><Link to='/collectData/search/address'> 주소 선택 </Link></button> */}
-            <div className="dataFrame">
-                <CrawlingStatus status={status}/>
-            </div>
-        </div>
-    )
-}
+  // <-- 상태 별 비디오
+  const statusOfVideos = (data) => {
+    data.map((v) => {
+      const { isError, countOfErr } = ConvertError(v);
+      setIsError(isError);
+      setCountOfErr(countOfErr);
 
-export default CollectData
+      if (v.video.length < v.videoCount) {
+        setOnGoingVideos((onGoingVideos) => [...onGoingVideos, v]);
+      } else if (v.video.length == v.videoCount && isError) {
+        setErrorVideos((errorVideos) => [...errorVideos, v]);
+      } else {
+        setCompleteVideos((completeVideos) => [...completeVideos, v]);
+      }
+    });
+  };
+  // -->
+
+  useEffect(() => {
+    statusOfVideos(data);
+  }, [data]);
+
+  return (
+    <div className="bodyFrame">
+      <div className="dataFrame">
+        <CrawlingStatus
+          status={status}
+          onGoingVideos={onGoingVideos}
+          errorVideos={errorVideos}
+          completeVideos={completeVideos}
+          isError={isError}
+          countOfErr={countOfErr}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default CollectData;
