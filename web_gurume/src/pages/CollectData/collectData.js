@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CrawlingStatus from "../../components/Crawling/crawlingStatus";
-import "./collectData.css";
 import data from "../../assets/ytbCrawlingData";
 import ConvertError from "../../utils/isThisError";
 
@@ -11,6 +10,7 @@ const CollectData = () => {
   const [onGoingVideos, setOnGoingVideos] = useState([]);
   const [isError, setIsError] = useState(false);
   const [countOfErr, setCountOfErr] = useState(null);
+  // const [youtuberIndex, setYoutuberIndex] = useState(0);
 
   // <-- 상태 별 비디오
   const statusOfVideos = (data) => {
@@ -32,7 +32,7 @@ const CollectData = () => {
 
   useEffect(() => {
     statusOfVideos(data);
-  }, [data]);
+  }, []);
 
   return (
     <div className="bodyFrame">
@@ -44,6 +44,7 @@ const CollectData = () => {
           completeVideos={completeVideos}
           isError={isError}
           countOfErr={countOfErr}
+          // handleIndex={setYoutuberIndex}
         />
       </div>
     </div>

@@ -8,7 +8,6 @@ const CrawlingStatus = (props) => {
       {props.status.map((v) => (
         <div className="statusBox">
           <div className="status">{v}</div>
-          {console.log(props.errorVideos)}
           <CrawlingYoutuber
             status={v}
             onGoingVideos={props.onGoingVideos}
@@ -16,6 +15,7 @@ const CrawlingStatus = (props) => {
             completeVideos={props.completeVideos}
             isError={props.isError}
             countOfErr={props.countOfErr}
+            handleIndex={props.handleIndex}
           />
         </div>
       ))}

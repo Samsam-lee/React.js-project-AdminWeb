@@ -1,6 +1,6 @@
 .cBox{
-    flex: 1;
     display: flex;
+    width: 450px;
 }
 
 .statusBox{
@@ -11,6 +11,8 @@
     border: 1px solid grey;
     margin: 15px;
     border-radius: 30px;
+    min-width: 400px;
+    max-width: 450px;
 }
 
 .status{

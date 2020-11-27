@@ -1,0 +1,48 @@
+.morpheme{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 50px;
+    border: 1px solid grey;
+}
+
+.morphemeTitle{
+    background-color: pink;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    margin: -25px 0 0 0;
+    align-self: center;
+}
+
+.addressSearch{
+    flex: 1;
+    width: 75%;
+    margin: 10px;
+    align-self: center;
+    font-size: 30px;
+}
+
+.inputBox{
+    /* flex: 1; */
+    display: flex;
+    justify-content: flex-end;
+}
+
+.morphemeButton{
+    border: 1px solid grey;
+    border-radius: 10px;
+    background-color: gold;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    margin: 5px;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
