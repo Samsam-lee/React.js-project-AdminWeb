@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Hashtag.css";
 import LittleHash from "./LittleHash";
 
@@ -13,7 +13,6 @@ const Hashtag = (props) => {
             setVideoIndex={props.setVideoIndex}
             setHashIndex={props.setHashIndex}
             setSearchText={props.setSearchText}
-            searchText={props.searchText}
           />
         </div>
       ) : (
