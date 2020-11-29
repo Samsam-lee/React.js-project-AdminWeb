@@ -3,8 +3,8 @@ import "./LittleHash.css";
 
 const LittleHash = (props) => {
   const clickForSearch = (value,index) => {
-    console.log(value.target.innerText, index)
-    props.setSearchText(searchText => searchText.concat(value.target.innerText))
+    props.setSearchText(searchText => [...searchText, value.target.innerText]);
+    // props.setSearchText(searchText => searchText.concat(value.target.innerText))
   };
 
   return (

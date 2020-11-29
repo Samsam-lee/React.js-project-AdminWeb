@@ -10,7 +10,6 @@ const Hashtag = (props) => {
         <div className="hashtag">
           <LittleHash
             argHashtag={props.videos[props.videoIndex].more}
-            setVideoIndex={props.setVideoIndex}
             setHashIndex={props.setHashIndex}
             setSearchText={props.setSearchText}
           />

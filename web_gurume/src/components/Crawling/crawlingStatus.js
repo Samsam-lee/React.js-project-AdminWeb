@@ -10,9 +10,9 @@ const CrawlingStatus = (props) => {
           <div className="status">{v}</div>
           <CrawlingYoutuber
             status={v}
-            onGoingVideos={props.onGoingVideos}
-            errorVideos={props.errorVideos}
-            completeVideos={props.completeVideos}
+            onGoingYoutubers={props.onGoingYoutubers}
+            errorYoutubers={props.errorYoutubers}
+            completeYoutubers={props.completeYoutubers}
             isError={props.isError}
             countOfErr={props.countOfErr}
             handleIndex={props.handleIndex}

@@ -5,12 +5,11 @@ import ConvertError from "../../utils/isThisError";
 
 const CollectData = () => {
   const [status] = useState(["진행 중", "에러", "완료"]);
-  const [errorVideos, setErrorVideos] = useState([]);
-  const [completeVideos, setCompleteVideos] = useState([]);
-  const [onGoingVideos, setOnGoingVideos] = useState([]);
+  const [errorYoutubers, setErrorYoutubers] = useState([]);
+  const [completeYoutubers, setCompleteYoutubers] = useState([]);
+  const [onGoingYoutubers, setOnGoingYoutubers] = useState([]);
   const [isError, setIsError] = useState(false);
   const [countOfErr, setCountOfErr] = useState(null);
-  // const [youtuberIndex, setYoutuberIndex] = useState(0);
 
   // <-- 상태 별 비디오
   const statusOfVideos = (data) => {
@@ -20,11 +19,11 @@ const CollectData = () => {
       setCountOfErr(countOfErr);
 
       if (v.video.length < v.videoCount) {
-        setOnGoingVideos((onGoingVideos) => [...onGoingVideos, v]);
+        setOnGoingYoutubers((onGoingYoutubers) => [...onGoingYoutubers, v]);
       } else if (v.video.length == v.videoCount && isError) {
-        setErrorVideos((errorVideos) => [...errorVideos, v]);
+        setErrorYoutubers((errorYoutubers) => [...errorYoutubers, v]);
       } else {
-        setCompleteVideos((completeVideos) => [...completeVideos, v]);
+        setCompleteYoutubers((completeYoutubers) => [...completeYoutubers, v]);
       }
     });
   };
@@ -39,12 +38,11 @@ const CollectData = () => {
       <div className="dataFrame">
         <CrawlingStatus
           status={status}
-          onGoingVideos={onGoingVideos}
-          errorVideos={errorVideos}
-          completeVideos={completeVideos}
+          onGoingYoutubers={onGoingYoutubers}
+          errorYoutubers={errorYoutubers}
+          completeYoutubers={completeYoutubers}
           isError={isError}
           countOfErr={countOfErr}
-          // handleIndex={setYoutuberIndex}
         />
       </div>
     </div>

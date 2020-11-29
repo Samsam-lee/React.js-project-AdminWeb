@@ -7,7 +7,7 @@ const CrawlingYoutuber = (props) => {
     case "진행 중":
       return (
         <div className="stateBox">
-          {props.onGoingVideos.map((v) => (
+          {props.onGoingYoutubers.map((v) => (
             <>
               <div className="youtuber">
                 <div>{v.ytbChannel}</div>
@@ -24,7 +24,7 @@ const CrawlingYoutuber = (props) => {
     case "에러":
       return (
         <div className="stateBox">
-          {props.errorVideos.map((v, index) => {
+          {props.errorYoutubers.map((v, index) => {
             return (
               <>
                 <div
@@ -61,7 +61,7 @@ const CrawlingYoutuber = (props) => {
     case "완료":
       return (
         <div className="stateBox">
-          {props.completeVideos.map((v) => (
+          {props.completeYoutubers.map((v) => (
             <>
               <div className="youtuber">
                 <div>{v.ytbChannel}</div>

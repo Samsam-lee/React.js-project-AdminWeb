@@ -6,7 +6,7 @@ import Morpheme from "../../components/Crawling/Morpheme";
 import queryString from "query-string";
 
 const SearchData = (props) => {
-  const [errorVideos, setErrorVideos] = useState([]);
+  const [errorYoutubers, setErrorYoutubers] = useState([]);
   const [isError, setIsError] = useState(false);
   const [countOfErr, setCountOfErr] = useState(null);
   const [youtuberIndex, setYoutuberIndex] = useState(0);
@@ -18,7 +18,7 @@ const SearchData = (props) => {
       setIsError(isError);
       setCountOfErr(countOfErr);
       if (v.video.length == v.videoCount && isError) {
-        setErrorVideos((errorVideos) => [...errorVideos, v]);
+        setErrorYoutubers((errorYoutubers) => [...errorYoutubers, v]);
       }
     });
   };
@@ -42,17 +42,17 @@ const SearchData = (props) => {
       <div className="dataFrame">
         <CrawlingStatus
           status={["에러"]}
-          onGoingVideos={null}
-          errorVideos={errorVideos}
-          completeVideos={null}
+          onGoingYoutubers={null}
+          errorYoutubers={errorYoutubers}
+          completeYoutubers={null}
           isError={isError}
           countOfErr={countOfErr}
           handleIndex={setYoutuberIndex}
         />
-        {errorVideos &&
-        errorVideos.length !== 0 &&
+        {errorYoutubers &&
+        errorYoutubers.length !== 0 &&
         typeof youtuberIndex === "number" ? (
-          <Morpheme errorVideos={errorVideos} youtuberIndex={youtuberIndex} />
+          <Morpheme errorYoutubers={errorYoutubers} youtuberIndex={youtuberIndex} />
         ) : null}
       </div>
     </div>
