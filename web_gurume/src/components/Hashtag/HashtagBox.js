@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminTag from "./dummy";
 import "./HashtagBox.css";
-import addHashtag from "../../utils/addHashtag";
 
 const HashtagBox = () => {
   const [region, setRegion] = useState("null");

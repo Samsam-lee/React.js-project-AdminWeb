@@ -398,7 +398,7 @@ body, #root{
   display: flex;
   flex-direction: column;
   border-radius: 30px;
-  min-width: 1000px;
+  min-width: 1150px;
 }
 
 .assist{
@@ -411,5 +411,9 @@ body, #root{
   flex: 9;
   display: flex;
   align-self: center;
+}
+
+.dataFrame{
+  flex: 1;
   display: flex;
 }
