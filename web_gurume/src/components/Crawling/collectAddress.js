@@ -1,6 +1,6 @@
 import React from "react";
 import "./collectAddress.css";
-import Map from "../../assets/image/지도.png";
+import GoogleMap from '../../utils/GoogleApi'
 
 const collectAddress = () => {
   return (
@@ -19,9 +19,7 @@ const collectAddress = () => {
             <div></div>
         </div>
       </div>
-      <div className="mapBox">
-        <input className="map" type="image" src={Map} />
-      </div>
+        <GoogleMap/>
     </div>
   );
 };

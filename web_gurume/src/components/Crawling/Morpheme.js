@@ -32,15 +32,19 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
   // 검색 버튼 클릭 기능
   const addressSearchButton = () => {
     setNextPage(true);
+    // 서버로 text 값 넘겨주기
   };
 
   // 재검색 버튼 클릭 기능
   const researchButton = () => {
     setNextPage(false);
+    setSearchText([]);
   };
 
   const saveAddress = () => {
     setNextPage(false);
+    // 서버로 선택한 주소 넘겨주기
+    // 에러난 비디오 중 다음 index 값으로!
   };
 
   return (
