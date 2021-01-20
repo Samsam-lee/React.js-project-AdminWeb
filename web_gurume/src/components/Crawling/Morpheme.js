@@ -5,7 +5,7 @@ import CollectAddress from "./collectAddress";
 
 const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
   const [videoIndex, setVideoIndex] = useState(0); // 에러난 영상만 나오게
-  const [hashIndex, setHashIndex] = useState(null);
+  const [hashIndex, setHashIndex] = useState([-1]); // 해쉬태그 css
   const [searchText, setSearchText] = useState("");
   const [text, setText] = useState();
   const [nextPage, setNextPage] = useState(false);
@@ -13,10 +13,12 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
   // videoIndex 는 검색버튼 클릭 시 다음 에러 발생 영상으로
   // hashIndex 는 검색창에 띄울 때 필요
 
+  // 다른 유튜버로 변경 시 검색할 문자 초기화
   useEffect(() => {
     setSearchText([]);
   }, [youtuberIndex]);
 
+  // 검색 할 텍스트 문자화
   useEffect(() => {
     let temp = searchText.toString();
     setText(temp.replace(/,/g, ""));
@@ -25,10 +27,13 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
   // 띄어쓰기 기능
   const space = () => {
     setSearchText((value) => [...value, " "]);
+
   };
 
   // 동영상 삭제 기능
-  const videoDelete = () => {};
+  const videoDelete = () => {
+    //
+  };
   // 검색 버튼 클릭 기능
   const addressSearchButton = () => {
     setNextPage(true);
@@ -43,6 +48,7 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
 
   const saveAddress = () => {
     setNextPage(false);
+    setSearchText([]);
     // 서버로 선택한 주소 넘겨주기
     // 에러난 비디오 중 다음 index 값으로!
   };
@@ -51,7 +57,8 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
     <div className="morpheme">
       <div className="morphemeTitle"> 주소 분리 및 검색 </div>
       {console.log("searchText : ", searchText)}
-      {console.log("text : ", text)}
+      {console.log("hashIndex : ", hashIndex)}
+      {console.log("--------------------------------------")}
       {nextPage === false ? (
         <>
           <div className="searchAndSpace">
@@ -69,6 +76,7 @@ const Morpheme = ({ errorYoutubers, youtuberIndex }) => {
             videos={errorYoutubers[youtuberIndex].video}
             videoIndex={videoIndex}
             setHashIndex={setHashIndex}
+            hashIndex={hashIndex}
             setSearchText={setSearchText}
           />
           <div className="inputBox">

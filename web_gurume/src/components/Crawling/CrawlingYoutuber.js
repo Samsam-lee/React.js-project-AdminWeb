@@ -21,6 +21,7 @@ const CrawlingYoutuber = (props) => {
           ))}
         </div>
       );
+
     case "에러":
       return (
         <div className="stateBox">
@@ -28,18 +29,10 @@ const CrawlingYoutuber = (props) => {
             return (
               <>
                 <div
-                  onClick={() =>
-                    // url 검사 해 -> collectData/search 일때만 밑에 있는 프롭스 실행시키고
-                    // collectData 페이지일때는 아에 실행안시키면 되지 않나?
-                    // 위의 로직을 해결할시 unde~2번은 해결
-                    // onClick이벤트가 2번 실행되는 이슐ㄹ 해결해보자..
-                    {
-
-                      // console.log(v, index)
-                      return props.handleIndex ? props.handleIndex(index) : null
-                    }
-                  }
-                  className="errorYoutuber"
+                  onClick={() => {
+                    return props.handleIndex ? props.handleIndex(index) : null;
+                  }}
+                  className={props.youtuberIndex == index ? "selectedErrorYoutuber" : "errorYoutuber"}
                 >
                   <Link to={`/collectData/search?index=${index}`}>
                     <div>{v.ytbChannel}</div>
@@ -58,6 +51,7 @@ const CrawlingYoutuber = (props) => {
           })}
         </div>
       );
+
     case "완료":
       return (
         <div className="stateBox">

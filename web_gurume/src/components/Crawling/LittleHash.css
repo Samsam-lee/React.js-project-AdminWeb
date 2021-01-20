@@ -11,3 +11,18 @@
     border-radius: 10px;
     flex: auto;
 }
+
+.selectedLittlehash{
+    background-color: bisque;
+    min-width: 100px;
+    margin: 10px;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 60px;
+    cursor: pointer;
+    border-radius: 10px;
+    flex: auto;
+    border: 3px solid red;
+}

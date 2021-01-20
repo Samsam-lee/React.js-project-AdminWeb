@@ -11,6 +11,7 @@ const Hashtag = (props) => {
           <LittleHash
             argHashtag={props.videos[props.videoIndex].more}
             setHashIndex={props.setHashIndex}
+            hashIndex={props.hashIndex}
             setSearchText={props.setSearchText}
           />
         </div>
