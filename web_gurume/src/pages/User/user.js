@@ -2,6 +2,7 @@ import React from 'react'
 import SearchBox from '../../components/SearchBox'
 import Table from '../../components/Table'
 
+
 const user = () => {
     return (
         <div className="bodyFrame">

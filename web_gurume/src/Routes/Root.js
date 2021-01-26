@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Header from '../components/Header/Header'
 
-import {collectAddress, collectData, searchData} from '../pages/CollectData'
+import login from '../pages/Login/Login'
+import {collectData, searchData} from '../pages/CollectData'
 import flow from '../pages/Flow/flow'
 import hashtag from '../pages/Hashtag/hashtag'
 import user from '../pages/User/user'
@@ -13,20 +14,21 @@ const Root = () => {
     return(
         <>
         <BrowserRouter>
-            <Route path='/' component={Header}></Route>
-            <Route exact path='/' component={youtuberInfo}></Route>
-            
-            <Route path='/youtuberVideo' component={youtuberVideo}></Route>
-            <Route path='/youtuberRequest' component={youtuberRequest}></Route>
+            <Route exact path='/' component={login}></Route>
 
-            <Route path='/hashtag' component={hashtag}></Route>
-            <Route path='/flow' component={flow}></Route>
-            <Route path='/user' component={user}></Route>
+            <Route path='/bigGurume' component={Header}></Route>
+            <Route exact path='/bigGurume' component={youtuberInfo}></Route>
+            
+            <Route path='/bigGurume/youtuberVideo' component={youtuberVideo}></Route>
+            <Route path='/bigGurume/youtuberRequest' component={youtuberRequest}></Route>
+
+            <Route path='/bigGurume/hashtag' component={hashtag}></Route>
+            <Route path='/bigGurume/flow' component={flow}></Route>
+            <Route path='/bigGurume/user' component={user}></Route>
 
             <Switch>
-                <Route path='/collectData/search/address' component={collectAddress}></Route>
-                <Route path='/collectData/search' component={searchData}></Route>
-                <Route path='/collectData' component={collectData}></Route>
+                <Route path='/bigGurume/collectData/search' component={searchData}></Route>
+                <Route path='/bigGurume/collectData' component={collectData}></Route>
             </Switch>
         </BrowserRouter>
         </>

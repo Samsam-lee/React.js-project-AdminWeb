@@ -1,0 +1,13 @@
+.hashtag {
+    padding: 0 10px;
+    border: 1px solid grey;
+    flex: 10;
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: space-between; */
+}
+
+.hashtag::after {
+    content: "";
+    flex: auto;
+}
