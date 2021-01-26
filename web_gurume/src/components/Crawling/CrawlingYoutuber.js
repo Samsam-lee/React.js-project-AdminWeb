@@ -34,7 +34,7 @@ const CrawlingYoutuber = (props) => {
                   }}
                   className={props.youtuberIndex == index ? "selectedErrorYoutuber" : "errorYoutuber"}
                 >
-                  <Link to={`/collectData/search?index=${index}`}>
+                  <Link to={`/bigGurume/collectData/search?index=${index}`}>
                     <div>{v.ytbChannel}</div>
                     <div>동영상 : {v.videoCount}개</div>
                     <div>

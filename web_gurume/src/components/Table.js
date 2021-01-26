@@ -31,7 +31,7 @@ const Table = (props) => {
                 <tr>
                     <th>지역</th>
                     <th>동선 제목</th>
-                    <th>닉네임</th>
+                    <th>아이디</th>
                     <th>작성 날짜</th>
                     <th>업데이트 날짜</th>
                     <th>조회 수</th>
@@ -50,8 +50,8 @@ const Table = (props) => {
                 <table>
                     <th> 닉네임 </th>
                     <th> 아이디 </th>
-                    <th> 동선 공유 </th>
-                    <th> 유튜버 신청 </th>
+                    <th> 동선 폴더 개수 </th>
+                    <th> 소셜 로그인 플랫폼 </th>
                     <th> 메모 </th>
                 
                     {userData.map(v =>
