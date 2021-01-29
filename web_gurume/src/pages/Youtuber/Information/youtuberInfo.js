@@ -1,31 +1,22 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import Youtuber from '../../../components/Youtuber/Youtuber'
-import SearchBox from '../../../components/SearchBox'
+import youtuberData from '../../../assets/youtuberData'
 
 const youtuberInfo = () => {
     return (
         <div className="bodyFrame">
             <div className="assist">
-                {/* <SearchBox /> */}
+                <div> 유튜버 목록 </div>
             </div>
 
             <div className="subFrame">
-                <div>
-                <h1> 유튜버 정보 페이지 </h1>
-                <button><Link to='/bigGurume/youtuberRequest'> 유튜버 신청 페이지 </Link></button>
-                <button><Link to='/bigGurume/youtuberVideo'> 유튜버 비디오 </Link></button>
-                
-                {/* map 돌리기 */}
-                <Youtuber /> 
-                </div>
+                {/* 유튜버 데이터 가져와서 Youtuber 컴포넌트에 넣음 */}
+                {youtuberData.map(v=>
+                    <Youtuber ytbData={v}/>
+                )}
             </div>
         </div>
     )
 }
 
 export default youtuberInfo
-
-
-
-            

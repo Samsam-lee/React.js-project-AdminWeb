@@ -1,50 +1,18 @@
 import React from 'react'
-// import {useQuery, useMutation} from "@apollo/react-hooks"
-// import query from "./query"
-// import mut from "./mutation"
+import {Link} from 'react-router-dom'
 
-// const User = () =>{
-//     const { loading, error, data } = useQuery(query);
-// 	if (loading) return <p>Loading...</p>;
-//     if (error) return <p>Error Message : {error.message}</p>;
-    
-//     const {ytbChannel} = data;
-
-// 	return (
-//         <>
-// 		{ytbChannel.map(v => <>
-//         <p> {v.ytbHits} {v.ytbLinkAddress} </p><p> {v.ytbProfile}  {v.ytbChannel} </p>
-//         <p> --------------------------------------------- </p>
-//         </>)}
-//         </>
-// 	)
-// }
-
-// const MutationUser = () => {
-//     const [addChannel, { loading, error, data }] = useMutation(mut)
-
-//     return(
-//         <>
-//         <button
-//             onClick={() =>
-//                 addChannel({variables:{
-//                     ytbChannel: "temp",
-//                     ytbProfile: "temp",
-//                     ytbLinkAddress: "temp",
-//                     ytbHits: 1213431
-//                 }})
-//             }
-//         > 유튜버 추가 </button>
-//         <div>{error ? JSON.stringify(error) : null}</div>
-//         </>
-//     )
-// }
-
-const Youtuber = () => {
+const Youtuber = (props) => {
     return (
-        <>
-        {/* <User /> */}
-        </>
+        <button className='ytbInfoBox'>
+            <Link to='/bigGurume/youtuberVideo'>
+                <div> <img src={props.ytbData.ytbProfile}/> </div>
+                <div>
+                    <div> {props.ytbData.ytbChannel} </div>
+                    <div> 구독자 : {props.ytbData.ytbSubscribe}명 </div>
+                    <div> 동영상 : {props.ytbData.video.length}개 </div>
+                </div>
+            </Link>
+        </button>
     )
 }
 
