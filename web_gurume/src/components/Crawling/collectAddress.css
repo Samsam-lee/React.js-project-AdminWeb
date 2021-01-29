@@ -23,12 +23,15 @@
     cursor: pointer;
 }
 
-.collectBox > div:nth-child(2){
-    flex: 5;
-    display: flex;
+.store{
+    padding: 10px;
+    font-size: 18px;
 }
 
-.mapBox > div > div {
-    /* position: relative !important; */
-    flex:1;
+.collectBox > div:nth-child(2){
+    flex: 5;
+}
+
+.collectBox > div:nth-child(2) > div {
+    position: relative !important;
 }

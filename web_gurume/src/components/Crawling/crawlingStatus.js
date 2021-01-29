@@ -16,6 +16,7 @@ const CrawlingStatus = (props) => {
             isError={props.isError}
             countOfErr={props.countOfErr}
             handleIndex={props.handleIndex}
+            youtuberIndex={props.youtuberIndex}
           />
         </div>
       ))}

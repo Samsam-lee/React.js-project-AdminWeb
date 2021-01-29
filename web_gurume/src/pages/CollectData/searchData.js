@@ -9,7 +9,6 @@ const SearchData = (props) => {
   const [errorYoutubers, setErrorYoutubers] = useState([]);
   const [isError, setIsError] = useState(false);
   const [countOfErr, setCountOfErr] = useState(0);
-  // const [countOfErr, setCountOfErr] = useState([]);
   const [youtuberIndex, setYoutuberIndex] = useState(0);
 
   // <-- 상태 별 비디오
@@ -55,6 +54,7 @@ const SearchData = (props) => {
           isError={isError}
           countOfErr={countOfErr}
           handleIndex={setYoutuberIndex}
+          youtuberIndex={youtuberIndex}
         />
         {/* {console.log('error : ', countOfErr)} */}
         {errorYoutubers &&

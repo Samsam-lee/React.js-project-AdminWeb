@@ -19,3 +19,13 @@
     margin: 20px;
     cursor: pointer;
 }
+
+.selectedErrorYoutuber{
+    flex: 1;
+    background-color: rgb(230, 230, 230);
+    min-height: 120px;
+    max-height: 200px;
+    margin: 20px;
+    cursor: pointer;
+    border: 3px solid red;
+}

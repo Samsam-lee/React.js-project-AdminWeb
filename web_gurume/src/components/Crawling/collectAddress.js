@@ -1,27 +1,29 @@
-import React from "react";
+import React,{useState} from "react";
 import "./collectAddress.css";
-import GoogleMap from '../../utils/GoogleApi'
+import GoogleMap from "../../utils/GoogleApi";
+import platformData from "../../assets/platformCrawlingData";
 
-const collectAddress = () => {
+const CollectAddress = () => {
   return (
     <div className="collectBox">
       <div className="platformBox">
-        <div className='collectPlatform'>
-            <div className='platform'> 구글 </div>
-            <div></div>
-        </div>
-        <div className='collectPlatform'>
-            <div className='platform'> 네이버 </div>
-            <div></div>
-        </div>
-        <div className='collectPlatform'>
-            <div className='platform'> 카카오 </div>
-            <div></div>
-        </div>
+        {platformData ? (
+          platformData.map((v) => (
+            <div className="collectPlatform">
+              <div className="platform"> {v.platform} </div>
+              <div className="store">
+                {v.address} <br />
+                <br /> {v.storeName}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div> no data </div>
+        )}
       </div>
-        <GoogleMap/>
+      <GoogleMap platformData={platformData}/>
     </div>
   );
 };
 
-export default collectAddress;
+export default CollectAddress;
