@@ -31,3 +31,16 @@ li {
 ul {
     min-width: 700px;
 }
+
+.mOver{
+    position: absolute;
+    padding: 15px 50px;
+    margin: 0 0 0 -10px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.mOut{
+    display: none;
+}

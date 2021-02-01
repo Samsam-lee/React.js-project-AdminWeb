@@ -1,17 +1,26 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import ytbRequestData from '../../../assets/ytbReqTb'
+import Request from '../../../components/Youtuber/Request'
+import './youtuberRequest.css'
 
 const youtuberRequest = () => {
     return (
         <div className="bodyFrame">
-            <div className="assist">
 
+            <div className="assist">
+                <span> 유튜버 신청 목록 </span>
+                <button className='AgreeYtb'> 유튜버 승인 </button>
             </div>
 
             <div className="subFrame">
-            <button><Link to='/bigGurume'> 유튜버 정보 페이지 </Link></button>
-            <h1> 유튜버 신청 페이지 </h1>
+                {ytbRequestData.map(v =>
+                    <>
+                    <input type='checkbox' name='ytbReqInfo' value={v}/>
+                    <Request requestData={v}/>
+                    </>
+                )}
             </div>
+            
         </div>
     )
 }

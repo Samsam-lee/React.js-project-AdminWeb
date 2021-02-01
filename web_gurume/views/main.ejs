@@ -1,0 +1,8 @@
+<h1>Main Page</h1>
+
+<% if(!user){ %>
+  <a href="auth/login">Login</a>
+<% } else { %>
+  <p>Welcome <%= user.displayName %></p>
+    <a href="auth/logout">Logout</a>
+<% } %>
