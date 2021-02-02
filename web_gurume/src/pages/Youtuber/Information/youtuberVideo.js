@@ -1,21 +1,47 @@
-import React from 'react'
-import youtuberData from '../../../assets/youtuberData'
+import React, {useState, useEffect} from 'react'
 import Video from '../../../components/Youtuber/Video'
+import axios from 'axios'
+import queryString from "query-string";
 
-const youtuberVideo = (props) => {
+const YoutuberVideo = (props) => {
+
+    const [youtuber, setYoutuber] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchYoutuber = async () => {
+            try {
+                setError(null);
+                setYoutuber(null);
+                setLoading(true);
+                const response = await axios.get(
+                    `http://localhost:3000/ytbChannelTb/${queryString.parse(props.location.search).youtuber}`
+                );
+                setYoutuber(response.data); // 데이터는 response.data 안에 들어있습니다.
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+    };
+    fetchYoutuber();
+    }, []);
+
+    if (loading) return <div> 로딩중.. </div>;
+    if (error) return <div> error </div>;
+    if (!youtuber) return null;
+
     return (
         <div className="bodyFrame">
             <div className="assist">
-                {/* youtuberData[4] 는 api 받아왔을 때 값 변경 */}
-                <div> {youtuberData[4].ytbChannel} </div>
+                <h1> {queryString.parse(props.location.search).youtuber} </h1>
             </div>
 
             <div className="subFrame">
-                {/* youtuberData[4] 는 변경하고 map 돌려서 Video component로 데이터 전송 */}
-                {youtuberData[4].video.map(v => <Video videoData={v}/>)}
+                {youtuber.userTb[0].video.map(v => <Video videoData={v}/>)}
             </div>
         </div>
     )
 }
 
-export default youtuberVideo
+export default YoutuberVideo
