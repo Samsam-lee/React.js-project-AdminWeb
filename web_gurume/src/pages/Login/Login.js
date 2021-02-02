@@ -10,7 +10,11 @@ const Login = () => {
                 <div className='inputTypeBox'>
                     <div><input className='userIdBox' type='text' placeholder='ID를 입력해주세요'/></div>
                     <div><input className='userPwBox' type='password' placeholder='PW를 입력해주세요'/></div>
-                    <div><Link to='/bigGurume'><input className='loginButton' type='button' value='Login'/></Link></div>
+                    <div>
+                        <Link to='/bigGurume'>
+                            <input className='loginButton' type='button' value='Login'/>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
