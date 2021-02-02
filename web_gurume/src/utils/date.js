@@ -4,4 +4,4 @@ const convertDate = (data) => {
     return data.substring(0,10)
 }
 
-export  {convertDate}
+export {convertDate}
