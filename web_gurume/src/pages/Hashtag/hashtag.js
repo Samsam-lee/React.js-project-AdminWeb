@@ -7,7 +7,7 @@ const hashtag = () => {
         <div className="bodyFrame">
             
             <div className="assist">
-                {/* <SearchBox /> */}
+                <h1> 기본 해쉬태그 </h1>
             </div>
 
             <div className="subFrame">

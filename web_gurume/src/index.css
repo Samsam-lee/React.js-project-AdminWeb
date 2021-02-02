@@ -381,10 +381,9 @@ template {
 html{
   font-family: 'nanumSquare';
   font-weight: 500;
-  
   height: 100%;
 }
-
+/* 
 body, #root{
   height: 100%;
   display: flex;
@@ -416,4 +415,4 @@ body, #root{
 .dataFrame{
   flex: 1;
   display: flex;
-}
+} */

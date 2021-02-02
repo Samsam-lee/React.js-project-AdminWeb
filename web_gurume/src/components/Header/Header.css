@@ -44,3 +44,9 @@ ul {
 .mOut{
     display: none;
 }
+
+.login{
+    position: absolute;
+    top: .8rem;
+    right: .8rem;
+}

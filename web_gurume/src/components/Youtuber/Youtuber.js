@@ -1,9 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from '../../styledFile'
 
 const Youtuber = (props) => {
+
     return (
-        <button className='ytbInfoBox'>
+        <Button>
             <Link to={`/bigGurume/youtuberVideo?youtuber=${props.ytbData.ytbChannel}`}>
                 <div> <img src={props.ytbData.ytbProfile}/> </div>
                 <div>
@@ -12,8 +14,10 @@ const Youtuber = (props) => {
                     <div> 동영상 : {props.ytbData.video.length}개 </div>
                 </div>
             </Link>
-        </button>
+        </Button>
     )
 }
+
+
 
 export default Youtuber
