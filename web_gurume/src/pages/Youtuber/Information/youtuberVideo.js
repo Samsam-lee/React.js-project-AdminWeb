@@ -16,7 +16,7 @@ const YoutuberVideo = (props) => {
                 setYoutuber(null);
                 setLoading(true);
                 const response = await axios.get(
-                    `http://localhost:3000/ytbChannelTb/${queryString.parse(props.location.search).youtuber}`
+                    `http://localhost:3000/ytbChannelTb/show/${queryString.parse(props.location.search).youtuber}`
                 );
                 setYoutuber(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
