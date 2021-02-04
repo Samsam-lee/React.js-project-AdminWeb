@@ -383,23 +383,23 @@ html{
   font-weight: 500;
   height: 100%;
 }
-/* 
+
 body, #root{
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .bodyFrame{
-  background-color: rgb(255, 240, 193);
-  flex: 1;
-  padding: 50px;
   display: flex;
   flex-direction: column;
-  border-radius: 30px;
+  flex: 1;
+  background-color: rgb(251, 246, 235);
+  padding: 50px;
   min-width: 1150px;
 }
 
+/* 
 .assist{
   flex: 1;
   margin: 0 0 50px 0;
