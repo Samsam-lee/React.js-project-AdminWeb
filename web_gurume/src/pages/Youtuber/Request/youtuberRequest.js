@@ -1,28 +1,45 @@
-import React from 'react'
-import ytbRequestData from '../../../assets/ytbReqTb'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import Request from '../../../components/Youtuber/Request'
-import './youtuberRequest.css'
+import {TitleDiv} from '../../../styledFile'
 
-const youtuberRequest = () => {
+const YoutuberRequest = () => {
+    const [youtuberRequest, setYoutuberRequest] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchYoutuberRequest = async () => {
+            try {
+                setError(null);
+                setYoutuberRequest(null);
+                setLoading(true);
+                const response = await axios.get(
+                    `http://localhost:3000/ytbReqTb`
+                );
+                setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+    };
+    fetchYoutuberRequest();
+    }, []);
+
+    if (loading) return <div> 로딩중.. </div>;
+    if (error) return <div> error </div>;
+    if (!youtuberRequest) return null;
+
     return (
         <div className="bodyFrame">
-
-            <div className="assist">
-                <span> 유튜버 신청 목록 </span>
-                <button className='AgreeYtb'> 유튜버 승인 </button>
-            </div>
-
-            <div className="subFrame">
-                {ytbRequestData.map(v =>
-                    <>
-                    <input type='checkbox' name='ytbReqInfo' value={v}/>
+            <TitleDiv> 유튜버 신청 목록 </TitleDiv>
+            <div>
+                {youtuberRequest.ytbReqTb.map(v =>
                     <Request requestData={v}/>
-                    </>
                 )}
             </div>
-            
         </div>
     )
 }
 
-export default youtuberRequest
+export default YoutuberRequest

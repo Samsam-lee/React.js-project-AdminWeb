@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Youtuber from '../../../components/Youtuber/Youtuber'
 import axios from 'axios'
+import {TitleDiv} from '../../../styledFile'
 
 const YoutuberInfo = () => {
 
@@ -33,15 +34,10 @@ const YoutuberInfo = () => {
     
     return (
         <div className="bodyFrame">
-            <div className="assist">
-                <div> 유튜버 목록 </div>
-            </div>
-
-            <div className="subFrame">
+            <TitleDiv> 유튜버 목록 </TitleDiv>
+            <div>
                 {/* 유튜버 데이터 가져와서 Youtuber 컴포넌트에 넣음 */}
-                {youtubers.map(v=>
-                    <Youtuber ytbData={v}/>
-                )}
+                {youtubers.map(v=> <Youtuber ytbData={v}/>)}
             </div>
         </div>
     )

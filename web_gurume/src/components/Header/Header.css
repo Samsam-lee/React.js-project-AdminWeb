@@ -5,15 +5,16 @@ body{
 .headerBox{
     display: flex;
     width: 100vw;
-    height: 14vh;
+    height: 10vh;
 }
 
 .title{
     flex: 5;
-    font-size: 80px;
+    font-size: 50px;
     min-width: 500px;
     padding-top: 20px;
     padding-left: 30px;
+    font-weight: 900;
 }
 
 .title > a {
@@ -24,8 +25,9 @@ li {
     display: inline-block;
     text-align: center;
     min-width: 120px;
-    font-size: 23px;
+    font-size: 18px;
     padding-top: 40px;
+    font-weight: 900;
 }
 
 ul {

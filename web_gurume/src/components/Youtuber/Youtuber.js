@@ -1,19 +1,25 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button, ImgDiv, FlexDiv} from '../../styledFile'
 
 const Youtuber = (props) => {
+
     return (
-        <button className='ytbInfoBox'>
+        <Button>
             <Link to={`/bigGurume/youtuberVideo?youtuber=${props.ytbData.ytbChannel}`}>
-                <div> <img src={props.ytbData.ytbProfile}/> </div>
-                <div>
-                    <div> {props.ytbData.ytbChannel} </div>
-                    <div> 구독자 : {props.ytbData.ytbSubscribe}명 </div>
-                    <div> 동영상 : {props.ytbData.video.length}개 </div>
-                </div>
+                <FlexDiv>
+                    <ImgDiv margin='10px'> <img src={props.ytbData.ytbProfile}/> </ImgDiv>
+                    <FlexDiv flexDirection='column' textAlign='left' fontWeight='900' fontSize='16px'>
+                        <div> {props.ytbData.ytbChannel} </div>
+                        <div> 구독자 : {props.ytbData.ytbSubscribe / 10000}만명 </div>
+                        <div> 동영상 : {props.ytbData.video.length}개 </div>
+                    </FlexDiv>
+                </FlexDiv>
             </Link>
-        </button>
+        </Button>
     )
 }
+
+
 
 export default Youtuber
