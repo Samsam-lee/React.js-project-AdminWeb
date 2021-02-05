@@ -14,15 +14,12 @@ const Flow = () => {
 
     return (
         <div className="bodyFrame">
-            <div className="assist">
-                <SearchBox search='flow' setFlowOption={setFlowOption} setSearchText={setSearchText}/>
-            </div>
+            {/* <SearchBox search='flow' setFlowOption={setFlowOption} setSearchText={setSearchText}/> */}
+            <SearchBox opt={["지역","닉네임","동선 제목"]} pHolder='동선을 검색해주세요'/>
 
-            <div className="subFrame">
-                <div>
-                    <Table title='flow' flowData={flowData} postPerPage={postPerPage} currentPage={currentPage}/>
-                    <Pagination />
-                </div>
+            <div>
+                <Table title='flow' flowData={flowData} postPerPage={postPerPage} currentPage={currentPage}/>
+                <Pagination />
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ const user = () => {
     return (
         <div className="bodyFrame">
             <div className="assist">
-                <SearchBox />
+                <SearchBox opt={["닉네임","아이디","메모"]} pHolder='유저를 검색해주세요'/>
             </div>
 
             <div className="subFrame">
