@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Video from '../../../components/Youtuber/Video'
 import axios from 'axios'
 import queryString from "query-string";
+import {TitleDiv} from '../../../styledFile'
 
 const YoutuberVideo = (props) => {
 
@@ -33,11 +34,11 @@ const YoutuberVideo = (props) => {
 
     return (
         <div className="bodyFrame">
-            <div className="assist">
-                <h1> {queryString.parse(props.location.search).youtuber} </h1>
-            </div>
-
-            <div className="subFrame">
+            <TitleDiv backgroundColor='rgb(233, 229, 218)'>
+                {queryString.parse(props.location.search).youtuber}
+            </TitleDiv>
+            <div>
+                {/* 해당 유튜버 video 데이터 */}
                 {youtuber.userTb[0].video.map(v => <Video videoData={v}/>)}
             </div>
         </div>

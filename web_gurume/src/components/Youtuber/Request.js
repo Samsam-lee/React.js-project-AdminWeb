@@ -1,8 +1,9 @@
 import React from 'react'
+import {Button, ImgDiv, FlexDiv} from '../../styledFile'
 
 const Request = (props) => {
     return (
-        <div>
+        <Button>
             <a href={props.requestData.ytbLinkAddress}>
                 <div><img src={props.requestData.ytbProfile}/></div>
                 <div>{props.requestData.ytbChannel}</div>
@@ -10,7 +11,7 @@ const Request = (props) => {
                 <div>{props.requestData.ytbHits}</div>
                 <div>{props.requestData.userId}</div>
             </a>
-        </div>
+        </Button>
     )
 }
 
