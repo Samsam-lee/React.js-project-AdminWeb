@@ -34,7 +34,7 @@ const YoutuberInfo = () => {
     
     return (
         <div className="bodyFrame">
-            <TitleDiv backgroundColor='rgb(233, 229, 218)'> 유튜버 목록 </TitleDiv>
+            <TitleDiv> 유튜버 목록 </TitleDiv>
             <div>
                 {/* 유튜버 데이터 가져와서 Youtuber 컴포넌트에 넣음 */}
                 {youtubers.map(v=> <Youtuber ytbData={v}/>)}

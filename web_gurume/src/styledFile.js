@@ -24,7 +24,7 @@ const Button = styled.button`
     border: 0;
     margin: 10px;
     height: ${props => props.height || '200px'};
-    width: 400px;
+    width: ${props => props.width || '400px'};
 `
 
 const ImgDiv = styled.div`
@@ -43,7 +43,7 @@ const ImgDiv = styled.div`
  * 유튜버 페이지 타이틀 div
  */
 const TitleDiv = styled.div`
-    background-color: ${props => props.backgroundColor};
+    background-color: ${props => props.backgroundColor || 'rgb(233, 229, 218)'};
     text-align: center;
     font-size: 20px;
     font-weight: 900;
@@ -51,7 +51,7 @@ const TitleDiv = styled.div`
     height: 50px;
     line-height: 50px;
     border-radius: 16px;
-    margin: 0 0 20px 40px;
+    margin: ${props => props.margin || '0 0 20px 40px'};
 `
 /** */
 
@@ -65,5 +65,16 @@ const FixTextDiv = styled.div`
     width: 80%;
     margin: 0 0 0 10%;
 `
+/** */
 
-export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv}
+
+/**
+ * 유튜버 승인 버튼
+ * *****************수정 필요
+ */
+const AgreeButton = styled.button`
+    position: absolute;
+`
+/** */
+
+export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton}
