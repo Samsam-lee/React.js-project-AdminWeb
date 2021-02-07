@@ -1,33 +1,13 @@
 import React from 'react'
 import './Table.css'
-import userData from '../assets/userData'
 import {convertDate} from '../utils/date'
 
 const Table = (props) => {
     return (
         <div>
-            {props.title == 'flow' 
+            {/* {props.title == 'flow' 
             ? 
             <table>
-                {/* <div className='tableTitle'>
-                    <div> 동선 제목 </div>
-                    <div> 닉네임 </div>
-                    <div> 작성 날짜 </div>
-                    <div> 업데이트 날짜 </div>
-                    <div> 조회 수 </div>
-                </div>
-                <div className='temp'>
-                    {flowData.map(v =>
-                        <div className='tableBody'>
-                            <div>{v.shareTitle}</div>
-                            <div>{v.userId}</div>
-                            <div>{convertDate(v.shareDate.$date)}</div>
-                            <div>{convertDate(v.updateDate.$date)}</div>
-                            <div>{v.hits}</div>
-                        </div>
-                        )}
-                </div> */}
-
                 <tr>
                     <th>지역</th>
                     <th>동선 제목</th>
@@ -65,8 +45,21 @@ const Table = (props) => {
                         )}
                 
                 </table>
-            </>}
-
+            </>} */}
+            <table>
+                {props.opt.map(v => <th>{v}</th>)}
+                {props.title == 'flow' && props.data.map(v => <tr>
+                    
+                </tr>)}
+                {props.title == 'user' && props.data.map(v => <tr>
+                    <td>{v.nickname}</td>
+                    <td>{v.userId}</td>
+                    <td>{v.folders.length}</td>
+                    <td>{v.social}</td>
+                    <td>{v.memo}</td>
+                </tr>)}
+            </table>
+            
         </div>
     )
 }
