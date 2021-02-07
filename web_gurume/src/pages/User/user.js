@@ -1,20 +1,44 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import SearchBox from '../../components/SearchBox'
 import Table from '../../components/Table'
+import Pagination from '../../utils/Pagination'
+import axios from 'axios'
 
+const User = () => {
 
-const user = () => {
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                setError(null);
+                setUserData(null);
+                setLoading(true);
+                const response = await axios.get(
+                    `http://localhost:3000/userTb`
+                );
+                setUserData(response.data); // 데이터는 response.data 안에 들어있습니다.
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+    };
+    fetchUserData();
+    }, []);
+
+    if (loading) return <div> 로딩중.. </div>;
+    if (error) return <div> error </div>;
+    if (!userData) return null;
+
     return (
         <div className="bodyFrame">
-            <div className="assist">
-                <SearchBox />
-            </div>
-
-            <div className="subFrame">
-                <Table />
-            </div>
+            <SearchBox opt={["닉네임","아이디","메모"]} pHolder='유저를 검색해주세요'/>
+            <Table title='user' opt={["닉네임","아이디","동선 폴더 개수","소셜 로그인 플랫폼","메모"]} data={userData.userTbs}/>
+            <Pagination />
         </div>
     )
 }
 
-export default user
+export default User

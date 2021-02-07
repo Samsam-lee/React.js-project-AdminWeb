@@ -1,6 +1,6 @@
 import React from "react";
 // import "./HashtagBox.css";
-import {Button, ImgDiv, FlexDiv, AgreeButton} from '../../styledFile'
+import {Button, FlexDiv} from '../../styledFile'
 
 const HashtagBox = (props) => {
   // const [seasonTags, setSeasonTags] = useState(adminTag.seasonTags);
