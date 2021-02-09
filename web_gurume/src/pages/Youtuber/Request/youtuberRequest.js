@@ -15,7 +15,7 @@ const YoutuberRequest = () => {
                 setYoutuberRequest(null);
                 setLoading(true);
                 const response = await axios.get(
-                    `http://localhost:3000/ytbReqTb`
+                    `http://13.125.69.16/admin/ytbReqTb`
                 );
                 setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {

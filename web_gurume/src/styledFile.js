@@ -11,6 +11,10 @@ const FlexDiv = styled.div`
     font-size: ${props => props.fontSize};
     font-weight: ${props=> props.fontWeight};
     text-align: ${props => props.textAlign};
+    background-color: ${props => props.backgroundColor};
+    border-radius: ${props => props.borderRadius};
+    margin: ${props => props.margin};
+    padding: ${props => props.padding};
 `
 
 /**
@@ -47,7 +51,6 @@ const TitleDiv = styled.div`
     text-align: center;
     font-size: 20px;
     font-weight: 900;
-    width: 180px;
     height: 50px;
     line-height: 50px;
     border-radius: 16px;
@@ -84,6 +87,7 @@ const SearchStyleDiv = styled.div`
     margin: 0 auto;
     font-size: 20px;
     display: flex;
+    padding: 30px 0 0 0;
 `
 
 const SearchTextInput = styled.input`
@@ -104,4 +108,18 @@ const SearchButton = styled.input`
 `
 /** */
 
-export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton, SearchStyleDiv, SearchTextInput, SearchButton}
+/**
+ * hash tag box
+ */
+const HashBox = styled.button`
+    background-color: rgb(233, 229, 218);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    align-self: center;
+    `
+    // onClick: ${props => props.onClick};
+/** */
+
+export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton,
+    SearchStyleDiv, SearchTextInput, SearchButton, HashBox}

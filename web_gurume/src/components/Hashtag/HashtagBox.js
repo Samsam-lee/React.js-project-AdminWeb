@@ -1,64 +1,35 @@
-import React from "react";
-// import "./HashtagBox.css";
-import {Button, FlexDiv} from '../../styledFile'
+import React, {useState, useEffect} from "react";
+import {Button, FlexDiv, HashBox} from '../../styledFile'
 
 const HashtagBox = (props) => {
-  // const [seasonTags, setSeasonTags] = useState(adminTag.seasonTags);
-  // const [regionTags, setRegionTags] = useState(adminTag.regionTags);
+  const [tags, setTags] = useState('ㅇㅅㅇ')
 
-  // const AddRegionTag = () => {
-  //   setRegionTags([...regionTags, "지역이름"]);
-  // };
-  // const AddSeasonTag = () => {
-  //   setSeasonTags([...seasonTags, "계절"]);
-  // };
+  const AddTag = () => {
+    setTags([...tags, "TAG"]);
+  }
 
-  // const DeleteRegionTag = (e) => {
-  //   console.log(e.target.innerText);
-  //   let result = regionTags.filter((element, index) => {
-  //     return regionTags[index] != e.target.innerText;
-  //   });
-  //   setRegionTags(result);
-  // };
-  // const DeleteSeasonTag = (e) => {
-  //   console.log(e.target.innerText);
-  //   let result = seasonTags.filter((element, index) => {
-  //     return seasonTags[index] != e.target.innerText;
-  //   });
-  //   setSeasonTags(result);
-  // };
+  const DeleteTag = (e) => {
+    let result = tags.filter((element, index) => {
+      return tags[index] != e.target.innerText;
+    });
+    setTags(result);
+  }
+
+  useEffect(() => {
+    console.log(tags)
+  }, [tags])
 
   return (
-    <Button width='90%' height='250px'>
-      {/* <div className="box">
-        <div className="hashTitle"> 지역 </div>
-        <div className="hashBody">
-          {regionTags.map((v) => (
-            <div className="hashElement" onClick={DeleteRegionTag}>
-              {v}
-            </div>
-          ))}
-          <div className="hashElementPlus" onClick={AddRegionTag}> + </div>
-        </div>
-      </div>
-
-      <div className="box">
-        <div className="hashTitle"> 계절 </div>
-        <div className="hashBody">
-          {seasonTags.map((v) => (
-            <div className="hashElement" onClick={DeleteSeasonTag}>
-              {v}
-            </div>
-          ))}
-          <div className="hashElementPlus" onClick={AddSeasonTag}> + </div>
-        </div>
-      </div> */}
-      
-      <FlexDiv>
-        {props.adminTag.map(v => <FlexDiv> {v} </FlexDiv>)}
+    <Button width='90%' height='300px'>
+      <FlexDiv fontSize='18px' fontWeight='700'>
+        {props.adminTag.map(v => 
+          // <HashBox onClick={DeleteTag}> {v} </HashBox>
+          <HashBox> {v} </HashBox>
+        )}
+        <HashBox onClick={AddTag}> + </HashBox>
+        {/* <HashBox > + </HashBox> */}
       </FlexDiv>
-
-      </Button>
+    </Button>
   );
 };
 
