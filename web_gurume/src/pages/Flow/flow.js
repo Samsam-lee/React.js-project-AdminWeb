@@ -3,6 +3,7 @@ import SearchBox from '../../components/SearchBox'
 import Table from '../../components/Table'
 import Pagination from '../../utils/Pagination'
 import axios from 'axios'
+import {FlexDiv, TitleDiv} from '../../styledFile'
 
 const Flow = () => {
     const [flowOption, setFlowOption] = useState('region')
@@ -21,7 +22,7 @@ const Flow = () => {
                 setFlowData(null);
                 setLoading(true);
                 const response = await axios.get(
-                    `http://localhost:3000/shareFlowTb`
+                    `http://13.125.69.16/admin/shareFlowTb`
                 );
                 setFlowData(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
@@ -38,13 +39,13 @@ const Flow = () => {
 
     return (
         <div className="bodyFrame">
+            <TitleDiv> 동선 리스트 </TitleDiv>
             {/* <SearchBox search='flow' setFlowOption={setFlowOption} setSearchText={setSearchText}/> */}
-            <SearchBox opt={["지역","닉네임","동선 제목"]} pHolder='동선을 검색해주세요'/>
-
-            <div>
-                <Table title='flow' opt={["지역","동선 제목","아이디","작성 날짜","업데이트 날짜","조회 수"]} data={flowData.shareFlowTb}/>
+            <FlexDiv flexDirection='column'>
+                <Table title='flow' opt={["지역","동선 제목","아이디","작성 날짜","업데이트 날짜","조회 수"]} data={flowData.collection}/>
                 <Pagination />
-            </div>
+            </FlexDiv>
+            <SearchBox opt={["지역","닉네임","동선 제목"]} pHolder='동선을 검색해주세요'/>
         </div>
     )
 }

@@ -16,7 +16,7 @@ const Hashtag = () => {
                 setAdministratorTag(null);
                 setLoading(true);
                 const response = await axios.get(
-                    `http://localhost:3000/adminTagTb`
+                    `http://13.125.69.16/admin/adminTagTb`
                 );
                 setAdministratorTag(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {

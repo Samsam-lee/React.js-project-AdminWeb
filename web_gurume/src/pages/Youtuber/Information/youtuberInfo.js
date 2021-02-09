@@ -16,7 +16,7 @@ const YoutuberInfo = () => {
                 setYoutubers(null);
                 setLoading(true);
                 const response = await axios.get(
-                    'http://localhost:3000/ytbChannelTb'
+                    'http://13.125.69.16/admin/ytbChannelTb'
                 );
                 setYoutubers(response.data.ytbChannelTb);
             } catch(e){

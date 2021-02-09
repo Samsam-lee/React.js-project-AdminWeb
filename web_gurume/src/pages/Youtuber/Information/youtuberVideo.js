@@ -17,7 +17,7 @@ const YoutuberVideo = (props) => {
                 setYoutuber(null);
                 setLoading(true);
                 const response = await axios.get(
-                    `http://localhost:3000/ytbChannelTb/show/${queryString.parse(props.location.search).youtuber}`
+                    `http://13.125.69.16/admin/ytbChannelTb/show/${queryString.parse(props.location.search).youtuber}`
                 );
                 setYoutuber(response.data); // 데이터는 response.data 안에 들어있습니다.
             } catch (e) {
@@ -34,12 +34,10 @@ const YoutuberVideo = (props) => {
 
     return (
         <div className="bodyFrame">
-            <TitleDiv backgroundColor='rgb(233, 229, 218)'>
-                {queryString.parse(props.location.search).youtuber}
-            </TitleDiv>
+            <TitleDiv>{queryString.parse(props.location.search).youtuber}</TitleDiv>
             <div>
                 {/* 해당 유튜버 video 데이터 */}
-                {youtuber.userTb[0].video.map(v => <Video videoData={v}/>)}
+                {youtuber.doc[0].video.map(v => <Video videoData={v}/>)}
             </div>
         </div>
     )
