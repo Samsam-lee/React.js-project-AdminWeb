@@ -1,18 +1,24 @@
-import React from 'react'
-import './Pagination.css'
+import React, { useEffect } from 'react'
+import {PageBody, PageNum} from '../styledFile'
 
-const pagination = () => {
+const Pagination = (props) => {
+    const allPage = []
+
+    for(let i = props.first; i <= props.last; i++){
+        allPage.push(i)
+    }
+
+    const handlePage = (page) => {
+        props.setCurrentPage(page)
+    }
+
     return (
-        <div className='pageBody'>
-            <div> &lt;&lt; </div>
-            <div> 1 </div>
-            <div> 2 </div>
-            <div> 3 </div>
-            <div> 4 </div>
-            <div> 5 </div>
-            <div> &gt;&gt; </div>
-        </div>
+        <PageBody>
+            <PageNum> &lt;&lt; </PageNum>
+            {allPage.map(v => <PageNum onClick={e=>{handlePage(v)}}> {v} </PageNum>)}
+            <PageNum> &gt;&gt; </PageNum>
+        </PageBody>
     )
 }
 
-export default pagination
+export default Pagination

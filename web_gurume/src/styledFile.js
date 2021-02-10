@@ -121,5 +121,20 @@ const HashBox = styled.button`
     // onClick: ${props => props.onClick};
 /** */
 
+/**
+ * pagination
+ */
+const PageBody = styled.div`
+    display: flex;
+    align-self: center;
+    padding: 20px 0 0 0;
+`
+
+const PageNum = styled.div`
+    padding: 20px;
+    cursor: pointer;
+`
+/** */
+
 export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton,
-    SearchStyleDiv, SearchTextInput, SearchButton, HashBox}
+    SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum}
