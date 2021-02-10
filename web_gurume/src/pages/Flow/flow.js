@@ -27,10 +27,10 @@ const Flow = () => {
             setError(e);
         }
         setLoading(false);
-        };
+    };
 
     useEffect(() => {
-    fetchFlowData();
+        fetchFlowData();
     }, [currentPage]);
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Flow = () => {
             <TitleDiv> 동선 리스트 </TitleDiv>
             <FlexDiv flexDirection='column'>
                 <Table title='flow' opt={["지역","동선 제목","아이디","작성 날짜","업데이트 날짜","조회 수"]} data={flowData.collection}/>
-                <Pagination setCurrentPage={setCurrentPage} first={flowData.first} last={flowData.last} currentPage={currentPage}/>
+                <Pagination setCurrentPage={setCurrentPage} first={flowData.first} last={flowData.last} />
             </FlexDiv>
             <SearchBox  opt={["지역","아이디","동선 제목"]} pHolder='동선을 검색해주세요'
                         setOption={setOption} setSearchText={setSearchText}

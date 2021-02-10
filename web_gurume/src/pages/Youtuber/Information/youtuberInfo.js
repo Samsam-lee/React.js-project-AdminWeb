@@ -9,22 +9,22 @@ const YoutuberInfo = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchYoutubers = async() => {
-            try{
-                setError(null);
-                setYoutubers(null);
-                setLoading(true);
-                const response = await axios.get(
-                    'http://13.125.69.16/admin/ytbChannelTb'
-                );
-                setYoutubers(response.data.ytbChannelTb);
-            } catch(e){
-                setError(e);
-            }
-            setLoading(false);
+    const fetchYoutubers = async() => {
+        try{
+            setError(null);
+            setYoutubers(null);
+            setLoading(true);
+            const response = await axios.get(
+                'http://13.125.69.16/admin/ytbChannelTb'
+            );
+            setYoutubers(response.data.ytbChannelTb);
+        } catch(e){
+            setError(e);
         }
+        setLoading(false);
+    }
 
+    useEffect(() => {
         fetchYoutubers();
     }, [])
 

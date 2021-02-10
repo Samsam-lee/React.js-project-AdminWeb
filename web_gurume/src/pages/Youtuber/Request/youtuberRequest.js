@@ -8,22 +8,23 @@ const YoutuberRequest = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchYoutuberRequest = async () => {
-            try {
-                setError(null);
-                setYoutuberRequest(null);
-                setLoading(true);
-                const response = await axios.get(
-                    `http://13.125.69.16/admin/ytbReqTb`
-                );
-                setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
+    const fetchYoutuberRequest = async () => {
+        try {
+            setError(null);
+            setYoutuberRequest(null);
+            setLoading(true);
+            const response = await axios.get(
+                `http://13.125.69.16/admin/ytbReqTb`
+            );
+            setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
     };
-    fetchYoutuberRequest();
+
+    useEffect(() => {
+        fetchYoutuberRequest();
     }, []);
 
     if (loading) return <div> 로딩중.. </div>;

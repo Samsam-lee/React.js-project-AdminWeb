@@ -9,22 +9,23 @@ const Hashtag = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchAdminTag = async () => {
-            try {
-                setError(null);
-                setAdministratorTag(null);
-                setLoading(true);
-                const response = await axios.get(
-                    `http://13.125.69.16/admin/adminTagTb`
-                );
-                setAdministratorTag(response.data); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
+    const fetchAdminTag = async () => {
+        try {
+            setError(null);
+            setAdministratorTag(null);
+            setLoading(true);
+            const response = await axios.get(
+                `http://13.125.69.16/admin/adminTagTb`
+            );
+            setAdministratorTag(response.data); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
     };
-    fetchAdminTag();
+
+    useEffect(() => {
+        fetchAdminTag();
     }, []);
 
     if (loading) return <div> 로딩중.. </div>;
