@@ -34,10 +34,10 @@ const Hashtag = () => {
     return (
         <div className="bodyFrame">
             <TitleDiv margin='0 0 0 20px'> 지역별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag.adminTagTbs[0].adminTag.regionTag}/>}
+            {<HashtagBox adminTag={administratorTag[0].adminTag.regionTag}/>}
 
             <TitleDiv margin='0 0 0 20px'> 계절별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag.adminTagTbs[0].adminTag.seasonTag}/>}
+            {<HashtagBox adminTag={administratorTag[0].adminTag.seasonTag}/>}
         </div>
     )
 }
