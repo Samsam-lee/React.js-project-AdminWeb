@@ -7,32 +7,18 @@ import axios from 'axios'
 
 const User = () => {
     const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
     const [currentPage, setCurrentPage] = useState(1)
 
     const fetchUserData = async () => {
-        try {
-            setError(null);
-            setUserData(null);
-            setLoading(true);
-            const response = await axios.get(
-                `http://13.125.69.16/admin/userTb`
-            );
-            setUserData(response.data); // 데이터는 response.data 안에 들어있습니다.
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
+        await axios.get(`http://13.125.69.16/admin/userTb/?page=${currentPage}`).then(res=>(
+            setUserData(res.data) // 데이터는 res.data 안에 들어있습니다.
+        ))
     };
 
     useEffect(() => {
         fetchUserData();
     }, [currentPage]);
 
-    if (loading) return <div> 로딩중.. </div>;
-    if (error) return <div> error </div>;
     if (!userData) return null;
 
     return (

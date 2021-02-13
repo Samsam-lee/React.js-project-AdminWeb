@@ -1,32 +1,27 @@
-import React, {useState} from "react"
+import React from "react"
 import {SearchStyleDiv, SearchTextInput, SearchButton} from '../styledFile'
 
 const SearchBox = (props) => {
-    const [tempText, setTempText] = useState()
-    const [tempOption, setTempOption] = useState(props.option)
 
     const handleSubmit = (e) => {
-        props.setSearchText(tempText)
-        props.setOption(tempOption)
-        console.log(props.option + '~~~~' + props.searchText)
+        props.setOption(props.Option)
         e.preventDefault();
-    }
-    
-    const textChange = (e) => {
-        setTempText(e.target.value)
     }
 
     const optionChange = (e) => {
-        setTempOption(e.target.value)
+        props.setOption(e.target.value)
     }
 
     return (
         <SearchStyleDiv>
-            <form onSubmit={handleSubmit}>
-            <select value={props.option} onChange={optionChange}>
-                {props.opt.map(v => <option value={v}> {v} </option>)}
+            <form onSubmit={e=>{
+                handleSubmit(e)
+                props.handleSearch(e)
+            }}>
+            <select onChange={optionChange}>
+                {props.opt.map(v => <option value={v.value}> {v.text} </option>)}
             </select>
-            <SearchTextInput type='text' placeholder={props.pHolder} onChange={textChange}/>
+            <SearchTextInput type='text' placeholder={props.pHolder} onChange={e=>{props.setSearchText(e.target.value)}} />
             <SearchButton type='submit' value='검색'/>
             </form>
         </SearchStyleDiv>

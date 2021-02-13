@@ -6,55 +6,65 @@ import axios from 'axios'
 import {FlexDiv, TitleDiv} from '../../styledFile'
 
 const Flow = () => {
-    const [option, setOption] = useState('지역')
-    const [searchText, setSearchText] = useState()
+    const [option, setOption] = useState("region")
+    const [searchText, setSearchText] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-
     const [flowData, setFlowData] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
+    /** page 에 따른 데이터 렌더링 */
     const fetchFlowData = async () => {
-        try {
-            setError(null);
-            setFlowData(null);
-            setLoading(true);
-            const response = await axios.get(
-                `http://13.125.69.16/admin/shareFlowTb/?page=${currentPage}`
-            );
-            setFlowData(response.data); // 데이터는 response.data 안에 들어있습니다.
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
+        await axios.get(`http://13.125.69.16/admin/shareFlowTb/?page=${currentPage}`).then(res=>{
+                setFlowData(res.data); // 데이터는 res.data 안에 들어있습니다.
+            })
     };
+    /** */
 
+    /** 검색에 따른 데이터 렌더링 */
+    const fetchSearchData = async () => {
+        console.log(option + '~~' + searchText + '~~' + currentPage)
+        await axios.get(`http://13.125.69.16/admin/shareFlowTb/${option}/${searchText}`).then(res=>{
+            setFlowData(res.data);
+        }).catch(e=>{
+            fetchFlowData();
+        })
+    }
+    /** */
+
+    /** 페이지 네이션 -> 데이터 렌더링 */
     useEffect(() => {
+        setFlowData(null);
         fetchFlowData();
     }, [currentPage]);
+    /** */
+    
+    /** 검색 결과에 따른 데이터 렌더링 */
+    const handleSearch = (e) => {
+        e.preventDefault();     // 새로고침 x
+        setFlowData(null);
+        !option && setCurrentPage(1)
+        searchText && fetchSearchData()
+        !searchText && setCurrentPage(1)
+        !searchText && fetchFlowData()
+        setSearchText('')
+        setOption('region')
+    }
+    /** */
 
-    useEffect(() => {
-        console.log("searchText 변경")
-    }, [searchText])
-
-    useEffect(() => {
-        console.log("option 변경")
-    }, [option])
-
-    if (loading) return <div> 로딩중.. </div>;
-    if (error) return <div> error </div>;
     if (!flowData) return null;
 
     return (
         <div className="bodyFrame">
             <TitleDiv> 동선 리스트 </TitleDiv>
-            <FlexDiv flexDirection='column'>
+            {
+                flowData
+                ? <FlexDiv flexDirection='column'>
                 <Table title='flow' opt={["지역","동선 제목","아이디","작성 날짜","업데이트 날짜","조회 수"]} data={flowData.collection}/>
-                <Pagination setCurrentPage={setCurrentPage} first={flowData.first} last={flowData.last} />
-            </FlexDiv>
-            <SearchBox  opt={["지역","아이디","동선 제목"]} pHolder='동선을 검색해주세요'
-                        setOption={setOption} setSearchText={setSearchText}
-                        option={option} searchText={searchText}/>
+                <Pagination setCurrentPage={setCurrentPage} first={flowData.first} last={flowData.last} /></FlexDiv>
+                : <div> loading... </div>
+            }
+            <SearchBox  opt={[{value:"region",text:"지역"},{value:"id",text:"아이디"},{value:"title",text:"동선 제목"}]}
+                        pHolder='동선을 검색해주세요' setOption={setOption} setSearchText={setSearchText} option={option}
+                        handleSearch={handleSearch} />
         </div>
     )
 }

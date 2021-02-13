@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {Button, FlexDiv, HashBox} from '../../styledFile'
+import Modal from '../Modal'
 
 const HashtagBox = (props) => {
-  const [tags, setTags] = useState()
-
-  useEffect(() => {
-    console.log(tags)
-  }, [tags])
+  
+  const handleModal = () => {
+    <Modal/>
+  }
 
   return (
     <Button width='90%' height='300px'>
@@ -14,7 +14,7 @@ const HashtagBox = (props) => {
         {props.adminTag.map(v =>
           <HashBox> {v} </HashBox>
         )}
-        <HashBox > + </HashBox>
+        <HashBox onClick={handleModal}> + </HashBox>
       </FlexDiv>
     </Button>
   );
