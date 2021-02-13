@@ -1,51 +1,25 @@
 import React from 'react'
-// import {useQuery, useMutation} from "@apollo/react-hooks"
-// import query from "./query"
-// import mut from "./mutation"
+import {Link} from 'react-router-dom'
+import {Button, ImgDiv, FlexDiv} from '../../styledFile'
 
-// const User = () =>{
-//     const { loading, error, data } = useQuery(query);
-// 	if (loading) return <p>Loading...</p>;
-//     if (error) return <p>Error Message : {error.message}</p>;
-    
-//     const {ytbChannel} = data;
+const Youtuber = (props) => {
 
-// 	return (
-//         <>
-// 		{ytbChannel.map(v => <>
-//         <p> {v.ytbHits} {v.ytbLinkAddress} </p><p> {v.ytbProfile}  {v.ytbChannel} </p>
-//         <p> --------------------------------------------- </p>
-//         </>)}
-//         </>
-// 	)
-// }
-
-// const MutationUser = () => {
-//     const [addChannel, { loading, error, data }] = useMutation(mut)
-
-//     return(
-//         <>
-//         <button
-//             onClick={() =>
-//                 addChannel({variables:{
-//                     ytbChannel: "temp",
-//                     ytbProfile: "temp",
-//                     ytbLinkAddress: "temp",
-//                     ytbHits: 1213431
-//                 }})
-//             }
-//         > 유튜버 추가 </button>
-//         <div>{error ? JSON.stringify(error) : null}</div>
-//         </>
-//     )
-// }
-
-const Youtuber = () => {
     return (
-        <>
-        {/* <User /> */}
-        </>
+        <Button>
+            <Link to={`/bigGurume/youtuberVideo?youtuber=${props.ytbData.ytbChannel}`}>
+                <FlexDiv>
+                    <ImgDiv margin='10px'> <img src={props.ytbData.ytbProfile}/> </ImgDiv>
+                    <FlexDiv flexDirection='column' textAlign='left' fontWeight='900' fontSize='16px'>
+                        <div> {props.ytbData.ytbChannel} </div>
+                        <div> 구독자 : {props.ytbData.ytbSubscribe / 10000}만명 </div>
+                        <div> 동영상 : {props.ytbData.video.length}개 </div>
+                    </FlexDiv>
+                </FlexDiv>
+            </Link>
+        </Button>
     )
 }
+
+
 
 export default Youtuber

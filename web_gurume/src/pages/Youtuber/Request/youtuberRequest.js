@@ -1,19 +1,46 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import Request from '../../../components/Youtuber/Request'
+import {TitleDiv} from '../../../styledFile'
 
-const youtuberRequest = () => {
+const YoutuberRequest = () => {
+    const [youtuberRequest, setYoutuberRequest] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchYoutuberRequest = async () => {
+        try {
+            setError(null);
+            setYoutuberRequest(null);
+            setLoading(true);
+            const response = await axios.get(
+                `http://13.125.69.16/admin/ytbReqTb`
+            );
+            setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchYoutuberRequest();
+    }, []);
+
+    if (loading) return <div> 로딩중.. </div>;
+    if (error) return <div> error </div>;
+    if (!youtuberRequest) return null;
+
     return (
         <div className="bodyFrame">
-            <div className="assist">
-
-            </div>
-
-            <div className="subFrame">
-            <button><Link to='/bigGurume'> 유튜버 정보 페이지 </Link></button>
-            <h1> 유튜버 신청 페이지 </h1>
+            <TitleDiv> 유튜버 신청 목록 </TitleDiv>
+            <div>
+                {youtuberRequest.ytbReqTb.map(v =>
+                    <Request requestData={v}/>
+                )}
             </div>
         </div>
     )
 }
 
-export default youtuberRequest
+export default YoutuberRequest

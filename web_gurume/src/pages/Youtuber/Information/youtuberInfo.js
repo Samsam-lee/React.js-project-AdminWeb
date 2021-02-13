@@ -1,31 +1,46 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 import Youtuber from '../../../components/Youtuber/Youtuber'
-import SearchBox from '../../../components/SearchBox'
+import axios from 'axios'
+import {TitleDiv} from '../../../styledFile'
 
-const youtuberInfo = () => {
+const YoutuberInfo = () => {
+
+    const [youtubers, setYoutubers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const fetchYoutubers = async() => {
+        try{
+            setError(null);
+            setYoutubers(null);
+            setLoading(true);
+            const response = await axios.get(
+                'http://13.125.69.16/admin/ytbChannelTb'
+            );
+            setYoutubers(response.data.ytbChannelTb);
+        } catch(e){
+            setError(e);
+        }
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        fetchYoutubers();
+    }, [])
+
+    if (loading) return <div>로딩중..</div>;
+    if (error) return <div>에러가 발생했습니다</div>;
+    if (!youtubers) return null
+    
     return (
         <div className="bodyFrame">
-            <div className="assist">
-                {/* <SearchBox /> */}
-            </div>
-
-            <div className="subFrame">
-                <div>
-                <h1> 유튜버 정보 페이지 </h1>
-                <button><Link to='/bigGurume/youtuberRequest'> 유튜버 신청 페이지 </Link></button>
-                <button><Link to='/bigGurume/youtuberVideo'> 유튜버 비디오 </Link></button>
-                
-                {/* map 돌리기 */}
-                <Youtuber /> 
-                </div>
+            <TitleDiv> 유튜버 목록 </TitleDiv>
+            <div>
+                {/* 유튜버 데이터 가져와서 Youtuber 컴포넌트에 넣음 */}
+                {youtubers.map(v=> <Youtuber ytbData={v}/>)}
             </div>
         </div>
     )
 }
 
-export default youtuberInfo
-
-
-
-            
+export default YoutuberInfo
