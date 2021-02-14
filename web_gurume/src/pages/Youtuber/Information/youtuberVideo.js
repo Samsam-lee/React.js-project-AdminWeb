@@ -38,7 +38,7 @@ const YoutuberVideo = (props) => {
             <TitleDiv>{queryString.parse(props.location.search).youtuber}</TitleDiv>
             <div>
                 {/* 해당 유튜버 video 데이터 */}
-                {youtuber.doc[0].video.map(v => <Video videoData={v}/>)}
+                {youtuber.video.map(v => <Video videoData={v}/>)}
             </div>
         </div>
     )
