@@ -6,38 +6,30 @@ import axios from 'axios'
 const Hashtag = () => {
 
     const [administratorTag, setAdministratorTag] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+
+    const fetchAdminTag = async () => {
+        await axios.get(`http://13.125.69.16/admin/adminTagTb`).then(res=>(
+            setAdministratorTag(res.data) // 데이터는 res.data 안에 들어있습니다.
+        ))
+    };
 
     useEffect(() => {
-        const fetchAdminTag = async () => {
-            try {
-                setError(null);
-                setAdministratorTag(null);
-                setLoading(true);
-                const response = await axios.get(
-                    `http://13.125.69.16/admin/adminTagTb`
-                );
-                setAdministratorTag(response.data); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-    };
-    fetchAdminTag();
+        fetchAdminTag();
     }, []);
 
-    if (loading) return <div> 로딩중.. </div>;
-    if (error) return <div> error </div>;
+    useEffect(() => {
+        fetchAdminTag();
+    }, [administratorTag])
+
     if (!administratorTag) return null;
 
     return (
         <div className="bodyFrame">
             <TitleDiv margin='0 0 0 20px'> 지역별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag[0].adminTag.regionTag}/>}
+            {<HashtagBox adminTag={administratorTag.adminTag.regionTag}/>}
 
             <TitleDiv margin='0 0 0 20px'> 계절별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag[0].adminTag.seasonTag}/>}
+            {<HashtagBox adminTag={administratorTag.adminTag.seasonTag}/>}
         </div>
     )
 }

@@ -5,29 +5,17 @@ import {TitleDiv} from '../../../styledFile'
 
 const YoutuberRequest = () => {
     const [youtuberRequest, setYoutuberRequest] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+
+    const fetchYoutuberRequest = async () => {
+        await axios.get(`http://13.125.69.16/admin/ytbReqTb`).then(res=>(
+            setYoutuberRequest(res.data) // 데이터는 res.data 안에 들어있습니다.
+        ))
+    };
 
     useEffect(() => {
-        const fetchYoutuberRequest = async () => {
-            try {
-                setError(null);
-                setYoutuberRequest(null);
-                setLoading(true);
-                const response = await axios.get(
-                    `http://13.125.69.16/admin/ytbReqTb`
-                );
-                setYoutuberRequest(response.data); // 데이터는 response.data 안에 들어있습니다.
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-    };
-    fetchYoutuberRequest();
+        fetchYoutuberRequest();
     }, []);
 
-    if (loading) return <div> 로딩중.. </div>;
-    if (error) return <div> error </div>;
     if (!youtuberRequest) return null;
 
     return (

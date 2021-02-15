@@ -1,34 +1,33 @@
 import React, {useState, useEffect} from "react";
 import {Button, FlexDiv, HashBox} from '../../styledFile'
+import Modal from '../Modal'
 
 const HashtagBox = (props) => {
-  const [tags, setTags] = useState('ㅇㅅㅇ')
 
-  const AddTag = () => {
-    setTags([...tags, "TAG"]);
-  }
+  const [isOpen,setIsOpen] = useState(false);
+  const [buttonState, setButtonState] = useState('');
+  const [forDeleteHashtag, setForDeleteHashtag] = useState('');
 
-  const DeleteTag = (e) => {
-    let result = tags.filter((element, index) => {
-      return tags[index] != e.target.innerText;
-    });
-    setTags(result);
-  }
+    const openModal = (btnState, ht) => {
+      setButtonState(btnState);
+      setForDeleteHashtag(ht.v);
+      setIsOpen(true);
+    }
 
-  useEffect(() => {
-    console.log(tags)
-  }, [tags])
+    const closeModal = () => {
+        setIsOpen(false);
+    }
 
   return (
     <Button width='90%' height='300px'>
       <FlexDiv fontSize='18px' fontWeight='700'>
-        {props.adminTag.map(v => 
-          // <HashBox onClick={DeleteTag}> {v} </HashBox>
-          <HashBox> {v} </HashBox>
+        {props.adminTag.map(v =>
+          <HashBox onClick={() => openModal('해시태그 제거', {v})}> {v} </HashBox>
         )}
-        <HashBox onClick={AddTag}> + </HashBox>
-        {/* <HashBox > + </HashBox> */}
+        <HashBox onClick={() => openModal('해시태그 추가',{})}> + </HashBox>
       </FlexDiv>
+
+      <Modal isOpen={isOpen} closeModal={closeModal} contentLabel={buttonState} forDeleteHashtag={forDeleteHashtag}/>
     </Button>
   );
 };
