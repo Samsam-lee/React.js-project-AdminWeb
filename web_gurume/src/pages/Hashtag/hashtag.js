@@ -6,30 +6,21 @@ import axios from 'axios'
 const Hashtag = () => {
 
     const [administratorTag, setAdministratorTag] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     const fetchAdminTag = async () => {
-        try {
-            setError(null);
-            setAdministratorTag(null);
-            setLoading(true);
-            const response = await axios.get(
-                `http://13.125.69.16/admin/adminTagTb`
-            );
-            setAdministratorTag(response.data); // 데이터는 response.data 안에 들어있습니다.
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
+        await axios.get(`http://13.125.69.16/admin/adminTagTb`).then(res=>(
+            setAdministratorTag(res.data) // 데이터는 res.data 안에 들어있습니다.
+        ))
     };
 
     useEffect(() => {
         fetchAdminTag();
     }, []);
 
-    if (loading) return <div> 로딩중.. </div>;
-    if (error) return <div> error </div>;
+    useEffect(() => {
+        fetchAdminTag();
+    }, [administratorTag])
+
     if (!administratorTag) return null;
 
     return (

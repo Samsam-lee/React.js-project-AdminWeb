@@ -136,5 +136,19 @@ const PageNum = styled.div`
 `
 /** */
 
+/**
+ * hash Modal
+ */
+const HashModalInput = styled.input`
+    border: 0px;
+    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
+    border-radius: 5px;
+    padding: 15px;
+    margin: 0 10px;
+    width: 500px;
+    font-size: 20px;
+`
+/** */
+
 export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton,
-    SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum}
+    SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum, HashModalInput}

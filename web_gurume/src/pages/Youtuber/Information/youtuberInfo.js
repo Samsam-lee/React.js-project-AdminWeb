@@ -6,30 +6,17 @@ import {TitleDiv} from '../../../styledFile'
 const YoutuberInfo = () => {
 
     const [youtubers, setYoutubers] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
 
     const fetchYoutubers = async() => {
-        try{
-            setError(null);
-            setYoutubers(null);
-            setLoading(true);
-            const response = await axios.get(
-                'http://13.125.69.16/admin/ytbChannelTb'
-            );
-            setYoutubers(response.data.ytbChannelTb);
-        } catch(e){
-            setError(e);
-        }
-        setLoading(false);
+        await axios.get('http://13.125.69.16/admin/ytbChannelTb').then(res=>(
+            setYoutubers(res.data.ytbChannelTb)
+        ))
     }
 
     useEffect(() => {
         fetchYoutubers();
     }, [])
 
-    if (loading) return <div>로딩중..</div>;
-    if (error) return <div>에러가 발생했습니다</div>;
     if (!youtubers) return null
     
     return (
