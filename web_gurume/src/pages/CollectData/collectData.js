@@ -35,7 +35,6 @@ const CollectData = () => {
 
   return (
     <div className="bodyFrame">
-      <div className="dataFrame">
         <CrawlingStatus
           status={status}
           onGoingYoutubers={onGoingYoutubers}
@@ -44,7 +43,6 @@ const CollectData = () => {
           isError={isError}
           countOfErr={countOfErr}
         />
-      </div>
     </div>
   );
 };
