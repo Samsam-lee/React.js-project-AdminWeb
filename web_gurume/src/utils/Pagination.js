@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {PageBody, PageNum} from '../styledFile'
 
 const Pagination = (props) => {
@@ -9,14 +9,14 @@ const Pagination = (props) => {
     }
 
     const handlePage = (page) => {
-        props.setCurrentPage(page)
+        (page != null) && props.setCurrentPage(page)
     }
 
     return (
         <PageBody>
-            <PageNum> &lt;&lt; </PageNum>
+            <PageNum onClick={e=>{handlePage(props.prev)}}> &lt;&lt; </PageNum>
             {allPage.map(v => <PageNum onClick={e=>{handlePage(v)}}> {v} </PageNum>)}
-            <PageNum> &gt;&gt; </PageNum>
+            <PageNum onClick={e=>{handlePage(props.next)}}> &gt;&gt; </PageNum>
         </PageBody>
     )
 }

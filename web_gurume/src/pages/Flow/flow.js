@@ -21,7 +21,7 @@ const Flow = () => {
 
     /** 검색에 따른 데이터 렌더링 */
     const fetchSearchData = async () => {
-        console.log(option + '~~' + searchText + '~~' + currentPage)
+        // console.log(option + '~~' + searchText + '~~' + currentPage)
         await axios.get(`http://13.125.69.16/admin/shareFlowTb/${option}/${searchText}`).then(res=>{
             setFlowData(res.data);
         }).catch(e=>{
@@ -59,7 +59,8 @@ const Flow = () => {
                 flowData
                 ? <FlexDiv flexDirection='column'>
                 <Table title='flow' opt={["지역","동선 제목","아이디","작성 날짜","업데이트 날짜","조회 수"]} data={flowData.collection}/>
-                <Pagination setCurrentPage={setCurrentPage} first={flowData.first} last={flowData.last} /></FlexDiv>
+                <Pagination setCurrentPage={setCurrentPage}
+                    first={flowData.first} last={flowData.last} next={flowData.next} prev={flowData.prev}/></FlexDiv>
                 : <div> loading... </div>
             }
             <SearchBox  opt={[{value:"region",text:"지역"},{value:"id",text:"아이디"},{value:"title",text:"동선 제목"}]}
