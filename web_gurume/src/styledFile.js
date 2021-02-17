@@ -16,7 +16,10 @@ const FlexDiv = styled.div`
     margin: ${props => props.margin};
     padding: ${props => props.padding};
     flex-wrap: ${props => props.flexWrap};
-`
+    position: ${props => props.position};
+    `
+    // width: ${props => props.width};
+    // overflow: ${props => props.overFlow};
 
 /**
  * bodyFrame
@@ -34,6 +37,7 @@ const BodyFrame = styled.div`
  */
 const ContainerBox = styled.div`
     width: 100%;
+    min-width: 1250px;
     background-color: rgb(250, 244, 230);
     border-bottom: 1px solid rgb(213, 213, 213);
     display: flex;
@@ -43,7 +47,7 @@ const ContainerBox = styled.div`
 const HeadDiv = styled.div`
     display: flex;
     width: 1200px;
-    height: 120px;
+    height: 100px;
     justify-content: space-between;
 `
 
@@ -74,6 +78,7 @@ const Button = styled.div`
     width: ${props => props.width || '350px'};
     box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
     margin: 20px;
+    overflow: ${props => props.overFlow};
 `
 
 const ImgDiv = styled.div`
@@ -108,7 +113,10 @@ const FixTextDiv = styled.div`
     white-space: nowrap;
     overflow: hidden;
     width: 80%;
-    margin: 0 0 0 10%;
+    margin-left: 10%;
+    padding-bottom: 10px;
+    font-size: 17px;
+    font-weight: 900px;
 `
 /** */
 
@@ -119,6 +127,8 @@ const FixTextDiv = styled.div`
  */
 const AgreeButton = styled.button`
     position: absolute;
+    right: 15px;
+    bottom: 0;
 `
 /** */
 
@@ -155,9 +165,9 @@ const SearchButton = styled.input`
  */
 const HashBox = styled.button`
     background-color: white;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 5px;
+    margin: 10px 6px;
+    padding: 10px 21px;
+    border-radius: 27px;
     align-self: center;
     `
 /** */

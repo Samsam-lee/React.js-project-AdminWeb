@@ -19,7 +19,7 @@ const HashtagBox = (props) => {
     }
 
   return (
-    <Button width='90%' height='300px' backgroundColor='rgb(250, 244, 230)'>
+    <Button width='100%' height='300px' backgroundColor='rgb(250, 244, 230)'>
       <FlexDiv fontSize='18px' fontWeight='700' flexWrap='wrap' padding='20px'>
         {props.adminTag.map(v =>
           <HashBox onClick={() => openModal('해시태그 제거', {v})}> {v} </HashBox>

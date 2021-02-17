@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CrawlingStatus from "../../components/Crawling/CrawlingStatus";
-import {BodyFrame} from "../../styledFile"
+import {BodyFrame, FlexDiv, TitleDiv} from "../../styledFile"
 
 const CollectData = () => {
   const [crawlingData, setCrawlingData] = useState(null);
@@ -22,11 +22,15 @@ const CollectData = () => {
 
   return (
     <BodyFrame>
-      {crawlingData
-      ? crawlingData.map(v => 
-        <CrawlingStatus crawlingStatusValue={v} />
-      )
-    : <div> loading... </div>}
+      <TitleDiv> 신청 유튜버 크롤링 상태</TitleDiv>
+      <FlexDiv>
+        {crawlingData
+        ? crawlingData.map(v => <FlexDiv>
+            <CrawlingStatus crawlingStatusValue={v} />
+          </FlexDiv>
+        )
+        : <div> loading... </div>}
+      </FlexDiv>
     </BodyFrame>
   );
 };
