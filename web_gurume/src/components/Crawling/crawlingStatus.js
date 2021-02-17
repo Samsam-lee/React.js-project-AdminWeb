@@ -1,27 +1,18 @@
-import React from "react";
-import "./crawlingStatus.css";
-import CrawlingYoutuber from "./CrawlingYoutuber";
+import React from 'react'
+import { FlexDiv, ImgDiv } from "../../styledFile";
 
 const CrawlingStatus = (props) => {
-  return (
-    <div className="cBox">
-      {props.status.map((v) => (
-        <div className="statusBox">
-          <div className="status">{v}</div>
-          <CrawlingYoutuber
-            status={v}
-            onGoingYoutubers={props.onGoingYoutubers}
-            errorYoutubers={props.errorYoutubers}
-            completeYoutubers={props.completeYoutubers}
-            isError={props.isError}
-            countOfErr={props.countOfErr}
-            handleIndex={props.handleIndex}
-            youtuberIndex={props.youtuberIndex}
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
+    return (
+        <FlexDiv >
+            <FlexDiv> {props.crawlingStatusValue.status} </FlexDiv>
+            {/* {props.crawlingStatusValue.data.map(v=>(
+                <FlexDiv>
+                    <FlexDiv><img src={v.ytbProfile}/></FlexDiv>
+                    <FlexDiv>{v.ytbChannel}</FlexDiv>
+                </FlexDiv>
+            ))} */}
+        </FlexDiv>
+    )
+}
 
-export default CrawlingStatus;
+export default CrawlingStatus

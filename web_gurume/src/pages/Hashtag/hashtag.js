@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import HashtagBox from '../../components/Hashtag/HashtagBox'
-import {TitleDiv, FlexDiv} from '../../styledFile'
+import {TitleDiv, BodyFrame} from '../../styledFile'
 import axios from 'axios'
+import IMAGE from "../../assets/image/hashBackground.png"
 
 const Hashtag = () => {
 
@@ -13,6 +14,15 @@ const Hashtag = () => {
         ))
     };
 
+    const backgroundCss = {
+        "opacity": '0.1',
+        "z-index": '-1',
+        "position": "absolute",
+        "width": "100%",
+        "height": "100%",
+        "left": "0px"
+    }
+
     useEffect(() => {
         fetchAdminTag();
     }, []);
@@ -21,16 +31,19 @@ const Hashtag = () => {
         fetchAdminTag();
     }, [administratorTag])
 
-    if (!administratorTag) return null;
-
     return (
-        <div className="bodyFrame">
+        <BodyFrame>
+            <img src={IMAGE} style={backgroundCss}/>
             <TitleDiv margin='0 0 0 20px'> 지역별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag.adminTag.regionTag}/>}
+            {administratorTag
+            ? <HashtagBox adminTag={administratorTag.adminTag.regionTag}/>
+            : <div> loading... </div>}
 
             <TitleDiv margin='0 0 0 20px'> 계절별 해쉬태그 </TitleDiv>
-            {<HashtagBox adminTag={administratorTag.adminTag.seasonTag}/>}
-        </div>
+            {administratorTag
+            ? <HashtagBox adminTag={administratorTag.adminTag.seasonTag}/>
+            : <div> loading... </div>}
+        </BodyFrame>
     )
 }
 

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Video from '../../../components/Youtuber/Video'
 import axios from 'axios'
 import queryString from "query-string";
-import {TitleDiv} from '../../../styledFile'
+import {TitleDiv, BodyFrame, FlexDiv} from '../../../styledFile'
 
 const YoutuberVideo = (props) => {
 
@@ -17,17 +17,16 @@ const YoutuberVideo = (props) => {
     useEffect(() => {
         fetchYoutuber();
     }, []);
-
-    if (!youtuber) return null;
-
+    
     return (
-        <div className="bodyFrame">
+        <BodyFrame>
             <TitleDiv>{queryString.parse(props.location.search).youtuber}</TitleDiv>
-            <div>
-                {/* 해당 유튜버 video 데이터 */}
-                {youtuber.video.map(v => <Video videoData={v}/>)}
-            </div>
-        </div>
+            <FlexDiv flexWrap='wrap'>
+                {youtuber
+                ? youtuber.video.map(v => <Video videoData={v}/>)
+                : <div> loading... </div>}
+            </FlexDiv>
+        </BodyFrame>
     )
 }
 

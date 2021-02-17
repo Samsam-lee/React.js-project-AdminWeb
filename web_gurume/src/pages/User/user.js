@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import SearchBox from '../../components/SearchBox'
 import Table from '../../components/Table'
 import Pagination from '../../utils/Pagination'
-import {FlexDiv, TitleDiv} from '../../styledFile'
+import {FlexDiv, TitleDiv, BodyFrame} from '../../styledFile'
 import axios from 'axios'
 
 const User = () => {
@@ -47,11 +47,9 @@ const User = () => {
         setOption('nickname')
     }
     /** */
-
-    if (!userData) return null;
-
+    
     return (
-        <div className="bodyFrame">
+        <BodyFrame>
             <TitleDiv> 유저 리스트 </TitleDiv>
             {
                 userData
@@ -65,7 +63,7 @@ const User = () => {
             <SearchBox  opt={[{value:"nickname", text:"닉네임"},{value:"id", text:"아이디"},{value:"memo", text:"메모"}]}
                         pHolder='유저를 검색해주세요'setOption={setOption} setSearchText={setSearchText} option={option}
                         handleSearch={handleSearch}/>
-        </div>
+        </BodyFrame>
     )
 }
 

@@ -3,7 +3,8 @@ table {
     border-top: 3px solid #168;
     background-color: white;
     white-space: nowrap;
-    width: 1000px;
+    width: 1150px;
+    margin-top: 20px;
 }
 table th {
     color: #168;
@@ -17,9 +18,9 @@ table th, table td {
     text-align: center;
 }
 /* table td{
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 } */
 table th:first-child, table td:first-child {
     border-left: 0;
@@ -31,5 +32,5 @@ table tr td:first-child{
     text-align: center;
 }
 table caption{
-  caption-side: bottom; display: none;
+    caption-side: bottom; display: none;
 }

@@ -390,29 +390,6 @@ body, #root{
   height: 100%;
 }
 
-.bodyFrame{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  background-color: rgb(251, 246, 235);
-  padding: 50px;
-  min-width: 1150px;
+a:link {
+  color: black;
 }
-
-/* 
-.assist{
-  flex: 1;
-  margin: 0 0 50px 0;
-  align-self: center;
-}
-
-.subFrame {
-  flex: 9;
-  display: flex;
-  align-self: center;
-}
-
-.dataFrame{
-  flex: 1;
-  display: flex;
-} */
