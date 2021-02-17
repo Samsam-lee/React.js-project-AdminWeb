@@ -1,5 +1,4 @@
-import React,{useState} from "react";
-import "./collectAddress.css";
+import React from "react";
 import GoogleMap from "../../utils/GoogleApi";
 import platformData from "../../assets/platformCrawlingData";
 

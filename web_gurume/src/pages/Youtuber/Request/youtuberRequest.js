@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Request from '../../../components/Youtuber/Request'
-import {TitleDiv} from '../../../styledFile'
+import {TitleDiv, BodyFrame, FlexDiv} from '../../../styledFile'
 
 const YoutuberRequest = () => {
     const [youtuberRequest, setYoutuberRequest] = useState(null);
@@ -15,18 +15,18 @@ const YoutuberRequest = () => {
     useEffect(() => {
         fetchYoutuberRequest();
     }, []);
-
-    if (!youtuberRequest) return null;
-
+    
     return (
-        <div className="bodyFrame">
+        <BodyFrame>
             <TitleDiv> 유튜버 신청 목록 </TitleDiv>
-            <div>
-                {youtuberRequest.ytbReqTb.map(v =>
+            <FlexDiv flexWrap='wrap'>
+                {youtuberRequest
+                ? youtuberRequest.ytbReqTb.map(v =>
                     <Request requestData={v}/>
-                )}
-            </div>
-        </div>
+                )
+                : <div> loading... </div>}
+            </FlexDiv>
+        </BodyFrame>
     )
 }
 

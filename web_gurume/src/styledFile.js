@@ -15,20 +15,70 @@ const FlexDiv = styled.div`
     border-radius: ${props => props.borderRadius};
     margin: ${props => props.margin};
     padding: ${props => props.padding};
+    flex-wrap: ${props => props.flexWrap};
+    position: ${props => props.position};
+    `
+    // width: ${props => props.width};
+    // overflow: ${props => props.overFlow};
+
+/**
+ * bodyFrame
+ */
+const BodyFrame = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    margin: 0 auto;
 `
+/** */
+
+/**
+ * Header
+ */
+const ContainerBox = styled.div`
+    width: 100%;
+    min-width: 1250px;
+    background-color: rgb(250, 244, 230);
+    border-bottom: 1px solid rgb(213, 213, 213);
+    display: flex;
+    justify-content: center;
+`
+
+const HeadDiv = styled.div`
+    display: flex;
+    width: 1200px;
+    height: 100px;
+    justify-content: space-between;
+`
+
+const HeaderTitleDiv = styled.div`
+    align-self: center;
+    font-size: 40px;
+    font-weight: 900;
+`
+
+const HeaderList = styled.div`
+    font-size: 16px;
+    font-weight: 500;
+    margin: 20px;
+    padding-top: 15px;
+`
+/** */
 
 /**
  * 유튜버 정보 css
  * Button > Img
  */
-const Button = styled.button`
-    background-color: white;
-    border-radius: .8rem;
-    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
-    border: 0;
-    margin: 10px;
+
+const Button = styled.div`
+    background-color: ${props => props.backgroundColor};
+    border: 1px solid #ddd;
+    border-radius: 5px;
     height: ${props => props.height || '200px'};
-    width: ${props => props.width || '400px'};
+    width: ${props => props.width || '350px'};
+    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
+    margin: 20px;
+    overflow: ${props => props.overFlow};
 `
 
 const ImgDiv = styled.div`
@@ -47,14 +97,11 @@ const ImgDiv = styled.div`
  * 유튜버 페이지 타이틀 div
  */
 const TitleDiv = styled.div`
-    background-color: ${props => props.backgroundColor || 'rgb(233, 229, 218)'};
-    text-align: center;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 900;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 16px;
-    margin: ${props => props.margin || '0 0 20px 40px'};
+    height: 70px;
+    line-height: 70px;
+    padding: 20px 0 0 20px;
 `
 /** */
 
@@ -66,7 +113,10 @@ const FixTextDiv = styled.div`
     white-space: nowrap;
     overflow: hidden;
     width: 80%;
-    margin: 0 0 0 10%;
+    margin-left: 10%;
+    padding-bottom: 10px;
+    font-size: 17px;
+    font-weight: 900px;
 `
 /** */
 
@@ -77,6 +127,8 @@ const FixTextDiv = styled.div`
  */
 const AgreeButton = styled.button`
     position: absolute;
+    right: 15px;
+    bottom: 0;
 `
 /** */
 
@@ -112,13 +164,12 @@ const SearchButton = styled.input`
  * hash tag box
  */
 const HashBox = styled.button`
-    background-color: rgb(233, 229, 218);
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: white;
+    margin: 10px 6px;
+    padding: 10px 21px;
+    border-radius: 27px;
     align-self: center;
     `
-    // onClick: ${props => props.onClick};
 /** */
 
 /**
@@ -150,5 +201,6 @@ const HashModalInput = styled.input`
 `
 /** */
 
-export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton,
-    SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum, HashModalInput}
+export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton, HeadDiv, HeaderTitleDiv, HeaderList,
+    SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum, HashModalInput,
+    BodyFrame, ContainerBox}

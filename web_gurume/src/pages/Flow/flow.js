@@ -3,7 +3,7 @@ import SearchBox from '../../components/SearchBox'
 import Table from '../../components/Table'
 import Pagination from '../../utils/Pagination'
 import axios from 'axios'
-import {FlexDiv, TitleDiv} from '../../styledFile'
+import {FlexDiv, TitleDiv, BodyFrame} from '../../styledFile'
 
 const Flow = () => {
     const [option, setOption] = useState("region")
@@ -50,10 +50,8 @@ const Flow = () => {
     }
     /** */
 
-    if (!flowData) return null;
-
     return (
-        <div className="bodyFrame">
+        <BodyFrame>
             <TitleDiv> 동선 리스트 </TitleDiv>
             {
                 flowData
@@ -66,7 +64,7 @@ const Flow = () => {
             <SearchBox  opt={[{value:"region",text:"지역"},{value:"id",text:"아이디"},{value:"title",text:"동선 제목"}]}
                         pHolder='동선을 검색해주세요' setOption={setOption} setSearchText={setSearchText} option={option}
                         handleSearch={handleSearch} />
-        </div>
+        </BodyFrame>
     )
 }
 
