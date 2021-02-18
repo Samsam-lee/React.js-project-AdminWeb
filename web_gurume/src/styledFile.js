@@ -72,13 +72,17 @@ const HeaderList = styled.div`
 
 const Button = styled.div`
     background-color: ${props => props.backgroundColor};
-    border: 1px solid #ddd;
+    border: ${props => props.border || '1px solid #ddd'};
     border-radius: 5px;
     height: ${props => props.height || '200px'};
     width: ${props => props.width || '350px'};
-    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
-    margin: 20px;
+    box-shadow: ${props => props.boxShadow || 'inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%)'};
+    margin: ${props => props.margin || '20px'};
     overflow: ${props => props.overFlow};
+    display: ${props => props.display};
+    position: ${props => props.position};
+    right: ${props => props.right};
+    bottom: ${props => props.bottom};
 `
 
 const ImgDiv = styled.div`
@@ -147,8 +151,9 @@ const SearchTextInput = styled.input`
     box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
     border-radius: 5px;
     padding: 10px 15px;
-    margin: 0 5px;
-    width: 400px;
+    margin: 0 20px;
+    width: ${props => props.width || '400px'};
+    font-size: ${props => props.fontSize};
 `
 
 const SearchButton = styled.input`
@@ -201,6 +206,24 @@ const HashModalInput = styled.input`
 `
 /** */
 
+/**
+ * data collect
+ */
+const DcButton = styled.div`
+    width: 130px;
+    height: 50px;
+    position: absolute;
+    right: ${props => props.right || '40px'};
+    bottom: ${props => props.bottom || '30px'};
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
+    border: 1px solid #ddd;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+`
+/** */
+
 export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton, HeadDiv, HeaderTitleDiv, HeaderList,
     SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum, HashModalInput,
-    BodyFrame, ContainerBox}
+    BodyFrame, ContainerBox, DcButton}
