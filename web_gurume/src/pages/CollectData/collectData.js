@@ -6,10 +6,6 @@ import {BodyFrame, FlexDiv, TitleDiv} from "../../styledFile"
 const CollectData = () => {
   const [crawlingData, setCrawlingData] = useState(null);
 
-  const handleSearch = () => {
-    // error 방지
-  }
-
   /** page 에 따른 데이터 렌더링 */
   const fetchCrawlingData = async () => {
     await axios
@@ -30,7 +26,7 @@ const CollectData = () => {
       <FlexDiv>
         {crawlingData
         ? crawlingData.map(v => <FlexDiv>
-            <CrawlingStatus crawlingStatusValue={v} handleSearch={handleSearch}/>
+            <CrawlingStatus crawlingStatusValue={v}/>
           </FlexDiv>
         )
         : <div> loading... </div>}

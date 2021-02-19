@@ -6,6 +6,10 @@ import IMAGE from "../../assets/image/youtuberImage/문복희 프사.jpg"
 const CrawlingStatus = (props) => {
     const {crawlingStatusValue} = props
 
+    const handleSearch = () => {
+        props.setMap && props.setMap(false);
+    }
+
     return (
         <Button width='350px' height='785px' overFlow='scroll'>
             {
@@ -29,7 +33,7 @@ const CrawlingStatus = (props) => {
                     <FlexDiv fontSize='22px' margin='25px'> 크롤링 에러 발생 유튜버 </FlexDiv>
                     {crawlingStatusValue && crawlingStatusValue.data.map(v=>(
                         <Button width='300px' height='300px'>
-                            <Link to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`} onClick={() => props.handleSearch(false)}>
+                            <Link to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`} onClick={handleSearch}>
                             <FlexDiv><img src={IMAGE}/></FlexDiv>
                             <FlexDiv fontSize='20px' padding='15px 0'>{v.ytbChannel}</FlexDiv>
                             <FlexDiv> 동영상 : {v.videoCount}개</FlexDiv>
