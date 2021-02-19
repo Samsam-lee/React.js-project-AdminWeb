@@ -24,7 +24,8 @@ const HashtagBox = (props) => {
         {props.adminTag.map(v =>
           <HashBox onClick={() => openModal('해시태그 제거', {v})}> {v} </HashBox>
         )}
-        <HashBox onClick={() => openModal('해시태그 추가',{})}> + </HashBox>
+        {props.tempValue &&
+        <HashBox onClick={() => openModal('해시태그 추가',{})}> + </HashBox>}
       </FlexDiv>
 
       <Modal isOpen={isOpen} closeModal={closeModal} contentLabel={buttonState} forDeleteHashtag={forDeleteHashtag}/>

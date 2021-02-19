@@ -8,21 +8,21 @@ const YoutuberRequest = () => {
 
     const fetchYoutuberRequest = async () => {
         await axios.get(`http://13.125.69.16/admin/ytbReqTb`).then(res=>(
-            setYoutuberRequest(res.data) // 데이터는 res.data 안에 들어있습니다.
+            setYoutuberRequest(res.data.ytbReqTb) // 데이터는 res.data 안에 들어있습니다.
         ))
     };
 
     useEffect(() => {
         fetchYoutuberRequest();
-    }, []);
+    }, [youtuberRequest]);
     
     return (
         <BodyFrame>
             <TitleDiv> 유튜버 신청 목록 </TitleDiv>
             <FlexDiv flexWrap='wrap'>
                 {youtuberRequest
-                ? youtuberRequest.ytbReqTb.map(v =>
-                    <Request requestData={v}/>
+                ? youtuberRequest.map(v =>
+                    <Request requestData={v} setYoutuberRequest={setYoutuberRequest}/>
                 )
                 : <div> loading... </div>}
             </FlexDiv>

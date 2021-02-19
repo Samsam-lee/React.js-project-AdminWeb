@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import ReactModal from 'react-modal'
-import {FlexDiv, HashModalInput, Button} from '../styledFile'
+import {FlexDiv, HashModalInput, ModalButton} from '../styledFile'
 import axios from 'axios'
 
 const Modal = (props) => {
@@ -16,7 +16,7 @@ const Modal = (props) => {
         marginRight           : '-50%',
         transform             : 'translate(-50%, -50%)',
         width                 : '550px',
-        height                : '220px',
+        height                : '240px',
         background            : 'rgb(230,230,230)'
         }
     };
@@ -46,15 +46,18 @@ const Modal = (props) => {
             {props.contentLabel == '해시태그 추가' && <>
                 <HashModalInput type='text' onChange={updateHashAdd}/>
                 <FlexDiv>
-                    <Button width='50%' height='70px' onClick={patchAdminTag}> Add </Button>
-                    <Button width='50%' height='70px' onClick={props.closeModal}>Cancel</Button>
+                    <ModalButton onClick={patchAdminTag}> Add </ModalButton>
+                    <ModalButton onClick={props.closeModal}>Cancel</ModalButton>
                 </FlexDiv>
             </>}
 
-            {props.contentLabel == '해시태그 제거' && <FlexDiv>
-                <Button width='50%' height='120px' onClick={deleteAdminTag}> Delete </Button>
-                <Button width='50%' height='120px' onClick={props.closeModal}>Cancel</Button>
-            </FlexDiv>}
+            {props.contentLabel == '해시태그 제거' && <>
+                <HashModalInput type='text' value={props.forDeleteHashtag}/>
+                <FlexDiv>
+                    <ModalButton onClick={deleteAdminTag}> Delete </ModalButton>
+                    <ModalButton onClick={props.closeModal}>Cancel</ModalButton>
+                </FlexDiv>
+            </>}
         </ReactModal>
     )
 }

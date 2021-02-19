@@ -1,4 +1,4 @@
-import styled, {createGlobalStyle} from "styled-components"
+import styled, {css, createGlobalStyle} from "styled-components"
 
 const GlobalStyle = createGlobalStyle`
     
@@ -17,6 +17,7 @@ const FlexDiv = styled.div`
     padding: ${props => props.padding};
     flex-wrap: ${props => props.flexWrap};
     position: ${props => props.position};
+    cursor: ${props => props.cursor};
     `
     // width: ${props => props.width};
     // overflow: ${props => props.overFlow};
@@ -59,10 +60,15 @@ const HeaderTitleDiv = styled.div`
 
 const HeaderList = styled.div`
     font-size: 16px;
-    font-weight: 500;
-    margin: 20px;
-    padding-top: 15px;
-`
+    font-weight: ${props => props.onClicked ? '900' : '500'};
+    margin: ${props => props.margin || '20px'};
+    padding-top: ${props => props.paddingTop || '15px'};
+
+    & > a {
+        ${props => props.onClicked ? css`color: #f97583` : css`color: black`}
+    }
+    `
+
 /** */
 
 /**
@@ -131,8 +137,8 @@ const FixTextDiv = styled.div`
  */
 const AgreeButton = styled.button`
     position: absolute;
-    right: 15px;
-    bottom: 0;
+    right: ${props => props.right || '15px'};
+    bottom: 10px;
 `
 /** */
 
@@ -174,6 +180,7 @@ const HashBox = styled.button`
     padding: 10px 21px;
     border-radius: 27px;
     align-self: center;
+    cursor: pointer;
     `
 /** */
 
@@ -207,6 +214,22 @@ const HashModalInput = styled.input`
 /** */
 
 /**
+ * modal button
+ */
+const ModalButton = styled.div`
+    width: 50%;
+    height: 70px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
+    margin: 20px;
+    text-align: center;
+    line-height: 70px;
+    background-color: white;
+`
+
+/**
  * data collect
  */
 const DcButton = styled.div`
@@ -221,9 +244,10 @@ const DcButton = styled.div`
     font-size: 20px;
     text-align: center;
     line-height: 50px;
+    cursor: pointer;
 `
 /** */
 
 export {Button, ImgDiv, FlexDiv, TitleDiv, FixTextDiv, AgreeButton, HeadDiv, HeaderTitleDiv, HeaderList,
     SearchStyleDiv, SearchTextInput, SearchButton, HashBox, PageBody, PageNum, HashModalInput,
-    BodyFrame, ContainerBox, DcButton}
+    BodyFrame, ContainerBox, DcButton, ModalButton}

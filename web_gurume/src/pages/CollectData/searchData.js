@@ -10,9 +10,7 @@ const SearchData = (props) => {
   const [errVideo, setErrVideo] = useState(null);
   const [map, setMap] = useState(false);
 
-  const handleSearch = (flag) => {
-    setMap(flag)
-  }
+  
 
   const fetchErrYoutuber = async () => {
     await axios.get(`http://13.125.69.16/admin/ytbCrawlingTb/error`).then((res) => {
@@ -31,13 +29,17 @@ const SearchData = (props) => {
     fetchErrVideo();
   }, [queryString.parse(props.location.search).youtuber]);
 
+  // useEffect(() => {
+  //   fetchErrVideo();
+  // }, [errVideo])
+
   return (
     <BodyFrame>
       {
         (errYoutuber && errVideo) 
         ? <FlexDiv>
-            <CrawlingStatus crawlingStatusValue={errYoutuber} map={map} setMap={setMap} handleSearch={handleSearch}/>
-            <AddressHashtag addrHashtag={errVideo} map={map} setMap={setMap} handleSearch={handleSearch}/>
+            <CrawlingStatus crawlingStatusValue={errYoutuber} setMap={setMap}/>
+            <AddressHashtag addrHashtag={errVideo} map={map} setMap={setMap} youtuber={queryString.parse(props.location.search).youtuber}/>
           </FlexDiv>
         : <div> loading... </div>
       }

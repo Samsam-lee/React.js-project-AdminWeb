@@ -36,7 +36,7 @@ const Hashtag = () => {
             <img src={IMAGE} style={backgroundCss}/>
             <TitleDiv margin='0 0 0 20px'> 지역별 해쉬태그 </TitleDiv>
             {administratorTag
-            ? <HashtagBox adminTag={administratorTag.adminTag.regionTag}/>
+            ? <HashtagBox adminTag={administratorTag.adminTag.regionTag} tempValue={true}/>
             : <div> loading... </div>}
 
             <TitleDiv margin='0 0 0 20px'> 계절별 해쉬태그 </TitleDiv>
