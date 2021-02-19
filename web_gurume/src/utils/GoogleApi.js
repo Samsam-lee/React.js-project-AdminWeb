@@ -1,13 +1,13 @@
-import React from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import React from 'react'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 
 const GoogleApi = (props) => {
   return (
     <Map
       google={props.google}
       style={{
-        width: "100%",
-        height: "100%",
+        width: '100%',
+        height: '100%',
       }}
       zoom={17}
       initialCenter={{
@@ -23,9 +23,9 @@ const GoogleApi = (props) => {
         />
       ))}
     </Map>
-  );
-};
+  )
+}
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCCw433e81V5_sxCujuqY5wB_zOy1FZXRk",
-})(GoogleApi);
+  apiKey: 'AIzaSyCCw433e81V5_sxCujuqY5wB_zOy1FZXRk',
+})(GoogleApi)
