@@ -1,7 +1,6 @@
-import React,{useState} from "react";
-import "./collectAddress.css";
-import GoogleMap from "../../utils/GoogleApi";
-import platformData from "../../assets/platformCrawlingData";
+import React from 'react'
+import GoogleMap from '../../utils/GoogleApi'
+import platformData from '../../assets/platformCrawlingData'
 
 const CollectAddress = () => {
   return (
@@ -21,9 +20,9 @@ const CollectAddress = () => {
           <div> no data </div>
         )}
       </div>
-      <GoogleMap platformData={platformData}/>
+      <GoogleMap platformData={platformData} />
     </div>
-  );
-};
+  )
+}
 
-export default CollectAddress;
+export default CollectAddress

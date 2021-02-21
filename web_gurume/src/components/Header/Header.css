@@ -1,43 +1,7 @@
-body{
-    font-weight: bold;
-}
-
-.headerBox{
-    display: flex;
-    width: 100vw;
-    height: 10vh;
-}
-
-.title{
-    flex: 5;
-    font-size: 50px;
-    min-width: 500px;
-    padding-top: 20px;
-    padding-left: 30px;
-    font-weight: 900;
-}
-
-.title > a {
-    color: rgb(249, 185, 173);
-}
-
-li {
-    display: inline-block;
-    text-align: center;
-    min-width: 120px;
-    font-size: 18px;
-    padding-top: 40px;
-    font-weight: 900;
-}
-
-ul {
-    min-width: 700px;
-}
-
 .mOver{
     position: absolute;
     padding: 15px 50px;
-    margin: 0 0 0 -10px;
+    margin: 0 0 0 -40px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border: 1px solid grey;
