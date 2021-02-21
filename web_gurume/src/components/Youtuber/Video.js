@@ -14,6 +14,7 @@ const Video = (props) => {
         textAlign="center"
         fontWeight="900"
         fontSize="15px"
+        cursor="pointer"
         onClick={() => viewVideo(props.videoData.ytbAddress)}
       >
         <ImgDiv margin="10px" width="300px" height="200px">

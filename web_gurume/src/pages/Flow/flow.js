@@ -23,7 +23,6 @@ const Flow = () => {
 
   /** 검색에 따른 데이터 렌더링 */
   const fetchSearchData = async () => {
-    // console.log(option + '~~' + searchText + '~~' + currentPage)
     await axios
       .get(`http://13.125.69.16/admin/shareFlowTb/${option}/${searchText}`)
       .then((res) => {

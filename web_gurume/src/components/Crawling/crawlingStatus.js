@@ -1,101 +1,57 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FlexDiv, Button } from '../../styledFile'
-import IMAGE from '../../assets/image/youtuberImage/문복희 프사.jpg'
+import React from "react";
+import { Link } from "react-router-dom";
+import { FlexDiv, Button } from "../../styledFile";
+// import IMAGE from "../../assets/image/youtuberImage/문복희 프사.jpg";
 
 const CrawlingStatus = (props) => {
-  const { crawlingStatusValue } = props
-
-  const handleSearch = () => {
-    props.setMap && props.setMap(false)
-  }
-
-  const handleColor = () => {}
+  const statusText = ['진행', '에러', '완료']
 
   return (
-    <Button width="350px" height="750px" overFlow="scroll">
-      {crawlingStatusValue && crawlingStatusValue.status == 'normalCrawling' && (
-        <>
+    <>
+      {statusText.map((v) => 
+        <Button width="350px" height="750px" overFlow="scroll">
           <FlexDiv fontSize="22px" margin="25px">
-            {' '}
-            크롤링 진행 중인 유튜버{' '}
+            크롤링 {v} 유튜버
           </FlexDiv>
-          {crawlingStatusValue &&
-            crawlingStatusValue.data.map((v) => (
-              <Button width="300px" height="300px">
-                <FlexDiv>
-                  <img src={IMAGE} />
-                </FlexDiv>
+
+          {v == '진행' && props.crawlingData.map(v => 
+              v.videoCount != v.completeCount && <Button width="300px" height="300px">
+                <FlexDiv><img src="https://yt3.ggpht.com/ytc/AAUvwnhjhFWolM9jAf-swowMYGvgOEDHAnLZQmNvUnTGVw=s176-c-k-c0x00ffffff-no-rj" /></FlexDiv>
                 <FlexDiv fontSize="20px" padding="15px 0">
                   {v.ytbChannel}
                 </FlexDiv>
-                <FlexDiv>동영상 : {v.videoCount}개</FlexDiv>
-                <FlexDiv>
-                  {((v.video.length / v.videoCount) * 100).toFixed(1)}%
-                </FlexDiv>
+                <FlexDiv>에러 : {v.errCount} + 완성 : {v.completeCount}</FlexDiv>
+                <FlexDiv>전체 영상 개수 : {v.videoCount}</FlexDiv>
               </Button>
-            ))}
-        </>
-      )}
+            )}
 
-      {crawlingStatusValue && crawlingStatusValue.status == 'errCrawling' && (
-        <>
-          <FlexDiv fontSize="22px" margin="25px">
-            {' '}
-            크롤링 에러 발생 유튜버{' '}
-          </FlexDiv>
-          {crawlingStatusValue &&
-            crawlingStatusValue.data.map((v) => (
-              <Button width="300px" height="300px" onClick={handleColor}>
-                <Link
-                  to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`}
-                  onClick={handleSearch}
-                >
-                  <FlexDiv>
-                    <img src={IMAGE} />
-                  </FlexDiv>
-                  <FlexDiv fontSize="20px" padding="15px 0">
-                    {v.ytbChannel}
-                  </FlexDiv>
-                  <FlexDiv> 동영상 : {v.videoCount}개</FlexDiv>
-                  <FlexDiv>
-                    {' '}
-                    완료된 영상 : {v.videoCount - v.video.length} /{' '}
-                    {v.videoCount}{' '}
-                  </FlexDiv>
-                  <FlexDiv>
-                    {' '}
-                    에러 발생 영상 : {v.video.length} / {v.videoCount}{' '}
-                  </FlexDiv>
+          {v == '에러' && props.crawlingData.map(v => 
+              v.errCount > 0 && <Button width="300px" height="300px">
+                <Link to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`}>
+                <FlexDiv><img src="https://yt3.ggpht.com/ytc/AAUvwnhjhFWolM9jAf-swowMYGvgOEDHAnLZQmNvUnTGVw=s176-c-k-c0x00ffffff-no-rj" /></FlexDiv>
+                <FlexDiv fontSize="20px" padding="15px 0">
+                  {v.ytbChannel}
+                </FlexDiv>
+                <FlexDiv>에러 개수 : {v.errCount}</FlexDiv>
+                <FlexDiv>전체 영상 개수 : {v.videoCount}</FlexDiv>
                 </Link>
               </Button>
-            ))}
-          {}
-        </>
-      )}
+            )}
 
-      {crawlingStatusValue && crawlingStatusValue.status == 'completeCrawling' && (
-        <>
-          <FlexDiv fontSize="22px" margin="25px">
-            {' '}
-            크롤링 완료 유튜버{' '}
-          </FlexDiv>
-          {crawlingStatusValue &&
-            crawlingStatusValue.data.map((v) => (
-              <Button width="300px" height="300px">
-                <FlexDiv>
-                  <img src={IMAGE} />
-                </FlexDiv>
+          {v == '완료' && props.crawlingData.map(v => 
+              v.videoCount == v.completeCount && <Button width="300px" height="300px">
+                <FlexDiv><img src="https://yt3.ggpht.com/ytc/AAUvwnhjhFWolM9jAf-swowMYGvgOEDHAnLZQmNvUnTGVw=s176-c-k-c0x00ffffff-no-rj" /></FlexDiv>
                 <FlexDiv fontSize="20px" padding="15px 0">
                   {v.ytbChannel}
                 </FlexDiv>
-                <FlexDiv>동영상 : {v.videoCount}개</FlexDiv>
+                <FlexDiv>전체 영상 개수 : {v.videoCount}</FlexDiv>
               </Button>
-            ))}
-        </>
+            )}
+          
+        </Button>
       )}
-    </Button>
-  )
-}
+    </>
+  );
+};
 
-export default CrawlingStatus
+export default CrawlingStatus;

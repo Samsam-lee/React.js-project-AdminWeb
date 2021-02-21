@@ -19,8 +19,6 @@ const FlexDiv = styled.div`
   position: ${(props) => props.position};
   cursor: ${(props) => props.cursor};
 `
-// width: ${props => props.width};
-// overflow: ${props => props.overFlow};
 
 /**
  * bodyFrame
