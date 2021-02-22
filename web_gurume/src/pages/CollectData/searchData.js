@@ -3,11 +3,12 @@ import axios from 'axios'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import queryString from 'query-string'
 import CrawlingVideo from '../../components/Crawling/CrawlingVideo'
-import AddressHashtag from '../../components/Crawling/AddressHashtag'
+import SelectErrorVideo from '../../components/Crawling/SelectErrorVideo'
 
 const SearchData = (props) => {
   const [errVideo, setErrVideo] = useState(null)
   const [map, setMap] = useState(false)
+  const [index, setIndex] = useState(0)
 
   const fetchErrVideo = async () => {
     await axios.get(`http://13.125.69.16/admin/ytbCrawlingTb/error/${
@@ -22,17 +23,22 @@ const SearchData = (props) => {
     fetchErrVideo();
   }, [])
 
+  useEffect(() => {
+    setMap(false);
+  }, [index])
+
   return (
     <BodyFrame>
       {errVideo ? (
         <>
           <TitleDiv> {errVideo.ytbChannel} </TitleDiv>
           <FlexDiv>
-            <CrawlingVideo errVideo={errVideo} map={map} setMap={setMap}/>
-            <AddressHashtag
+            <CrawlingVideo errVideo={errVideo} setMap={setMap} index={index} setIndex={setIndex}/>
+            <SelectErrorVideo
               errVideo={errVideo}
               map={map}
               setMap={setMap}
+              index={index}
             />
           </FlexDiv>
         </>

@@ -6,21 +6,21 @@ const GoogleApi = (props) => {
     <Map
       google={props.google}
       style={{
-        width: '100%',
-        height: '100%',
+        width: '700px',
+        height: '490px',
+        position: 'relative'
       }}
       zoom={17}
       initialCenter={{
-        lat: props.platformData[0].location.lat,
-        lng: props.platformData[0].location.lng,
+        lat: props.platformData[0].data[0].crawlingLocation.lat,
+        lng: props.platformData[0].data[0].crawlingLocation.lng,
       }}
     >
       {props.platformData.map((v) => (
-        <Marker
-          position={{ lat: v.location.lat, lng: v.location.lng }}
-          // icon={{ url: "../assets/image/googleMap.png" }}
+        v.data.length != 0 && v.data.map(v => <Marker
+          position={{ lat: v.crawlingLocation.lat, lng: v.crawlingLocation.lng }}
           visible={true}
-        />
+          />)
       ))}
     </Map>
   )

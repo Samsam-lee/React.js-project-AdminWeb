@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FlexDiv, Button } from "../../styledFile";
-// import IMAGE from "../../assets/image/youtuberImage/문복희 프사.jpg";
 
 const CrawlingStatus = (props) => {
   const statusText = ['진행', '에러', '완료']

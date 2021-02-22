@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { BodyFrame, FlexDiv, TitleDiv, Button } from '../../styledFile'
+import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
 
 const CollectData = () => {
