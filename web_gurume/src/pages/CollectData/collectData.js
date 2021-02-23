@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
+import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
 
 const CollectData = () => {
   const [crawlingData, setCrawlingData] = useState(null)
@@ -24,13 +24,9 @@ const CollectData = () => {
     <BodyFrame>
       <TitleDiv> 신청된 유튜버 크롤링 상태</TitleDiv>
       <FlexDiv>
-        {crawlingData ? (
-          crawlingData.map((v) => (
-            <FlexDiv>
-              <CrawlingStatus crawlingStatusValue={v} />
-            </FlexDiv>
-          ))
-        ) : (
+        {crawlingData ? <FlexDiv> 
+          <CrawlingStatus crawlingData={crawlingData}/>
+        </FlexDiv> : (
           <div> loading... </div>
         )}
       </FlexDiv>

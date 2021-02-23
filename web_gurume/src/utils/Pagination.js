@@ -14,31 +14,19 @@ const Pagination = (props) => {
 
   return (
     <PageBody>
-      <PageNum
-        onClick={(e) => {
-          handlePage(props.prev)
-        }}
-      >
-        {' '}
-        &lt;&lt;{' '}
+      <PageNum onClick={(e) => {handlePage(props.prev)}}>
+        &lt;&lt;
       </PageNum>
+
       {allPage.map((v) => (
-        <PageNum
-          onClick={(e) => {
-            handlePage(v)
-          }}
-        >
-          {' '}
-          {v}{' '}
+        <PageNum onClick={(e) => { handlePage(v) }}>
+          {v}
         </PageNum>
       ))}
+      
       <PageNum
-        onClick={(e) => {
-          handlePage(props.next)
-        }}
-      >
-        {' '}
-        &gt;&gt;{' '}
+        onClick={(e) => { handlePage(props.next) }}>
+        &gt;&gt;
       </PageNum>
     </PageBody>
   )

@@ -19,8 +19,6 @@ const FlexDiv = styled.div`
   position: ${(props) => props.position};
   cursor: ${(props) => props.cursor};
 `
-// width: ${props => props.width};
-// overflow: ${props => props.overFlow};
 
 /**
  * bodyFrame
@@ -85,7 +83,7 @@ const HeaderList = styled.div`
 
 const Button = styled.div`
   background-color: ${(props) => props.backgroundColor};
-  border: ${(props) => props.onClicked || '1px solid #ddd'};
+  border: ${(props) => props.border || '1px solid #ddd'};
   border-radius: 5px;
   height: ${(props) => props.height || '200px'};
   width: ${(props) => props.width || '350px'};
@@ -98,6 +96,7 @@ const Button = styled.div`
   position: ${(props) => props.position};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
+  cursor: ${(props) => props.cursor};
 `
 
 const ImgDiv = styled.div`
@@ -181,12 +180,13 @@ const SearchButton = styled.input`
  * hash tag box
  */
 const HashBox = styled.button`
-  background-color: white;
+  background-color: ${props => props.backgroundColor || 'white'};
   margin: 10px 6px;
   padding: 10px 21px;
   border-radius: 27px;
   align-self: center;
   cursor: pointer;
+  border: ${props => props.border}
 `
 /** */
 
@@ -241,6 +241,7 @@ const ModalButton = styled.div`
 const DcButton = styled.div`
   width: 130px;
   height: 50px;
+  background-color: white;
   position: absolute;
   right: ${(props) => props.right || '40px'};
   bottom: ${(props) => props.bottom || '30px'};
