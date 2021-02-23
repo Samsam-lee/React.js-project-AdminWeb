@@ -1,27 +1,21 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {FlexDiv, SearchTextInput, Button, DcButton, HashBox} from '../../styledFile'
 import axios from 'axios'
 
 const ErrorHashtag = (props) => {
 
-    /**
-     * 주소 해시태그 조합 알고리즘 다시
-     */
-    const [textIndexValue, setTextIndexValue] = useState([]);
-    const combineAddress = (hashtagIndex) => {
-        let num = 0
-        textIndexValue.map(v=>
-                v==hashtagIndex && num++
-            )
-        num > 0 && textIndexValue.splice(textIndexValue.indexOf(hashtagIndex),1)
-        num == 0 && setTextIndexValue(() => [...textIndexValue, hashtagIndex])
+    const combineAddress = (hashtagIndex, v) => {
+        props.setHashCss(hashtagIndex)
+        props.setTextValue(props.textValue+v)
     }
 
-    useEffect(() => {
-        let temp = ''
-        textIndexValue.map(v => temp+=props.errVideo.video[props.index].more[v])
-        props.setAddress(temp)
-    },[textIndexValue])
+    const fetchPlatformData = async () => {
+        await axios.post(
+            `http://13.125.69.16/admin/ytbCrawlingTb/address/search/${props.address}`
+        ).then((res) => {
+            props.setPlatformData(res.data);
+        });
+    };
 
     const handleDelete = async () => {
         await axios.delete(
@@ -30,26 +24,36 @@ const ErrorHashtag = (props) => {
     };
     
     const handleSearch = () => {
+        props.setHashCss(null)
+        props.setTextValue([])
+        // fetchPlatformData()
         props.setMap(true);
     };
+
+    const handleReset = () => {
+        props.setHashCss(null)
+        props.setTextValue([])
+    }
 
     return (
         <>
         <FlexDiv fontSize="22px" margin="25px">
             주소 조합 후 검색
         </FlexDiv>
-        <SearchTextInput width="670px" fontSize="25px" value={props.address}></SearchTextInput>
+        <SearchTextInput width="530px" fontSize="25px" value={props.address}></SearchTextInput>
+        <DcButton right='30px' bottom='625px' onClick={handleReset}>초기화</DcButton>
         <Button width="700px" height="515px">
             {props.errVideo.video[props.index].more.map((v) => (
-                <HashBox onClick={() => combineAddress(props.errVideo.video[props.index].more.indexOf(v))}> {v} </HashBox>
+                <HashBox border={props.hashCss == props.errVideo.video[props.index].more.indexOf(v) ? '2px solid #f97583' : ''} 
+                onClick={() => combineAddress(props.errVideo.video[props.index].more.indexOf(v), v)}> {v} </HashBox>
             ))}
         </Button>
         <FlexDiv>
             <DcButton right="170px" bottom="20px" onClick={handleDelete}>
-                삭제
+                비디오 삭제
             </DcButton>
             <DcButton right="30px" bottom="20px" onClick={handleSearch}>
-                검색
+                주소 검색
             </DcButton>
         </FlexDiv>   
         </>

@@ -9,6 +9,8 @@ const SearchData = (props) => {
   const [errVideo, setErrVideo] = useState(null)
   const [map, setMap] = useState(false)
   const [index, setIndex] = useState(0)
+  const [textValue, setTextValue] = useState([])
+  const [hashCss, setHashCss] = useState(null)
 
   const fetchErrVideo = async () => {
     await axios.get(`http://13.125.69.16/admin/ytbCrawlingTb/error/${
@@ -33,12 +35,22 @@ const SearchData = (props) => {
         <>
           <TitleDiv> {errVideo.ytbChannel} </TitleDiv>
           <FlexDiv>
-            <CrawlingVideo errVideo={errVideo} setMap={setMap} index={index} setIndex={setIndex}/>
+            <CrawlingVideo
+            errVideo={errVideo}
+            setMap={setMap}
+            index={index}
+            setIndex={setIndex}
+            setHashCss={setHashCss}
+            setTextValue={setTextValue}/>
             <SelectErrorVideo
               errVideo={errVideo}
               map={map}
               setMap={setMap}
               index={index}
+              textValue={textValue}
+              setTextValue={setTextValue}
+              hashCss={hashCss}
+              setHashCss={setHashCss}
             />
           </FlexDiv>
         </>

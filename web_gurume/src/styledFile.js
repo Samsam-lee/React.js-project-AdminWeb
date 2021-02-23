@@ -186,6 +186,7 @@ const HashBox = styled.button`
   border-radius: 27px;
   align-self: center;
   cursor: pointer;
+  border: ${props => props.border}
 `
 /** */
 

@@ -5,6 +5,8 @@ const CrawlingVideo = (props) => {
 
     const chooseIndex = (index) => {
         props.setIndex(index)
+        props.setTextValue([])
+        props.setHashCss(null)
     }
 
     return (
@@ -18,7 +20,7 @@ const CrawlingVideo = (props) => {
                 border={props.index == props.errVideo.video.indexOf(v) ? '2px solid #f97583' : ''}
                 onClick={() => chooseIndex(props.errVideo.video.indexOf(v))}
                 >
-                    <ImgDiv margin='10px'><img src="https://i.ytimg.com/an_webp/gn2Y3mS9H_8/mqdefault_6s.webp?du=3000&sqp=CPbQzIEG&rs=AOn4CLAIYIbch1ntrl1ritpmr9H90ZDqJQ" /></ImgDiv>
+                    <ImgDiv margin='10px'><img src="https://i.ytimg.com/an_webp/Wz5oKoqjBr8/mqdefault_6s.webp?du=3000&sqp=CJOQ0oEG&rs=AOn4CLCUc7_Z1dmlI5Ls1_aKKWXZSYTglA" /></ImgDiv>
                     <FixTextDiv fontSize="20px" padding="15px 0" >
                         {v.ytbVideoName}
                     </FixTextDiv>

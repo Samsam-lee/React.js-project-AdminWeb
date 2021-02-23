@@ -2,67 +2,54 @@ import React, {useState, useEffect} from 'react'
 import {FlexDiv, Button, DcButton} from '../../styledFile'
 import axios from 'axios'
 import GoogleMap from '../../utils/GoogleApi'
+import RegionTag from '../../utils/RegionTag'
 
 const SelectAddress = (props) => {
 
-    const [platformData, setPlatformData] = useState([
-        {
-            "crawlingPlatform": "Google",
-            "data": [
-                {
-                    "address": "대구광역시 수성구 황금동 동대구로 219",
-                    "crawlingLocation": {
-                        "lat": 35.84987200777492,
-                        "lng": 128.6244778213711
+    const [platformFlag, setPlatformFlag] = useState(false)
+    const [indexFlag, setIndexFlag] = useState(false)
+
+    const [giveData, setGiveData] = useState(null)
+
+    const selectAddrCss = (platform, index, store) => {
+        props.errVideo.video[props.index].storeInfo = platform.data[props.index]
+        store.typeStore = '맛집'
+        console.log(store) // storeAddress : {store}
+        console.log(props.errVideo)
+        setGiveData({
+            "video": [{
+                "_id": props.errVideo._id,
+                "storeInfo": {
+                    "location": {
+                        "lat": store.crawlingLocation.lat,
+                        "lng": store.crawlingLocation.lng
                     },
-                    "crawlingStore": "아웃백스테이크하우스 대구황금점"
+                    "storeName": store.crawlingStore,
+                    "storeAddress": store.address,
+                    "typeStore": "맛집"
                 },
-                {
-                    "address": "대구광역시 수성구 ",
-                    "crawlingLocation": {
-                        "lat": 35.84987200777492,
-                        "lng": 128.6234778213711
-                    },
-                    "crawlingStore": "아웃백"
-                }
-            ]
-        },
-        {
-            "crawlingPlatform": "Naver",
-            "data": [
-                {
-                    "address": "대구광역시 수성구 황금동 동대구로 219",
-                    "crawlingLocation": {
-                        "lat": 35.84881497862917,
-                        "lng": 128.624296241206
-                    },
-                    "crawlingStore": "아웃백스테이크 황금점"
-                }
-            ]
-        },
-        {
-            "crawlingPlatform": "Kakao",
-            "data": []
-        }
-    ]);
+                "status": "완료",
+                "regionTag": RegionTag(store.address)
+        }]})
+        console.log(giveData)
+        setPlatformFlag(platform.crawlingPlatform)
+        setIndexFlag(index)
+        console.log(props.errVideo.ytbChannel)
+    }
+
+    const handleSave = async () => {
+        await axios.post(
+            `http://13.125.69.16/admin/ytbCrawlingTb/save/video/${props.errVideo.ytbChannel}`, {
+                giveData
+            }
+        )
+        props.setMap(false);
+    };
 
     const handleReSearch = () => {
         props.setMap(false);
     };
     
-    const handleSave = async () => {
-        
-        props.setMap(false);
-    };
-    
-    const fetchPlatformData = async () => {
-        await axios.post(
-            `http://13.125.69.16/admin/ytbCrawlingTb/address/search/${props.address}`
-        ).then((res) => {
-            setPlatformData(res.data);
-        });
-    };
-
     return (
         <>
         <FlexDiv fontSize="22px" margin="25px">
@@ -75,12 +62,14 @@ const SelectAddress = (props) => {
             border="0"
             boxShadow="0"
         >
-            {platformData.map(v=><>
+            {props.platformData.map(v=><>
                 <Button height="150px" margin="0 5px" overFlow='auto'>
                 <FlexDiv fontSize='20px' margin='5px'>{v.crawlingPlatform}</FlexDiv>
                 {v.data.length != 0 && 
                 v.data.map(value => <FlexDiv flexDirection='column'>
-                    <Button width='200px' height='80px' margin='0 0 10px 10px' cursor='pointer'>
+                    <Button width='190px' height='80px' margin='0 0 10px 8px' cursor='pointer'
+                    border={(platformFlag == v.crawlingPlatform && indexFlag == v.data.indexOf(value)) ? '2px solid #f97583' : ''}
+                    onClick={() => selectAddrCss(v, v.data.indexOf(value), value)}>
                         <FlexDiv>{value.crawlingStore}</FlexDiv>
                         <FlexDiv>{value.address}</FlexDiv>
                     </Button>
@@ -91,7 +80,7 @@ const SelectAddress = (props) => {
         </Button>
 
         <Button width="700px" height="490px" position='relative'>
-            <GoogleMap platformData={platformData} />
+            <GoogleMap platformData={props.platformData} />
         </Button>
 
         <DcButton right="180px" onClick={handleReSearch}>
