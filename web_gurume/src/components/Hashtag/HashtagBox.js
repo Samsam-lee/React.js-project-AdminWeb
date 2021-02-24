@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, FlexDiv, HashBox } from '../../styledFile'
-import Modal from '../Modal'
+import HashtagModal from '../HashtagModal'
 
 const HashtagBox = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +30,7 @@ const HashtagBox = (props) => {
         )}
       </FlexDiv>
 
-      <Modal
+      <HashtagModal
         isOpen={isOpen}
         closeModal={closeModal}
         contentLabel={buttonState}
