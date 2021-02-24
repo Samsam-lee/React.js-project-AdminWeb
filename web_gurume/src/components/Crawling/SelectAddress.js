@@ -18,7 +18,7 @@ const SelectAddress = (props) => {
         console.log(props.errVideo)
         setGiveData({
             "video": [{
-                "_id": props.errVideo._id,
+                "_id": props.errVideo.video[index]._id,
                 "storeInfo": {
                     "location": {
                         "lat": store.crawlingLocation.lat,
@@ -31,7 +31,6 @@ const SelectAddress = (props) => {
                 "status": "완료",
                 "regionTag": RegionTag(store.address)
         }]})
-        console.log(giveData)
         setPlatformFlag(platform.crawlingPlatform)
         setIndexFlag(index)
         console.log(props.errVideo.ytbChannel)
@@ -39,10 +38,11 @@ const SelectAddress = (props) => {
 
     const handleSave = async () => {
         await axios.post(
-            `http://13.125.69.16/admin/ytbCrawlingTb/save/video/${props.errVideo.ytbChannel}`, {
-                giveData
-            }
+            `http://13.125.69.16/admin/ytbCrawlingTb/save/video/${props.errVideo.ytbChannel}`,
+            giveData
         )
+        console.log(giveData)
+        props.errVideo.video.length == 1 ? document.location.href='/bigGurume/collectData' : console.log('more err video')
         props.setMap(false);
     };
 
