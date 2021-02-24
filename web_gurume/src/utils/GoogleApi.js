@@ -42,7 +42,7 @@ const GoogleApi = (props) => {
             />
           ))
       )}
-      <InfoWindow marker={marker} visible={true}><div><h4>{store != null && store.crawlingStore}</h4></div></InfoWindow>
+      <InfoWindow marker={marker} visible={true}><div><h2>{store != null && store.crawlingStore}</h2></div></InfoWindow>
     </Map>
   );
 };
