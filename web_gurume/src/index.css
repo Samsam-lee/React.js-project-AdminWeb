@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: nanumSquare, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -374,32 +374,22 @@ template {
 /* Custom */
 
 @font-face { 
-  font-family: 'Jalnan'; 
-  src: url(./assets/font/Jalnan.ttf) format('truetype');
+  font-family: 'nanumSquare'; 
+  src: url(./assets/font/NanumSquare_acLight.ttf) format('truetype');
 }
 
-.bodyFrame{
-  background-color: aliceblue;
-  width: 98vw;
-  height: 90vh;
-  position: relative;
-  left: 1%;
+html{
+  font-family: 'nanumSquare';
+  font-weight: 900;
+  height: 100%;
 }
 
-.assist {
-  width: 90%;
-  height: 10%;
-  background-color: rgb(210, 255, 216);
-  position: relative;
-  top: 2%;
-  left: 5%;
+body, #root{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.subFrame {
-  width: 90%;
-  height: 80%;
-  background-color: rgb(247, 255, 240);
-  position: relative;
-  top: 5%;
-  left: 5%;
+a:link {
+  color: black;
 }

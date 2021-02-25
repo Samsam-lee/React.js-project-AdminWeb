@@ -1,28 +1,33 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import Youtuber from '../../../components/Youtuber/Youtuber'
+import axios from 'axios'
+import { TitleDiv, BodyFrame, FlexDiv } from '../../../styledFile'
 
-const youtuberInfo = () => {
-    return (
-        <div className="bodyFrame">
-            <div className="assist">
+const YoutuberInfo = () => {
+  const [youtubers, setYoutubers] = useState(null)
 
-            </div>
+  const fetchYoutubers = async () => {
+    await axios
+      .get('http://13.125.69.16/admin/ytbChannelTb')
+      .then((res) => setYoutubers(res.data.ytbChannelTb))
+  }
 
-            <div className="subFrame">
-                <h1> 유튜버 정보 페이지 </h1>
-                <button><Link to='/youtuberRequest'> 유튜버 신청 페이지 </Link></button>
-                <button><Link to='/youtuberVideo'> 유튜버 비디오 </Link></button>
-                
-                {/* map 돌리기 */}
-                <Youtuber /> 
-            </div>
-        </div>
-    )
+  useEffect(() => {
+    fetchYoutubers()
+  }, [])
+
+  return (
+    <BodyFrame>
+      <TitleDiv> 유튜버 목록 </TitleDiv>
+      <FlexDiv flexWrap="wrap">
+        {youtubers ? (
+          youtubers.map((v) => <Youtuber ytbData={v} />)
+        ) : (
+          <div> loading... </div>
+        )}
+      </FlexDiv>
+    </BodyFrame>
+  )
 }
 
-export default youtuberInfo
-
-
-
-            
+export default YoutuberInfo

@@ -1,0 +1,42 @@
+.loginBigBox{
+    display: flex;
+    align-self: center;
+    height: 100vh;
+}
+
+.loginTitle{
+    font-size: 80px;
+    color: rgb(249, 185, 173);
+    padding: 70px 0 40px 0;
+}
+
+.centerBox{
+    width: 600px;
+    height: 500px;
+    background-color: aliceblue;
+    border: 1px solid rgb(219, 219, 219);
+    align-self: center;
+    border-radius: 10px;
+}
+
+.centerBox > div{
+    margin: 0 0 0 90px;
+}
+.inputTypeBox > div{
+    margin: 0 0 10px 10px;
+}
+
+.AdminIdBox{
+    width: 400px;
+    height: 50px;
+}
+
+.AdminPwBox{
+    width: 400px;
+    height: 50px;
+}
+
+.loginButton{
+    width: 408px;
+    height:50px;
+}
