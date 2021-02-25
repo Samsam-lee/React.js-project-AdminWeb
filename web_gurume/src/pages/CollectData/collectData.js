@@ -18,7 +18,7 @@ const CollectData = () => {
 
   useEffect(() => {
     fetchCrawlingData()
-  }, [])
+  }, [crawlingData])
 
   return (
     <BodyFrame>
