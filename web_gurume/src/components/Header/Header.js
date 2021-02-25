@@ -73,7 +73,7 @@ const Header = () => {
             <Link to="/bigGurume/collectData"> 데이터 수집 </Link>
           </HeaderList>
           <HeaderList>
-            <Link to="/">로그인</Link>
+            <Link to="/">로그아웃</Link>
           </HeaderList>
         </FlexDiv>
       </HeadDiv>

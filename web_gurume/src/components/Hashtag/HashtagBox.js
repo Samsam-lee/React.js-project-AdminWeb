@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, FlexDiv, HashBox } from '../../styledFile'
-import Modal from '../Modal'
+import HashtagModal from '../HashtagModal'
 
 const HashtagBox = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,8 +22,7 @@ const HashtagBox = (props) => {
       <FlexDiv fontSize="18px" fontWeight="700" flexWrap="wrap" padding="20px">
         {props.adminTag.map((v) => (
           <HashBox onClick={() => openModal('해시태그 제거', { v })}>
-            {' '}
-            {v}{' '}
+            {v}
           </HashBox>
         ))}
         {props.tempValue && (
@@ -31,7 +30,7 @@ const HashtagBox = (props) => {
         )}
       </FlexDiv>
 
-      <Modal
+      <HashtagModal
         isOpen={isOpen}
         closeModal={closeModal}
         contentLabel={buttonState}
