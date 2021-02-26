@@ -1,27 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import queryString from 'query-string'
 import CrawlingVideo from '../../components/Crawling/CrawlingVideo'
 import SelectErrorVideo from '../../components/Crawling/SelectErrorVideo'
 
-import TestContext from '../../utils/TestContextProvider'
-
-
 const SearchData = (props) => {
   
-  const {socket} = useContext(TestContext)
-
-  useEffect(() => {
-    console.log(socket)
-  }, [socket])
-
-  socket[0].on('first', msg => {
-    console.log(msg)
-  })
-
-  socket[0].emit('givedata', 'hihi')
-
   const [errVideo, setErrVideo] = useState(null)
   const [map, setMap] = useState(false)
   const [index, setIndex] = useState(0)
