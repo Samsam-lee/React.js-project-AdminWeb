@@ -10,17 +10,17 @@ import TestContext from '../../utils/TestContextProvider'
 
 const SearchData = (props) => {
   
-  const {state} = useContext(TestContext)
+  const {socket} = useContext(TestContext)
 
   useEffect(() => {
-    console.log(state)
-  }, [state])
+    console.log(socket)
+  }, [socket])
 
-  // socket.on('first', msg => {
-  //   console.log(msg)
-  // })
+  socket[0].on('first', msg => {
+    console.log(msg)
+  })
 
-  // socket.emit('givedata', 'hihi')
+  socket[0].emit('givedata', 'hihi')
 
   const [errVideo, setErrVideo] = useState(null)
   const [map, setMap] = useState(false)

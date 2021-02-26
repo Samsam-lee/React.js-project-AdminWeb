@@ -1,14 +1,20 @@
 import React, { createContext, useState } from 'react'
+import io from 'socket.io-client'
 
-const TestContext = createContext("");
+const TestContext = createContext(null);
 
 const TestContextProvider = ({ children }) => {
 
-    const [initValue, setInitValue] = useState('1111')
+    const initValue = useState(
+        io("http://192.168.0.43:4000",{
+        secure: true,
+        reconnect: true,
+        rejectUnauthorized: false,
+        transports: ['websocket']
+    }))
 
     const value = {
-        state: { initValue },
-        actions: { setInitValue }
+        socket: initValue
     }
 
     return (
