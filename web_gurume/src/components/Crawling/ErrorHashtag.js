@@ -13,7 +13,7 @@ const ErrorHashtag = (props) => {
         await axios.post(
             `http://13.125.69.16/admin/ytbCrawlingTb/address/search/${props.address}`
         ).then((res) => {
-            props.setPlatformData(res.data);
+            // props.setPlatformData(res.data); /////////////////// 주소 검색 후 값 받기!
         });
     };
 
@@ -26,7 +26,7 @@ const ErrorHashtag = (props) => {
     const handleSearch = () => {
         props.setHashCss(null)
         props.setTextValue([])
-        // fetchPlatformData()
+        fetchPlatformData()         // server로 address 값 submit
         props.setMap(true);
     };
 

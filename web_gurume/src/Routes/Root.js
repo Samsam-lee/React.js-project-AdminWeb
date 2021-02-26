@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from '../components/Header/Header'
 
@@ -11,8 +11,8 @@ import { youtuberInfo, youtuberVideo } from '../pages/Youtuber/Information'
 import youtuberRequest from '../pages/Youtuber/Request/youtuberRequest'
 
 const Root = () => {
+
   return (
-    <>
       <BrowserRouter>
         <Route exact path="/" component={login}></Route>
 
@@ -40,7 +40,6 @@ const Root = () => {
           <Route path="/bigGurume/collectData" component={collectData}></Route>
         </Switch>
       </BrowserRouter>
-    </>
   )
 }
 

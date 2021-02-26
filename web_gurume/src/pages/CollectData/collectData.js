@@ -1,9 +1,33 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
+import TestContext from '../../utils/TestContextProvider'
 
 const CollectData = () => {
+
+  /**
+   * Socket
+   */
+  const {socket} = useContext(TestContext)
+
+  useEffect(() => {
+    console.log(socket)
+
+    socket[0].on('first', connect => {
+      console.log(connect)
+    })
+  
+    socket[0].emit('givedata', 'i need data')
+  
+    socket[0].on('result', youtuber => {
+      console.log(youtuber)
+      setCrawlingData(youtuber)
+    })
+  }, [socket])
+  /** Socket */
+
+
   const [crawlingData, setCrawlingData] = useState(null)
 
   /** page 에 따른 데이터 렌더링 */
