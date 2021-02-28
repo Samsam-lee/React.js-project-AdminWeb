@@ -12,15 +12,7 @@ const CollectData = () => {
   const {socket} = useContext(TestContext)
 
   useEffect(() => {
-    console.log(socket)
-
-    socket[0].on('first', connect => {
-      console.log(connect)
-    })
-  
-    socket[0].emit('givedata', 'i need data')
-  
-    socket[0].on('result', youtuber => {
+    socket.on('result', youtuber => {
       console.log(youtuber)
       setCrawlingData(youtuber)
     })
@@ -46,7 +38,7 @@ const CollectData = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv> 신청된 유튜버 크롤링 상태</TitleDiv>
+      <TitleDiv>신청된 유튜버 크롤링 상태</TitleDiv>
       <FlexDiv>
         {crawlingData ? <FlexDiv> 
           <CrawlingStatus crawlingData={crawlingData}/>
