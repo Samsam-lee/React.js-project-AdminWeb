@@ -1,8 +1,8 @@
-import styled, { css, createGlobalStyle } from 'styled-components'
+import styled, { css, createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     
-`
+`;
 
 const FlexDiv = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const FlexDiv = styled.div`
   flex-wrap: ${(props) => props.flexWrap};
   position: ${(props) => props.position};
   cursor: ${(props) => props.cursor};
-`
+`;
 
 /**
  * bodyFrame
@@ -28,7 +28,7 @@ const BodyFrame = styled.div`
   flex-direction: column;
   width: 1200px;
   margin: 0 auto;
-`
+`;
 /** */
 
 /**
@@ -41,26 +41,26 @@ const ContainerBox = styled.div`
   border-bottom: 1px solid rgb(213, 213, 213);
   display: flex;
   justify-content: center;
-`
+`;
 
 const HeadDiv = styled.div`
   display: flex;
   width: 1200px;
   height: 100px;
   justify-content: space-between;
-`
+`;
 
 const HeaderTitleDiv = styled.div`
   align-self: center;
   font-size: 40px;
   font-weight: 900;
-`
+`;
 
 const HeaderList = styled.div`
   font-size: 16px;
-  font-weight: ${(props) => (props.onClicked ? '900' : '500')};
-  margin: ${(props) => props.margin || '20px'};
-  padding-top: ${(props) => props.paddingTop || '15px'};
+  font-weight: ${(props) => (props.onClicked ? "900" : "500")};
+  margin: ${(props) => props.margin || "20px"};
+  padding-top: ${(props) => props.paddingTop || "15px"};
 
   & > a {
     ${(props) =>
@@ -72,7 +72,7 @@ const HeaderList = styled.div`
             color: black;
           `}
   }
-`
+`;
 
 /** */
 
@@ -83,30 +83,30 @@ const HeaderList = styled.div`
 
 const Button = styled.div`
   background-color: ${(props) => props.backgroundColor};
-  border: ${(props) => props.border || '1px solid #ddd'};
+  border: ${(props) => props.border || "1px solid #ddd"};
   border-radius: 5px;
-  height: ${(props) => props.height || '200px'};
-  width: ${(props) => props.width || '350px'};
+  height: ${(props) => props.height || "200px"};
+  width: ${(props) => props.width || "350px"};
   box-shadow: ${(props) =>
     props.boxShadow ||
-    'inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%)'};
-  margin: ${(props) => props.margin || '20px'};
+    "inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%)"};
+  margin: ${(props) => props.margin || "20px"};
   overflow: ${(props) => props.overFlow};
   display: ${(props) => props.display};
   position: ${(props) => props.position};
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
   cursor: ${(props) => props.cursor};
-`
+`;
 
 const ImgDiv = styled.div`
   overflow: hidden;
-  height: ${(props) => props.height || '170px'};
-  min-width: ${(props) => props.width || '170px'};
+  height: ${(props) => props.height || "170px"};
+  min-width: ${(props) => props.width || "170px"};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
-  border-radius: ${(props) => props.borderRadius || '5px'};
-`
+  border-radius: ${(props) => props.borderRadius || "5px"};
+`;
 /** */
 
 /**
@@ -118,7 +118,7 @@ const TitleDiv = styled.div`
   height: 70px;
   line-height: 70px;
   padding: 20px 0 0 20px;
-`
+`;
 /** */
 
 /**
@@ -133,7 +133,7 @@ const FixTextDiv = styled.div`
   padding-bottom: 10px;
   font-size: 17px;
   font-weight: 900px;
-`
+`;
 /** */
 
 /**
@@ -142,9 +142,9 @@ const FixTextDiv = styled.div`
  */
 const AgreeButton = styled.button`
   position: absolute;
-  right: ${(props) => props.right || '15px'};
+  right: ${(props) => props.right || "15px"};
   bottom: 10px;
-`
+`;
 /** */
 
 /**
@@ -155,7 +155,7 @@ const SearchStyleDiv = styled.div`
   font-size: 20px;
   display: flex;
   padding: 30px 0 0 0;
-`
+`;
 
 const SearchTextInput = styled.input`
   border: 0px;
@@ -163,9 +163,9 @@ const SearchTextInput = styled.input`
   border-radius: 5px;
   padding: 10px 15px;
   margin: 0 20px;
-  width: ${(props) => props.width || '400px'};
+  width: ${(props) => props.width || "400px"};
   font-size: ${(props) => props.fontSize};
-`
+`;
 
 const SearchButton = styled.input`
   background-color: rgb(160, 187, 113);
@@ -173,21 +173,21 @@ const SearchButton = styled.input`
   border-radius: 5px;
   margin-left: 10px;
   width: 100px;
-`
+`;
 /** */
 
 /**
  * hash tag box
  */
 const HashBox = styled.button`
-  background-color: ${props => props.backgroundColor || 'white'};
+  background-color: ${(props) => props.backgroundColor || "white"};
   margin: 10px 6px;
   padding: 10px 21px;
   border-radius: 27px;
   align-self: center;
   cursor: pointer;
-  border: ${props => props.border}
-`
+  border: ${(props) => props.border};
+`;
 /** */
 
 /**
@@ -197,12 +197,12 @@ const PageBody = styled.div`
   display: flex;
   align-self: center;
   padding: 20px 0 0 0;
-`
+`;
 
 const PageNum = styled.div`
   padding: 20px;
   cursor: pointer;
-`
+`;
 /** */
 
 /**
@@ -216,7 +216,7 @@ const HashModalInput = styled.input`
   margin: 0 10px;
   width: 500px;
   font-size: 20px;
-`
+`;
 /** */
 
 /**
@@ -233,7 +233,7 @@ const ModalButton = styled.div`
   text-align: center;
   line-height: 70px;
   background-color: white;
-`
+`;
 
 /**
  * data collect
@@ -243,8 +243,8 @@ const DcButton = styled.div`
   height: 50px;
   background-color: white;
   position: absolute;
-  right: ${(props) => props.right || '40px'};
-  bottom: ${(props) => props.bottom || '30px'};
+  right: ${(props) => props.right || "40px"};
+  bottom: ${(props) => props.bottom || "30px"};
   border-radius: 5px;
   box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 8%), 0 1px 4px rgb(0 0 0 / 4%);
   border: 1px solid #ddd;
@@ -252,8 +252,52 @@ const DcButton = styled.div`
   text-align: center;
   line-height: 50px;
   cursor: pointer;
-`
+`;
 /** */
+
+const modalCss = {
+  top: "50%",
+  left: "50%",
+  right: "auto",
+  bottom: "auto",
+  marginRight: "-50%",
+  transform: "translate(-50%, -50%)",
+  width: "550px",
+  height: "240px",
+  background: "white",
+  borderRadius: "10px",
+  boxShadow: "0px 0 12px 0 #999",
+};
+
+const socketModalCss = {
+  top: "100%",
+  left: "100%",
+  right: "auto",
+  bottom: "auto",
+  marginRight: "-50%",
+  transform: "translate(-101%, -101%)",
+  width: "400px",
+  height: "180px",
+  background: "white",
+  borderRadius: "10px",
+  boxShadow: "0px 0 12px 0 #999",
+}
+
+const SocketModalTest = styled.div`
+  position: fixed;
+  width: 400px;
+  top: 100%;
+  left: 100%;
+  right: auto;
+  bottom: auto;
+  marginRight: -50%;
+  transform: translate(-101%, -101%);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 0 12px 0 #999;
+  z-index: 10000000;
+  display: ${props => props.display};
+  `
 
 export {
   Button,
@@ -276,4 +320,7 @@ export {
   ContainerBox,
   DcButton,
   ModalButton,
-}
+  modalCss,
+  socketModalCss,
+  SocketModalTest
+};

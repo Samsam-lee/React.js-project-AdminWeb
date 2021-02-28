@@ -1,23 +1,13 @@
 import React, { useState } from 'react'
 import ReactModal from 'react-modal'
-import { FlexDiv, HashModalInput, ModalButton } from '../styledFile'
+import { FlexDiv, HashModalInput, ModalButton, modalCss } from '../styledFile'
 import axios from 'axios'
 
 const HashtagModal = (props) => {
   const [addHashTag, setAddHashTag] = useState()
 
   const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '550px',
-      height: '240px',
-      background: 'rgb(248,241,224)',
-    },
+    content: modalCss
   }
 
   const updateHashAdd = (e) => {

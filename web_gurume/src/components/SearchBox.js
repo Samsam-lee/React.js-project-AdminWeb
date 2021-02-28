@@ -1,7 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { SearchStyleDiv, SearchTextInput, SearchButton } from '../styledFile'
 
 const SearchBox = (props) => {
+  const [tempText, setTempText] = useState(null)
+
   const handleSubmit = (e) => {
     props.setOption(props.Option)
     e.preventDefault()
@@ -28,10 +30,11 @@ const SearchBox = (props) => {
           type="text"
           placeholder={props.pHolder}
           onChange={(e) => {
-            props.setSearchText(e.target.value)
+            // props.setSearchText(e.target.value)
+            setTempText(e.target.value)
           }}
         />
-        <SearchButton type="submit" value="검색" />
+        <SearchButton type="submit" value="검색" onClick={() => {props.setSearchText(tempText)}}/>
       </form>
     </SearchStyleDiv>
   )

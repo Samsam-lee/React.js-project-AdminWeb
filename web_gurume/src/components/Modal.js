@@ -1,21 +1,11 @@
 import React from 'react'
 import ReactModal from 'react-modal'
-import {FlexDiv, ModalButton} from '../styledFile'
+import {FlexDiv, ModalButton, modalCss} from '../styledFile'
 
 const Modal = (props) => {
 
     const customStyles = {
-        content : {
-            top                   : '50%',
-            left                  : '50%',
-            right                 : 'auto',
-            bottom                : 'auto',
-            marginRight           : '-50%',
-            transform             : 'translate(-50%, -50%)',
-            width                 : '500px',
-            height                : '250px',
-            background            : 'rgb(248,241,224)'
-        }
+        content : modalCss
     };
 
     return (
