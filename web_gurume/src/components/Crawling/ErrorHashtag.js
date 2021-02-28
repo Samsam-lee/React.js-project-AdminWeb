@@ -43,9 +43,11 @@ const ErrorHashtag = (props) => {
         <SearchTextInput width="530px" fontSize="25px" value={props.address}></SearchTextInput>
         <DcButton right='30px' bottom='625px' onClick={handleReset}>초기화</DcButton>
         <Button width="700px" height="515px">
-            {props.errVideo.video[props.index].more.map((v) => (
-                <HashBox border={props.hashCss == props.errVideo.video[props.index].more.indexOf(v) ? '2px solid #f97583' : ''} 
-                onClick={() => combineAddress(props.errVideo.video[props.index].more.indexOf(v), v)}> {v} </HashBox>
+            {props.errVideo.video[props.index].more.map((v, index) => (
+                <HashBox border={props.hashCss == index ? '2px solid #f97583' : ''} 
+                onClick={() => combineAddress(index, v)}> {v} </HashBox>
+                // <HashBox border={props.hashCss == props.errVideo.video[props.index].more.indexOf(v) ? '2px solid #f97583' : ''} 
+                // onClick={() => combineAddress(props.errVideo.video[props.index].more.indexOf(v), v)}> {v} </HashBox>
             ))}
         </Button>
         <FlexDiv>

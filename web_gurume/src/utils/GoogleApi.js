@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import mapIcon from "../assets/image/googleMap.png";
 
 const GoogleApi = (props) => {
   const image = mapIcon;
   const [store, setStore] = useState(null);
-  const [marker, setMarker] = useState(null)
+  const [marker, setMarker] = useState(null);
+
   const handleMap = (props, marker, value) => {
-    console.log(value)
-    setStore(value)
+    // console.log(props);
+    // console.log(marker);
+    // console.log(value)
+    setStore(value.crawlingStore)
     setMarker(marker)
   };
 
@@ -27,9 +30,9 @@ const GoogleApi = (props) => {
       }}
     >
       {props.platformData.map(
-        (v) =>
-          v.data.length != 0 &&
-          v.data.map((v) => (
+        (value, index) =>
+          value.data.length != 0 &&
+          value.data.map((v) => (
             <Marker
               position={{
                 lat: v.crawlingLocation.lat,
@@ -37,12 +40,21 @@ const GoogleApi = (props) => {
               }}
               visible={true}
               name={v.storeName}
-              onClick={(props, marker) => handleMap(props, marker, v)}
+              // onClick={(props, marker) => handleMap(props, marker, v)}
+              // onMouseover={(props, marker) => handleMap(props, marker, v)}
+              // onMouseout={() => setVisible(false)}
               icon={image}
-            />
+            > 
+            </Marker>
           ))
       )}
-      <InfoWindow marker={marker} visible={true}><div><h2>{store != null && store.crawlingStore}</h2></div></InfoWindow>
+
+      <InfoWindow position={props.location} visible={true}>
+          <h3>{props.storeName != null && props.storeName}</h3>
+      </InfoWindow>
+      <InfoWindow marker={marker} visible={true}>
+          <h3>{store != null && store}</h3>
+      </InfoWindow>
     </Map>
   );
 };

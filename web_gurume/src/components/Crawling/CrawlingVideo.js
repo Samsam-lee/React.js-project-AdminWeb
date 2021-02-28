@@ -20,7 +20,7 @@ const CrawlingVideo = (props) => {
                 border={props.index == props.errVideo.video.indexOf(v) ? '2px solid #f97583' : ''}
                 onClick={() => chooseIndex(props.errVideo.video.indexOf(v))}
                 >
-                    <ImgDiv margin='10px'><img src="https://i.ytimg.com/an_webp/-SjfmEOrVRc/mqdefault_6s.webp?du=3000&sqp=CJyr4oEG&rs=AOn4CLAPCH5m20X8Hro9mJTiuspw7pn2zw" /></ImgDiv>
+                    <ImgDiv margin='10px'><img src="https://i.ytimg.com/an_webp/26aamzZpE0Y/mqdefault_6s.webp?du=3000&sqp=COK78IEG&rs=AOn4CLBMkrxIjYojBwTSPg30rzgIc4nxYA" /></ImgDiv>
                     <FixTextDiv fontSize="20px" padding="15px 0" >
                         {v.ytbVideoName}
                     </FixTextDiv>
