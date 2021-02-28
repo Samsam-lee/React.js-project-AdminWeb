@@ -38,18 +38,18 @@ const Root = () => {
   // error video 있을 때 css 
   const {displayBox, setDisplayBox} = useContext(TestContext)
 
-  useEffect(() => {
-    setDisplayBox('block')
-    setTimeout(() => {
-      setDisplayBox('none')
-    }, 3000);
-  }, [tempValue])
+  // useEffect(() => {
+  //   setDisplayBox('block')
+  //   setTimeout(() => {
+  //     setDisplayBox('none')
+  //   }, 3000);
+  // }, [tempValue])
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTempValue((temp) => [...temp, 'Video five'])
-    }, 10000);
-  },[])
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setTempValue((temp) => [...temp, 'Video five'])
+  //   }, 10000);
+  // },[])
 
   return (
       <BrowserRouter>

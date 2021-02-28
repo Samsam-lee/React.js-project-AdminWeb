@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {FlexDiv, Button, DcButton} from '../../styledFile'
 import axios from 'axios'
 import GoogleMap from '../../utils/GoogleApi'
@@ -10,12 +10,15 @@ const SelectAddress = (props) => {
     const [indexFlag, setIndexFlag] = useState(false)
 
     const [giveData, setGiveData] = useState(null)
+    const [location, setLocation] = useState(null)
+    const [storeName, setStoreName] = useState(null)
 
     const selectAddrCss = (platform, index, store) => {
         props.errVideo.video[props.index].storeInfo = platform.data[props.index]
-        store.typeStore = '맛집'
         console.log(store) // storeAddress : {store}
-        console.log(props.errVideo)
+        // console.log(props.errVideo)
+        setLocation({'lat': store.crawlingLocation.lat + 0.0005, 'lng': store.crawlingLocation.lng}) // lat + 0.0005
+        setStoreName(store.crawlingStore)
         setGiveData({
             "video": [{
                 "_id": props.errVideo.video[index]._id,
@@ -33,7 +36,7 @@ const SelectAddress = (props) => {
         }]})
         setPlatformFlag(platform.crawlingPlatform)
         setIndexFlag(index)
-        console.log(props.errVideo.ytbChannel)
+        // console.log(props.errVideo.ytbChannel)
     }
 
     const handleSave = async () => {
@@ -80,7 +83,7 @@ const SelectAddress = (props) => {
         </Button>
 
         <Button width="700px" height="490px" position='relative'>
-            <GoogleMap platformData={props.platformData} />
+            <GoogleMap platformData={props.platformData} location={location} storeName={storeName}/>
         </Button>
 
         <DcButton right="180px" onClick={handleReSearch}>
