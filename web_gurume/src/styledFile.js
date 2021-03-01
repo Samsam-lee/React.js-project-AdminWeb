@@ -18,6 +18,8 @@ const FlexDiv = styled.div`
   flex-wrap: ${(props) => props.flexWrap};
   position: ${(props) => props.position};
   cursor: ${(props) => props.cursor};
+  align-items: ${props => props.alignItems};
+  justify-content: ${props => props.justifyContent};
 `;
 
 /**
@@ -133,6 +135,8 @@ const FixTextDiv = styled.div`
   padding-bottom: 10px;
   font-size: 17px;
   font-weight: 900px;
+  cursor: ${props => props.cursor};
+  margin: ${props => props.margin};
 `;
 /** */
 

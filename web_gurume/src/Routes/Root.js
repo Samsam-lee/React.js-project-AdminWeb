@@ -10,56 +10,63 @@ import user from '../pages/User/user'
 import { youtuberInfo, youtuberVideo } from '../pages/Youtuber/Information'
 import youtuberRequest from '../pages/Youtuber/Request/youtuberRequest'
 
-import {SocketModalTest, FlexDiv} from '../styledFile'
+import {SocketModalTest, FlexDiv, FixTextDiv} from '../styledFile'
 
 import TestContext from '../utils/TestContextProvider'
 
 const Root = () => {
-  // const {socket} = useContext(TestContext)
+  const {socket} = useContext(TestContext)
 
-  // useEffect(() => {
-  //   socket.on('result', temp => {
-  //     openModal()
-  //   })
-  // }, [socket])
+  useEffect(() => {
+    socket.on('result', temp => {
+      openModal()
+    })
+  }, [socket])
 
-  // const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [modalIsOpen, setModalIsOpen] = useState(true)
 
-  // const openModal = (err) => {
-  //   setModalIsOpen(true)
-  // }
+  const openModal = (err) => {
+    setModalIsOpen(true)
+  }
 
-  // const closeModal = () => {
-  //   setModalIsOpen(false)
-  // }
+  const closeModal = () => {
+    setModalIsOpen(false)
+  }
 
   // error video data
-  const [tempValue, setTempValue] = useState(['Video one', 'Video two', 'Video three', 'Video four'])
+  const [tempValue, setTempValue] = useState([
+    {'ytb':'야식이', 'video':'Video one'}, 
+    {'ytb':'광마니', 'video':'Video two'}, 
+    {'ytb':'하얀트리', 'video':'Video three'}, 
+    {'ytb':'버거형', 'video':'Video four'}, 
+  ])
   // error video 있을 때 css 
   const {displayBox, setDisplayBox} = useContext(TestContext)
 
-  // useEffect(() => {
-  //   setDisplayBox('block')
-  //   setTimeout(() => {
-  //     setDisplayBox('none')
-  //   }, 3000);
-  // }, [tempValue])
+  useEffect(() => {
+    setDisplayBox('block')
+    setTimeout(() => {
+      setDisplayBox('none')
+    }, 4000);
+  }, [tempValue])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setTempValue((temp) => [...temp, 'Video five'])
-  //   }, 10000);
-  // },[])
+  useEffect(() => {
+    setTimeout(() => {
+      setTempValue((temp) => [...temp, {'ytb':'정육왕', 'video':'Video five'}])
+    }, 10000);
+  },[])
 
   return (
       <BrowserRouter>
         <SocketModalTest display={displayBox}>
-          <FlexDiv fontSize='18px' margin='30px'>크롤링 중 에러 비디오 발생</FlexDiv>
-          {tempValue.map(v => <FlexDiv cursor='pointer' margin='0 0 20px 30px'>
-            <Link to='/bigGurume/collectData'>
-            {v}
-            </Link>
-            </FlexDiv>)}
+          <FlexDiv fontSize='18px' margin='30px 0 30px 100px' >크롤링 중 에러 비디오 발생</FlexDiv>
+          <Link to='/bigGurume/collectData'>
+          {tempValue.map(v => <FixTextDiv cursor='pointer' margin='0 0 20px 30px'>
+            <FlexDiv justifyContent='space-around'>
+            <FlexDiv>{v.video}</FlexDiv><FlexDiv>{v.ytb}</FlexDiv>
+            </FlexDiv>
+            </FixTextDiv>)}
+          </Link>
         </SocketModalTest>
 
         <Route exact path="/" component={login}></Route>
