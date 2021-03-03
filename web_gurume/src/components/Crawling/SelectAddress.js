@@ -16,7 +16,6 @@ const SelectAddress = (props) => {
     const selectAddrCss = (platform, index, store) => {
         props.errVideo.video[props.index].storeInfo = platform.data[props.index]
         console.log(store) // storeAddress : {store}
-        // console.log(props.errVideo)
         setLocation({'lat': store.crawlingLocation.lat + 0.0005, 'lng': store.crawlingLocation.lng}) // lat + 0.0005
         setStoreName(store.crawlingStore)
         setGiveData({
@@ -36,7 +35,6 @@ const SelectAddress = (props) => {
         }]})
         setPlatformFlag(platform.crawlingPlatform)
         setIndexFlag(index)
-        // console.log(props.errVideo.ytbChannel)
     }
 
     const handleSave = async () => {
@@ -83,6 +81,7 @@ const SelectAddress = (props) => {
         </Button>
 
         <Button width="700px" height="490px" position='relative'>
+            {console.log(props.platformData)}
             <GoogleMap platformData={props.platformData} location={location} storeName={storeName}/>
         </Button>
 

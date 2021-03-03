@@ -8,7 +8,7 @@ const Youtuber = (props) => {
       <Link
         to={`/bigGurume/youtuberVideo?youtuber=${props.ytbData.ytbChannel}`}
       >
-        <FlexDiv>
+        <FlexDiv alignItems='center'>
           <ImgDiv margin="10px">
             <img src={props.ytbData.ytbProfile} />
           </ImgDiv>
