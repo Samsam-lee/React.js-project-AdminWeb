@@ -1,4 +1,4 @@
-import styled, { css, createGlobalStyle } from "styled-components";
+import styled, { css, keyframes, createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     
@@ -99,6 +99,8 @@ const Button = styled.div`
   right: ${(props) => props.right};
   bottom: ${(props) => props.bottom};
   cursor: ${(props) => props.cursor};
+  justify-content: ${props => props.justifyContent};
+  align-items: ${props => props.alignItems};
 `;
 
 const ImgDiv = styled.div`
@@ -301,7 +303,19 @@ const SocketModalTest = styled.div`
   box-shadow: 0px 0 12px 0 #999;
   z-index: 10000000;
   display: ${props => props.display};
+
+  ${props => {if(props.cssTemp){
+    return css`
+      animation: ${moving} ${props.duration}s ;
+    `
+  }}}
   `
+
+const moving = keyframes`
+  0% {top: 100%; left: 100%; right: auto; bottom: auto;}
+  50% {top: 100%; left: 100%; right: auto; bottom: auto; margin-right: -50%; transform: translate(-101%, -101%)}
+  100% {top: 100%; left: 100%; right: auto; bottom: auto;}
+`
 
 export {
   Button,
@@ -326,5 +340,5 @@ export {
   ModalButton,
   modalCss,
   socketModalCss,
-  SocketModalTest
+  SocketModalTest,
 };

@@ -6,14 +6,25 @@ const GoogleApi = (props) => {
   const image = mapIcon;
   const [store, setStore] = useState(null);
   const [marker, setMarker] = useState(null);
+  const [centerLocation, setCenterLocation] = useState({'lat':127, 'lng':37})
 
-  const handleMap = (props, marker, value) => {
-    // console.log(props);
-    // console.log(marker);
-    // console.log(value)
-    setStore(value.crawlingStore)
-    setMarker(marker)
-  };
+  // const handleMap = (props, marker, value) => {
+  //   // console.log(props);
+  //   // console.log(marker);
+  //   // console.log(value)
+  //   setStore(value.crawlingStore)
+  //   setMarker(marker)
+  // };
+
+  // useEffect(() => {
+  //   // console.log(props.platformData)
+  //   props.platformData.map(v => {
+  //     v.data != [] &&
+  //     v.data.map(value => {
+  //       value.crawlingLocation && setCenterLocation(value.crawlingLocation);
+  //     })
+  //   })
+  // }, [])
 
   return (
     <Map
@@ -25,8 +36,8 @@ const GoogleApi = (props) => {
       }}
       zoom={17}
       initialCenter={{
-        lat: props.platformData[0].data[0].crawlingLocation.lat,
-        lng: props.platformData[0].data[0].crawlingLocation.lng,
+        lat: centerLocation.lat,
+        lng: centerLocation.lng,
       }}
     >
       {props.platformData.map(
@@ -40,9 +51,6 @@ const GoogleApi = (props) => {
               }}
               visible={true}
               name={v.storeName}
-              // onClick={(props, marker) => handleMap(props, marker, v)}
-              // onMouseover={(props, marker) => handleMap(props, marker, v)}
-              // onMouseout={() => setVisible(false)}
               icon={image}
             > 
             </Marker>

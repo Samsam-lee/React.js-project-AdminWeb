@@ -6,19 +6,16 @@ import TestContext from '../../utils/TestContextProvider'
 
 const CollectData = () => {
 
+  
   /**
    * Socket
    */
-  const {socket} = useContext(TestContext)
-
+  const {errorvideo} = useContext(TestContext)
+  
   useEffect(() => {
-    socket.on('result', youtuber => {
-      console.log(youtuber)
-      setCrawlingData(youtuber)
-    })
-  }, [socket])
+    !errorvideo && setCrawlingData(errorvideo)
+  }, [errorvideo])
   /** Socket */
-
 
   const [crawlingData, setCrawlingData] = useState(null)
 

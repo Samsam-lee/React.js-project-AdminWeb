@@ -1,5 +1,6 @@
 import React from 'react'
 import {FlexDiv, Button, FixTextDiv, ImgDiv} from '../../styledFile'
+import image from '../../assets/image/tempThumnail.png'
 
 const CrawlingVideo = (props) => {
 
@@ -20,7 +21,7 @@ const CrawlingVideo = (props) => {
                 border={props.index == props.errVideo.video.indexOf(v) ? '2px solid #f97583' : ''}
                 onClick={() => chooseIndex(props.errVideo.video.indexOf(v))}
                 >
-                    <ImgDiv margin='10px'><img src="https://i.ytimg.com/an_webp/26aamzZpE0Y/mqdefault_6s.webp?du=3000&sqp=COK78IEG&rs=AOn4CLBMkrxIjYojBwTSPg30rzgIc4nxYA" /></ImgDiv>
+                    <ImgDiv margin='10px'><img src={image} /></ImgDiv>
                     <FixTextDiv fontSize="20px" padding="15px 0" >
                         {v.ytbVideoName}
                     </FixTextDiv>

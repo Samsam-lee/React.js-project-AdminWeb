@@ -15,49 +15,44 @@ import {SocketModalTest, FlexDiv, FixTextDiv} from '../styledFile'
 import TestContext from '../utils/TestContextProvider'
 
 const Root = () => {
-  const {socket} = useContext(TestContext)
-
-  useEffect(() => {
-    socket.on('result', temp => {
-      openModal()
-    })
-  }, [socket])
-
-  const [modalIsOpen, setModalIsOpen] = useState(true)
-
-  const openModal = (err) => {
-    setModalIsOpen(true)
-  }
-
-  const closeModal = () => {
-    setModalIsOpen(false)
-  }
+  // const {errVideo} = useContext(TestContext)
 
   // error video data
   const [tempValue, setTempValue] = useState([
-    {'ytb':'야식이', 'video':'Video one'}, 
-    {'ytb':'광마니', 'video':'Video two'}, 
-    {'ytb':'하얀트리', 'video':'Video three'}, 
-    {'ytb':'버거형', 'video':'Video four'}, 
+    {'ytb':'야식이', 'video':'Video one'},
+    {'ytb':'광마니', 'video':'Video two'},
+    {'ytb':'하얀트리', 'video':'Video three'},
+    {'ytb':'버거형', 'video':'Video four'},
   ])
   // error video 있을 때 css 
   const {displayBox, setDisplayBox} = useContext(TestContext)
 
-  useEffect(() => {
-    setDisplayBox('block')
-    setTimeout(() => {
-      setDisplayBox('none')
-    }, 4000);
-  }, [tempValue])
+  // 목업 데이터 인데 에러 비디오랑 유튜버 값 넘어오면 변경
+  // useEffect(() => {
+  //   // setTempValue((temp) => [...temp, errVideo])
+  //   setDisplayBox('block')
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTempValue((temp) => [...temp, {'ytb':'정육왕', 'video':'Video five'}])
-    }, 10000);
-  },[])
+  //   setTimeout(() => {
+  //     setDisplayBox('none')
+  //   }, 4000);
+    
+  // }, [tempValue])
+
+  
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setTempValue((temp) => [...temp, {'ytb':'정육왕', 'video':'Video five'}])
+  //   }, 10000);
+  // },[])
+
+  // {ytbChannel : adsf,
+  //  videoName : asdf}
+
+  
 
   return (
       <BrowserRouter>
+        {/* <SocketModalTest cssTemp={true} duration={4}> */}
         <SocketModalTest display={displayBox}>
           <FlexDiv fontSize='18px' margin='30px 0 30px 100px' >크롤링 중 에러 비디오 발생</FlexDiv>
           <Link to='/bigGurume/collectData'>

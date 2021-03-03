@@ -32,9 +32,9 @@ const CrawlingStatus = (props) => {
           </FlexDiv>
 
           {v == '진행' && props.crawlingData.map(v => 
-              v.videoCount != v.completeCount && <Button width="300px" height="300px">
-                <FlexDiv flexDirection='column' >
-                  <FlexDiv alignSelf='center' margin='10px'><img src="https://yt3.ggpht.com/ytc/AAUvwniPZb6DV7CasjjBxDqKSABK3dAIYnxwXKrJwiY7gQ=s176-c-k-c0x00ffffff-no-rj-mo" /></FlexDiv>
+              v.videoCount != v.completeCount && <Button width="300px" height="300px" display='flex' justifyContent='center' alignItems='center'>
+                <FlexDiv flexDirection='column'>
+                  <FlexDiv alignSelf='center' margin='10px'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" padding="15px 0" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
@@ -45,10 +45,10 @@ const CrawlingStatus = (props) => {
             )}
 
           {v == '에러' && props.crawlingData.map(v => 
-              v.errCount > 0 && <Button width="300px" height="300px">
+              v.errCount > 0 && <Button width="300px" height="300px" display='flex' justifyContent='center' alignItems='center'>
                 <Link to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`}>
                   <FlexDiv flexDirection='column' margin='10px'>
-                  <FlexDiv alignSelf='center'><img src="https://yt3.ggpht.com/ytc/AAUvwnhjhFWolM9jAf-swowMYGvgOEDHAnLZQmNvUnTGVw=s176-c-k-c0x00ffffff-no-rj" /></FlexDiv>
+                  <FlexDiv alignSelf='center'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" padding="15px 0" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
@@ -60,9 +60,9 @@ const CrawlingStatus = (props) => {
             )}
 
           {v == '완료' && props.crawlingData.map(v => 
-              v.videoCount == v.completeCount && <Button width="300px" height="300px" cursor='pointer' onClick={() => openModal(v.ytbChannel)}>
+              v.videoCount == v.completeCount && <Button width="300px" height="300px" cursor='pointer' display='flex' justifyContent='center' alignItems='center' onClick={() => openModal(v.ytbChannel)}>
                 <FlexDiv flexDirection='column' margin='10px'>
-                  <FlexDiv alignSelf='center'><img src="https://yt3.ggpht.com/ytc/AAUvwnjyRCeCzrquC0zZ34bcb7aEmKm25ypLB_t1g1U4=s176-c-k-c0x00ffffff-no-rj-mo" /></FlexDiv>
+                  <FlexDiv alignSelf='center'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" padding="15px 0" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
