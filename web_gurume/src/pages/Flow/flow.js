@@ -17,6 +17,8 @@ const Flow = () => {
       .get(`http://13.125.69.16/admin/shareFlowTb/?page=${currentPage}`)
       .then((res) => {
         setFlowData(res.data) // 데이터는 res.data 안에 들어있습니다.
+        res.data == null ? setCurrentPage(1) : console.log(res.data)
+        
       })
   }
   /** */
@@ -33,6 +35,8 @@ const Flow = () => {
       })
   }
   /** */
+  console.log('option : ' +option)
+  console.log('searchText : ' +searchText)
 
   /** 페이지 네이션 -> 데이터 렌더링 */
   useEffect(() => {
@@ -45,12 +49,12 @@ const Flow = () => {
   const handleSearch = (e) => {
     e.preventDefault() // 새로고침 x
     setFlowData(null)
-    !option && setCurrentPage(1)
+    // !option && setCurrentPage(1)
     searchText && fetchSearchData()
     !searchText && setCurrentPage(1)
     !searchText && fetchFlowData()
-    setSearchText('')
-    setOption('region')
+    setSearchText(searchText)
+    setOption(option)
   }
   /** */
 

@@ -1,9 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
+import TestContext from '../../utils/TestContextProvider'
 
 const CollectData = () => {
+
+  
+  /**
+   * Socket
+   */
+  const {errorvideo} = useContext(TestContext)
+  
+  useEffect(() => {
+    !errorvideo && setCrawlingData(errorvideo)
+  }, [errorvideo])
+  /** Socket */
+
   const [crawlingData, setCrawlingData] = useState(null)
 
   /** page 에 따른 데이터 렌더링 */
@@ -18,11 +31,11 @@ const CollectData = () => {
 
   useEffect(() => {
     fetchCrawlingData()
-  }, [crawlingData])
+  }, [])
 
   return (
     <BodyFrame>
-      <TitleDiv> 신청된 유튜버 크롤링 상태</TitleDiv>
+      <TitleDiv>신청된 유튜버 크롤링 상태</TitleDiv>
       <FlexDiv>
         {crawlingData ? <FlexDiv> 
           <CrawlingStatus crawlingData={crawlingData}/>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import axios from 'axios'
 import { BodyFrame, FlexDiv, TitleDiv } from '../../styledFile'
 import queryString from 'query-string'
@@ -6,6 +6,7 @@ import CrawlingVideo from '../../components/Crawling/CrawlingVideo'
 import SelectErrorVideo from '../../components/Crawling/SelectErrorVideo'
 
 const SearchData = (props) => {
+  
   const [errVideo, setErrVideo] = useState(null)
   const [map, setMap] = useState(false)
   const [index, setIndex] = useState(0)
