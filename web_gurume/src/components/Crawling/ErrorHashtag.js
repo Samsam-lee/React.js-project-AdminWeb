@@ -19,11 +19,13 @@ const ErrorHashtag = (props) => {
         const { data } = await axios.post(
             `http://13.125.69.16/admin/ytbCrawlingTb/address/search/${props.address}`
         );
-        // ((data[0].data && data[0].data.length > 0) || (data[1].data && data[1].data.length > 0) || (data[2].data && data[2].data.length > 0)) && props.setMap(true)
-        // ((data[0].data && data[0].data.length > 0) || (data[1].data && data[1].data.length > 0) || (data[2].data && data[2].data.length > 0)) && props.setPlatformData(data);
         console.log(data)
-        data[0] && props.setMap(true)
-        data[0] && props.setPlatformData(data)
+        if(data[0] == null){
+            props.setIsLoading(false)
+        } else{
+            props.setPlatformData(data)
+            props.setMap(true)
+        }
         // data && props.setMap(true)
         // data && props.setPlatformData(data)
         props.setIsLoading(false)
