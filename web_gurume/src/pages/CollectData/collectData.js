@@ -35,7 +35,7 @@ const CollectData = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv>신청된 유튜버 크롤링 상태</TitleDiv>
+      <TitleDiv>クローリングの状態</TitleDiv>
       <FlexDiv>
         {crawlingData ? <FlexDiv> 
           <CrawlingStatus crawlingData={crawlingData}/>

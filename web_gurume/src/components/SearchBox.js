@@ -5,7 +5,7 @@ const SearchBox = (props) => {
   const [tempText, setTempText] = useState(null)
 
   const handleSubmit = (e) => {
-    props.setOption(props.Option)
+    props.setOption(props.option)
     e.preventDefault()
   }
 
@@ -34,7 +34,7 @@ const SearchBox = (props) => {
             setTempText(e.target.value)
           }}
         />
-        <SearchButton type="submit" value="검색" onClick={() => {props.setSearchText(tempText)}}/>
+        <SearchButton type="submit" value="検索" onClick={() => {props.setSearchText(tempText)}}/>
       </form>
     </SearchStyleDiv>
   )

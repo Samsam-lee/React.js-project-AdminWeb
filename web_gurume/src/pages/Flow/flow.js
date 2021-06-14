@@ -60,18 +60,18 @@ const Flow = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv> 동선 리스트 </TitleDiv>
+      <TitleDiv> ルートリスト </TitleDiv>
       {flowData ? (
         <FlexDiv flexDirection="column">
           <Table
             title="flow"
             opt={[
-              '지역',
-              '동선 제목',
-              '아이디',
-              '작성 날짜',
-              '업데이트 날짜',
-              '조회 수',
+              '地域',
+              'ルートのタイトル',
+              'ID',
+              '作成の日付',
+              'アップデートの日付',
+              '照会数',
             ]}
             data={flowData.collection}
           />
@@ -88,11 +88,11 @@ const Flow = () => {
       )}
       <SearchBox
         opt={[
-          { value: 'region', text: '지역' },
-          { value: 'id', text: '아이디' },
-          { value: 'title', text: '동선 제목' },
+          { value: 'region', text: '地域' },
+          { value: 'id', text: 'ID' },
+          { value: 'title', text: 'ルートのタイトル' },
         ]}
-        pHolder="동선을 검색해주세요"
+        pHolder="ルートを検索してください"
         setOption={setOption}
         setSearchText={setSearchText}
         option={option}

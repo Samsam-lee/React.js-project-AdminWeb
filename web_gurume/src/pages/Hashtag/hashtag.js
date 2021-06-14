@@ -33,7 +33,7 @@ const Hashtag = () => {
   return (
     <BodyFrame>
       <img src={IMAGE} style={backgroundCss} />
-      <TitleDiv margin="0 0 0 20px"> 지역별 해쉬태그 </TitleDiv>
+      <TitleDiv margin="0 0 0 20px"> 地域別のハッシュタグ </TitleDiv>
       {administratorTag ? (
         <HashtagBox
           adminTag={administratorTag.adminTag.regionTag}
@@ -43,7 +43,7 @@ const Hashtag = () => {
         <div> loading... </div>
       )}
 
-      <TitleDiv margin="0 0 0 20px"> 계절별 해쉬태그 </TitleDiv>
+      <TitleDiv margin="0 0 0 20px"> 季節別のハッシュタグ </TitleDiv>
       {administratorTag ? (
         <HashtagBox adminTag={administratorTag.adminTag.seasonTag} />
       ) : (

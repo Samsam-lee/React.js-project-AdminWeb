@@ -25,7 +25,7 @@ const Youtuber = (props) => {
             <div>
               登録者 : {(props.ytbData.ytbSubscribe / 10000).toFixed(1)}万人
             </div>
-            <div> 동영상 : {props.ytbData.video.length}개 </div>
+            <div> 動画 : {props.ytbData.video.length}個 </div>
           </FlexDiv>
         </FlexDiv>
       </Link>
