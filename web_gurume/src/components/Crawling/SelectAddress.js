@@ -54,7 +54,7 @@ const SelectAddress = (props) => {
     return (
         <>
         <FlexDiv fontSize="22px" margin="25px">
-            주소 선택
+            住所選択
         </FlexDiv>
         <Button
             width="700px"
@@ -86,9 +86,9 @@ const SelectAddress = (props) => {
         </Button>
 
         <DcButton right="180px" onClick={handleReSearch}>
-            재검색
+            再検索
         </DcButton>
-        <DcButton onClick={handleSave}> 저장 </DcButton>
+        <DcButton onClick={handleSave}> 登録 </DcButton>
         </>
     )
 }

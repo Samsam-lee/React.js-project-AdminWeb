@@ -18,14 +18,15 @@ const Root = () => {
   // const {errVideo} = useContext(TestContext)
 
   // error video data
-  const [tempValue, setTempValue] = useState([
-    {'ytb':'야식이', 'video':'Video one'},
-    {'ytb':'광마니', 'video':'Video two'},
-    {'ytb':'하얀트리', 'video':'Video three'},
-    {'ytb':'버거형', 'video':'Video four'},
-  ])
+  // const [tempValue, setTempValue] = useState([
+  //   {'ytb':'야식이', 'video':'Video one'},
+  //   {'ytb':'광마니', 'video':'Video two'},
+  //   {'ytb':'하얀트리', 'video':'Video three'},
+  //   {'ytb':'버거형', 'video':'Video four'},
+  // ])
+
   // error video 있을 때 css 
-  const {displayBox, setDisplayBox} = useContext(TestContext)
+  // const {displayBox, setDisplayBox} = useContext(TestContext)
 
   // 목업 데이터 인데 에러 비디오랑 유튜버 값 넘어오면 변경
   // useEffect(() => {
@@ -53,7 +54,7 @@ const Root = () => {
   return (
       <BrowserRouter>
         {/* <SocketModalTest cssTemp={true} duration={4}> */}
-        <SocketModalTest display={displayBox}>
+        {/* <SocketModalTest display={displayBox}>
           <FlexDiv fontSize='18px' margin='30px 0 30px 100px' >크롤링 중 에러 비디오 발생</FlexDiv>
           <Link to='/bigGurume/collectData'>
           {tempValue.map(v => <FixTextDiv cursor='pointer' margin='0 0 20px 30px'>
@@ -62,7 +63,7 @@ const Root = () => {
             </FlexDiv>
             </FixTextDiv>)}
           </Link>
-        </SocketModalTest>
+        </SocketModalTest> */}
 
         <Route exact path="/" component={login}></Route>
 

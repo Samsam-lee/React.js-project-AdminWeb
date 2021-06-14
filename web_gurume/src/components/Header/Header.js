@@ -37,32 +37,32 @@ const Header = () => {
               setYtbDetailCss('mOut')
             }}
           >
-            <Link to="/bigGurume"> 유튜버 </Link>
+            <Link to="/bigGurume"> ユーチューバー </Link>
             <div className={ytbDetailCss}>
               <HeaderList
                 onClicked={nowPage.pathname == '/bigGurume'}
                 margin="0"
                 paddingTop="5px"
               >
-                <Link to="/bigGurume">정보</Link>
+                <Link to="/bigGurume">情報</Link>
               </HeaderList>
               <HeaderList
                 onClicked={nowPage.pathname == '/bigGurume/youtuberRequest'}
                 margin="0"
                 paddingTop="15px"
               >
-                <Link to="/bigGurume/youtuberRequest">신청</Link>
+                <Link to="/bigGurume/youtuberRequest">申請</Link>
               </HeaderList>
             </div>
           </HeaderList>
           <HeaderList onClicked={nowPage.pathname == '/bigGurume/hashtag'}>
-            <Link to="/bigGurume/hashtag"> 해시태그 </Link>
+            <Link to="/bigGurume/hashtag"> ハッシュタグ </Link>
           </HeaderList>
           <HeaderList onClicked={nowPage.pathname == '/bigGurume/flow'}>
-            <Link to="/bigGurume/flow"> 동선 </Link>
+            <Link to="/bigGurume/flow"> ルート </Link>
           </HeaderList>
           <HeaderList onClicked={nowPage.pathname == '/bigGurume/user'}>
-            <Link to="/bigGurume/user"> 유저 </Link>
+            <Link to="/bigGurume/user"> ユーザー </Link>
           </HeaderList>
           <HeaderList
             onClicked={
@@ -70,10 +70,10 @@ const Header = () => {
               nowPage.pathname == '/bigGurume/collectData/search'
             }
           >
-            <Link to="/bigGurume/collectData"> 데이터 수집 </Link>
+            <Link to="/bigGurume/collectData"> データ収集 </Link>
           </HeaderList>
           <HeaderList>
-            <Link to="/">로그아웃</Link>
+            <Link to="/">ログアウト</Link>
           </HeaderList>
         </FlexDiv>
       </HeadDiv>

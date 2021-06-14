@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: nanumSquare, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: notoSerifJP, notoSansJP, nanumSquare, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -375,11 +375,14 @@ template {
 
 @font-face { 
   font-family: 'notoSansJP'; 
+  /* font-family: 'notoSerifJP';  */
   src: url(./assets/font/NotoSansJP-Light.otf) format('truetype');
+  /* src: url(./assets/font/NotoSerifJP-Light.otf) format('truetype'); */
 }
 
 html{
   font-family: 'notoSansJP';
+  /* font-family: 'notoSerifJP'; */
   font-weight: 900;
   height: 100%;
 }

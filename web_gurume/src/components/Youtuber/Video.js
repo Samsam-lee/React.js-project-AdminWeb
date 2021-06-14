@@ -21,8 +21,8 @@ const Video = (props) => {
           <img src={props.videoData.ytbThumbnail} />
         </ImgDiv>
         <FixTextDiv>{props.videoData.ytbVideoName}</FixTextDiv>
-        <div>조회수 : {props.videoData.hits}회</div>
-        <div>업로드 날짜 : {convertDate(props.videoData.uploadDate)}</div>
+        <div>照会数 : {props.videoData.hits}回</div>
+        <div>アップロードの日付 : {convertDate(props.videoData.uploadDate)}</div>
       </FlexDiv>
     </Button>
   )

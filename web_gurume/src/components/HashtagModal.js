@@ -38,7 +38,7 @@ const HashtagModal = (props) => {
       <FlexDiv fontSize="25px" padding="20px 10px">
         {props.contentLabel}
       </FlexDiv>
-      {props.contentLabel == '해시태그 추가' && (
+      {props.contentLabel == 'ハッシュタグ追加' && (
         <>
           <HashModalInput type="text" onChange={updateHashAdd} />
           <FlexDiv>
@@ -48,7 +48,7 @@ const HashtagModal = (props) => {
         </>
       )}
 
-      {props.contentLabel == '해시태그 제거' && (
+      {props.contentLabel == 'ハッシュタグ削除' && (
         <>
           <HashModalInput type="text" value={props.forDeleteHashtag} />
           <FlexDiv>

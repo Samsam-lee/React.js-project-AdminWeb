@@ -55,17 +55,17 @@ const User = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv> 유저 리스트 </TitleDiv>
+      <TitleDiv> ユーザーのリスト </TitleDiv>
       {userData ? (
         <FlexDiv flexDirection="column">
           <Table
             title="user"
             opt={[
-              '닉네임',
-              '아이디',
-              '동선 폴더 개수',
-              '소셜 로그인 플랫폼',
-              '메모',
+              'ニックネーム',
+              'ID',
+              'ルートフォルダの数',
+              'ソーシャルログインのプラットフォーム',
+              'メモ',
             ]}
             data={userData.collection}
           />
@@ -81,11 +81,11 @@ const User = () => {
 
       <SearchBox
         opt={[
-          { value: 'nickname', text: '닉네임' },
-          { value: 'id', text: '아이디' },
-          { value: 'memo', text: '메모' },
+          { value: 'nickname', text: 'ニックネーム' },
+          { value: 'id', text: 'ID' },
+          { value: 'memo', text: 'メモ' },
         ]}
-        pHolder="유저를 검색해주세요"
+        pHolder="ユーザーを検索してください"
         setOption={setOption}
         setSearchText={setSearchText}
         option={option}

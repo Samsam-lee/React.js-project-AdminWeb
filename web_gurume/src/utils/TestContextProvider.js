@@ -19,23 +19,23 @@ const TestContextProvider = ({ children }) => {
 
     useEffect(() => {
         if(!initValue) return ; 
-        initValue.on('result', argErr => {
-            initValue.emit('plz', 'Fucking socket')
-            console.log(argErr)
-            setErrorvideo(argErr)
-        })
+        // initValue.on('result', argErr => {
+        //     initValue.emit('plz', 'Fucking socket')
+        //     console.log(argErr)
+        //     setErrorvideo(argErr)
+        // })
     
-        initValue.on('errVideo', errVideo => {
-            console.log(errVideo)
-            setErrVideo(errVideo)
-        })
+        // initValue.on('errVideo', errVideo => {
+        //     console.log(errVideo)
+        //     setErrVideo(errVideo)
+        // })
 
         initValue.on('test', temp => {
             console.log(temp)
         })
     
-        initValue.on('start', temp => {
-            console.log(temp)
+        initValue.on('start', adminJoin => {
+            console.log(adminJoin)
         })
     }, [initValue])
 
