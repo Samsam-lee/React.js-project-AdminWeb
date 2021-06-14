@@ -15,7 +15,7 @@ const CrawlingVideo = (props) => {
             <FlexDiv fontSize="22px" margin="25px">
                 에러 비디오
             </FlexDiv>
-
+{console.log(props.errVideo)}
             {props.errVideo.video.map(v => 
                 <Button width="300px" height="250px" cursor='pointer'
                 border={props.index == props.errVideo.video.indexOf(v) ? '2px solid #f97583' : ''}
