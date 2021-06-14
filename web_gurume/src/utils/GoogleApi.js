@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 import mapIcon from "../assets/image/googleMap.png";
+import {config} from "../config"
 
 const GoogleApi = (props) => {
   const image = mapIcon;
@@ -70,5 +71,5 @@ const GoogleApi = (props) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDjwD4XCsIxOGWEiHUS03qevASbKB1vcVc",
+  apiKey: config,
 })(GoogleApi);
