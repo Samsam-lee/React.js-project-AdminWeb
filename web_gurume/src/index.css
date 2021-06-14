@@ -374,12 +374,12 @@ template {
 /* Custom */
 
 @font-face { 
-  font-family: 'nanumSquare'; 
-  src: url(./assets/font/NanumSquare_acLight.ttf) format('truetype');
+  font-family: 'notoSansJP'; 
+  src: url(./assets/font/NotoSansJP-Light.otf) format('truetype');
 }
 
 html{
-  font-family: 'nanumSquare';
+  font-family: 'notoSansJP';
   font-weight: 900;
   height: 100%;
 }

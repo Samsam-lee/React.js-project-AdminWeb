@@ -29,6 +29,10 @@ const TestContextProvider = ({ children }) => {
             console.log(errVideo)
             setErrVideo(errVideo)
         })
+
+        initValue.on('test', temp => {
+            console.log(temp)
+        })
     
         initValue.on('start', temp => {
             console.log(temp)
@@ -47,8 +51,6 @@ const TestContextProvider = ({ children }) => {
         errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
         errVideo: useMemo(() => ({errVideo}), [errVideo])
     }
-    // errorvideo: errorvideo,
-    // errVideo: errVideo
     
     return (
         <TestContext.Provider value={value}>
@@ -58,7 +60,6 @@ const TestContextProvider = ({ children }) => {
 }
 
 const { Consumer: TestContextConsumer } = TestContext
-
 
 export {
     TestContextProvider,
