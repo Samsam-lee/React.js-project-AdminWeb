@@ -31,19 +31,19 @@ const Request = (props) => {
           <div style={{ 'font-size': '20px', padding: '20px 0' }}>
             {props.requestData.ytbChannel}
           </div>
-          <div>구독자 수 : {(props.requestData.ytbSubscribe / 10000).toFixed(1)}만 명</div>
-          <div>조회 수 : {(props.requestData.ytbHits / 10000).toFixed(1)}만 회</div>
-          <div>신청한 유저 닉네임 : {props.requestData.userTbId.userId}</div>
+          <div>登録者数 : {(props.requestData.ytbSubscribe / 10000).toFixed(1)}万人</div>
+          <div>照会数 : {(props.requestData.ytbHits / 10000).toFixed(1)}万回</div>
+          <div>申請したユーザーのニックネーム : {props.requestData.userTbId.userId}</div>
         </FlexDiv>
       </FlexDiv>
       <AgreeButton onClick={() => reqYtbAgree(props.requestData.ytbChannel)}>
-        승인
+        承認
       </AgreeButton>
       <AgreeButton
         right="65px"
         onClick={() => reqYtbDelete(props.requestData.ytbChannel)}
       >
-        삭제
+        削除
       </AgreeButton>
     </Button>
   )

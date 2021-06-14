@@ -18,7 +18,7 @@ const YoutuberRequest = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv> 유튜버 신청 목록 </TitleDiv>
+      <TitleDiv> ユーチューバー申請リスト </TitleDiv>
       <FlexDiv flexWrap="wrap">
         {youtuberRequest ? (
           youtuberRequest.map((v) => (

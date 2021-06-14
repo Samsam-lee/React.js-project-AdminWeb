@@ -13,7 +13,7 @@ const CrawlingVideo = (props) => {
     return (
         <Button width="350px" height="750px" overFlow="auto">
             <FlexDiv fontSize="22px" margin="25px">
-                에러 비디오
+                エラービデオ
             </FlexDiv>
 {console.log(props.errVideo)}
             {props.errVideo.video.map(v => 
@@ -25,7 +25,7 @@ const CrawlingVideo = (props) => {
                     <FixTextDiv fontSize="20px" padding="15px 0" >
                         {v.ytbVideoName}
                     </FixTextDiv>
-                    <FlexDiv margin='0 0 0 85px'>조회 수 : {(v.hits/10000).toFixed(1)}만회</FlexDiv>
+                    <FlexDiv margin='0 0 0 85px'>照会数 : {(v.hits/10000).toFixed(1)}万回</FlexDiv>
                 </Button>
             )}
         </Button>

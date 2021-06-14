@@ -21,12 +21,12 @@ const HashtagBox = (props) => {
     <Button width="100%" height="300px" backgroundColor="rgb(250, 244, 230)">
       <FlexDiv fontSize="18px" fontWeight="700" flexWrap="wrap" padding="20px">
         {props.adminTag.map((v) => (
-          <HashBox onClick={() => openModal('해시태그 제거', { v })}>
+          <HashBox onClick={() => openModal('ハッシュタグ削除', { v })}>
             {v}
           </HashBox>
         ))}
         {props.tempValue && (
-          <HashBox onClick={() => openModal('해시태그 추가', {})}> + </HashBox>
+          <HashBox onClick={() => openModal('ハッシュタグ追加', {})}> + </HashBox>
         )}
       </FlexDiv>
 
