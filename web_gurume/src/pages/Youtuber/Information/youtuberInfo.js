@@ -18,7 +18,7 @@ const YoutuberInfo = () => {
 
   return (
     <BodyFrame>
-      <TitleDiv> 유튜버 목록 </TitleDiv>
+      <TitleDiv> ユーチューバーのリスト </TitleDiv>
       <FlexDiv flexWrap="wrap">
         {youtubers ? (
           youtubers.map((v) => <Youtuber ytbData={v} />)

@@ -6,7 +6,7 @@ const GoogleApi = (props) => {
   const image = mapIcon;
   const [store, setStore] = useState(null);
   const [marker, setMarker] = useState(null);
-  // const [centerLocation, setCenterLocation] = useState({'lat':'127', 'lng':'37'})
+  const [centerLocation, setCenterLocation] = useState({'lat':'35.84987200777492', 'lng':'128.6244778213711'})
 
   // const handleMap = (props, marker, value) => {
   //   // console.log(props);
@@ -36,10 +36,10 @@ const GoogleApi = (props) => {
       }}
       zoom={17}
       initialCenter={{
-        // lat: centerLocation.lat,
-        // lng: centerLocation.lng,
-        lat:props.platformData[0].data[0].lat,
-        lng:props.platformData[0].data[0].lng
+        lat: centerLocation.lat,
+        lng: centerLocation.lng,
+        // lat:props.platformData[0].data[0].crawlingLocation.lat,
+        // lng:props.platformData[0].data[0].crawlingLocation.lng
       }}
     >
       {props.platformData.map(
@@ -70,5 +70,5 @@ const GoogleApi = (props) => {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCCw433e81V5_sxCujuqY5wB_zOy1FZXRk",
+  apiKey: "AIzaSyDjwD4XCsIxOGWEiHUS03qevASbKB1vcVc",
 })(GoogleApi);
