@@ -98,7 +98,8 @@ const ErrorHashtag = (props) => {
         <DcButton right="30px" bottom="625px" onClick={handleReset}>
             初期化
         </DcButton>
-        <Button width="700px" height="515px">
+
+        <Button width="700px" height="515px" overFlow='scroll'>
         {props.errVideo.video[props.index].more.map((v, index) => (
             <HashBox
             border={props.hashCss == index ? "2px solid #f97583" : ""}
