@@ -6,6 +6,7 @@ import IMAGE from '../../assets/image/hashBackground.png'
 
 const Hashtag = () => {
   const [administratorTag, setAdministratorTag] = useState(null)
+  const [tempBool, setTempBool] = useState(1)
 
   const fetchAdminTag = async () => {
     await axios.get(`http://13.125.69.16/admin/adminTagTb`).then((res) =>
@@ -28,7 +29,7 @@ const Hashtag = () => {
 
   useEffect(() => {
     fetchAdminTag()
-  }, [administratorTag])
+  }, [tempBool])
 
   return (
     <BodyFrame>
@@ -38,6 +39,8 @@ const Hashtag = () => {
         <HashtagBox
           adminTag={administratorTag.adminTag.regionTag}
           tempValue={true}
+          tempBool={tempBool}
+          setTempBool={setTempBool}
         />
       ) : (
         <div> loading... </div>

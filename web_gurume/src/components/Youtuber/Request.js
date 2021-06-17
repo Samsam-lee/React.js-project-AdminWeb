@@ -5,12 +5,20 @@ import axios from 'axios'
 const Request = (props) => {
   const reqYtbAgree = async (youtuber) => {
     await axios.put(`http://13.125.69.16/admin/ytbReqTb/recognize/${youtuber}`)
-    // props.setYoutuberRequest(null)
+    .then(data => {
+      props.setTempData(props.tempData + 1)
+    })
+    .catch(
+      e => {
+        // e: 오브젝트로 넘어와서 파싱 후 alert
+      }
+    )
   }
 
   const reqYtbDelete = async (youtuber) => {
     await axios.delete(`http://13.125.69.16/admin/ytbReqTb/delete/${youtuber}`)
-    // props.setYoutuberRequest(null)
+    props.setTempData(props.tempData + 1)
+    alert('削除しました.')
   }
 
   const searchYoutuber = () => {
@@ -24,7 +32,6 @@ const Request = (props) => {
           <img
           src={'https:'+props.requestData.ytbProfile}
           width="200px"/>
-          {/* {console.log(props.requestData.ytbProfile)} */}
         </ImgDiv>
 
         <FlexDiv flexDirection="column" textAlign="left">
