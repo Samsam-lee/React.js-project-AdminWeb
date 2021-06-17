@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
+
 import {
   HeadDiv,
   HeaderTitleDiv,
@@ -17,13 +18,12 @@ const Header = () => {
     <ContainerBox>
       <HeadDiv>
         <HeaderTitleDiv>
-          <Link to="/bigGurume" style={{ color: '#f97583' }}>
-            {' '}
-            Big Gurume{' '}
+          <Link to="/bigGurume" style={{ color: '#f97583' , fontWeight: 900}}>
+            Big Gurume
           </Link>
         </HeaderTitleDiv>
 
-        <FlexDiv alignSelf="center">
+        <FlexDiv className='container' alignSelf="center">
           <HeaderList
             onClicked={
               nowPage.pathname == '/bigGurume' ||
