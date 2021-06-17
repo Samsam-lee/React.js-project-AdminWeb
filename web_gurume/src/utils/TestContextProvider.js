@@ -6,6 +6,22 @@ const TestContext = createContext(null);
 const TestContextProvider = ({ children }) => {
 
     const [initValue, setInitValue] = useState(null)
+
+    const [displayBox, setDisplayBox] = useState('none')
+    const [errorvideo, setErrorvideo] = useState()
+    const [errVideo, setErrVideo] = useState()
+
+    const [chargeThing, setChargeThing] = useState()
+
+    const value = {
+        socket: (initValue ? initValue : null),
+        displayBox: displayBox,
+        setDisplayBox: setDisplayBox,
+        errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
+        errVideo: useMemo(() => ({errVideo}), [errVideo]),
+        // chargeThing: useMemo(() => ({chargeThing}), [chargeThing]),
+        chargeThing: chargeThing,
+    }
     
     useEffect(() => {
         setInitValue(
@@ -20,9 +36,8 @@ const TestContextProvider = ({ children }) => {
     useEffect(() => {
         if(!initValue) return ; 
         // initValue.on('result', argErr => {
-        //     initValue.emit('plz', 'Fucking socket')
         //     console.log(argErr)
-        //     setErrorvideo(argErr)
+        //     // setErrorvideo(argErr)
         // })
     
         // initValue.on('errVideo', errVideo => {
@@ -30,27 +45,16 @@ const TestContextProvider = ({ children }) => {
         //     setErrVideo(errVideo)
         // })
 
-        initValue.on('test', temp => {
-            console.log(temp)
-        })
+        // socket test
+        // initValue.on('test', temp => {
+        //     setChargeThing(temp)
+        //     console.log(temp)
+        // })
     
         initValue.on('start', adminJoin => {
             console.log(adminJoin)
         })
     }, [initValue])
-
-    const [displayBox, setDisplayBox] = useState('none')
-
-    const [errorvideo, setErrorvideo] = useState()
-    const [errVideo, setErrVideo] = useState()
-
-    const value = {
-        socket: (initValue ? initValue : null),
-        displayBox: displayBox,
-        setDisplayBox: setDisplayBox,
-        errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
-        errVideo: useMemo(() => ({errVideo}), [errVideo])
-    }
     
     return (
         <TestContext.Provider value={value}>

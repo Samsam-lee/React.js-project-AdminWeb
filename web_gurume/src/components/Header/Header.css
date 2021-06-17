@@ -1,7 +1,6 @@
 .mOver{
     position: absolute;
     padding: 15px 50px;
-    margin: 0 0 0 -40px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border: 1px solid grey;
@@ -9,4 +8,8 @@
 
 .mOut{
     display: none;
+}
+
+.container div a {
+    font-size: 20px !important;
 }
