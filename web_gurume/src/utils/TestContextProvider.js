@@ -17,9 +17,9 @@ const TestContextProvider = ({ children }) => {
         socket: (initValue ? initValue : null),
         displayBox: displayBox,
         setDisplayBox: setDisplayBox,
-        errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
+        // errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
+        errorvideo: errorvideo,
         errVideo: useMemo(() => ({errVideo}), [errVideo]),
-        // chargeThing: useMemo(() => ({chargeThing}), [chargeThing]),
         chargeThing: chargeThing,
     }
     
@@ -35,10 +35,10 @@ const TestContextProvider = ({ children }) => {
 
     useEffect(() => {
         if(!initValue) return ; 
-        // initValue.on('result', argErr => {
-        //     console.log(argErr)
-        //     // setErrorvideo(argErr)
-        // })
+        initValue.on('result', argErr => {
+            console.log(argErr)
+            setErrorvideo(argErr)
+        })
     
         // initValue.on('errVideo', errVideo => {
         //     console.log(errVideo)
@@ -46,10 +46,10 @@ const TestContextProvider = ({ children }) => {
         // })
 
         // socket test
-        // initValue.on('test', temp => {
-        //     setChargeThing(temp)
-        //     console.log(temp)
-        // })
+        initValue.on('test', temp => {
+            setChargeThing(temp)
+            console.log(temp)
+        })
     
         initValue.on('start', adminJoin => {
             console.log(adminJoin)

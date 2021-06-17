@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
 const FlexDiv = styled.div`
   display: flex;
+  flex: ${(props) => props.flex};
   flex-direction: ${(props) => props.flexDirection};
   align-self: ${(props) => props.alignSelf};
   font-size: ${(props) => props.fontSize};

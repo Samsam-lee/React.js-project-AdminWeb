@@ -12,12 +12,17 @@ const CrawlingStatus = (props) => {
   const [ytb, setYtb] = useState(null)
   const [tempProgress, setTempProgress] = useState()
 
-  const {chargeThing} = useContext(TestContext)
+  // const {chargeThing} = useContext(TestContext)
+
+  // useEffect(() => {
+  //   setTempProgress(chargeThing)
+  //   console.log(chargeThing)
+  // }, [chargeThing])
 
   useEffect(() => {
-    setTempProgress(chargeThing)
-    console.log(chargeThing)
-  }, [chargeThing])
+    
+    setTempProgress()
+  }, [props.crawlingData])
 
   const openModal = (youtuber) => {
     setModalIsOpen(true)
@@ -43,7 +48,7 @@ const CrawlingStatus = (props) => {
 
           {v == '進行' && props.crawlingData.map((v,index) => 
               v.videoCount != v.completeCount && <Button width="300px" height="300px" display='flex' justifyContent='center' alignItems='center'>
-                <FlexDiv flexDirection='column'>
+                <FlexDiv flexDirection='column' flex='1' margin='10px'>
                   <FlexDiv alignSelf='center' margin='10px'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" alignSelf='center'>
                     {v.ytbChannel}
