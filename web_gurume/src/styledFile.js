@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
 
 const FlexDiv = styled.div`
   display: flex;
+  flex: ${(props) => props.flex};
   flex-direction: ${(props) => props.flexDirection};
   align-self: ${(props) => props.alignSelf};
   font-size: ${(props) => props.fontSize};
@@ -316,6 +317,8 @@ const moving = keyframes`
   50% {top: 100%; left: 100%; right: auto; bottom: auto; margin-right: -50%; transform: translate(-101%, -101%)}
   100% {top: 100%; left: 100%; right: auto; bottom: auto;}
 `
+
+
 
 export {
   Button,

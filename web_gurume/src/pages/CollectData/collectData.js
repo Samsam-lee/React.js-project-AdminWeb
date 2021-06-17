@@ -5,19 +5,20 @@ import CrawlingStatus from '../../components/Crawling/CrawlingStatus'
 import TestContext from '../../utils/TestContextProvider'
 
 const CollectData = () => {
-
+  const [crawlingData, setCrawlingData] = useState(null)
   
   /**
    * Socket
    */
+  const [crawlingSocket, setCrawlingSocket] = useState()
+  
   const {errorvideo} = useContext(TestContext)
   
   useEffect(() => {
-    !errorvideo && setCrawlingData(errorvideo)
+    // errorvideo != null && setCrawlingSocket(errorvideo)
+    errorvideo != null && setCrawlingData(errorvideo)
   }, [errorvideo])
   /** Socket */
-
-  const [crawlingData, setCrawlingData] = useState(null)
 
   /** page 에 따른 데이터 렌더링 */
   const fetchCrawlingData = async () => {
@@ -38,7 +39,7 @@ const CollectData = () => {
       <TitleDiv>クローリングの状態</TitleDiv>
       <FlexDiv>
         {crawlingData ? <FlexDiv> 
-          <CrawlingStatus crawlingData={crawlingData}/>
+          <CrawlingStatus crawlingData={crawlingData} setCrawlingData={setCrawlingData} crawlingSocket={crawlingSocket}/>
         </FlexDiv> : (
           <div> loading... </div>
         )}

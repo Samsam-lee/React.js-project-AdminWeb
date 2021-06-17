@@ -88,7 +88,7 @@ const ErrorHashtag = (props) => {
     return (
     <>
         <FlexDiv fontSize="22px" margin="25px">
-        주소 조합 후 검색
+        住所 조합 후 検索
         </FlexDiv>
         <SearchTextInput
         width="530px"
@@ -96,9 +96,10 @@ const ErrorHashtag = (props) => {
         value={props.address}
         ></SearchTextInput>
         <DcButton right="30px" bottom="625px" onClick={handleReset}>
-        초기화
+            初期化
         </DcButton>
-        <Button width="700px" height="515px">
+
+        <Button width="700px" height="515px" overFlow='scroll'>
         {props.errVideo.video[props.index].more.map((v, index) => (
             <HashBox
             border={props.hashCss == index ? "2px solid #f97583" : ""}
@@ -111,10 +112,10 @@ const ErrorHashtag = (props) => {
         </Button>
         <FlexDiv>
         <DcButton right="170px" bottom="20px" onClick={handleDelete}>
-            비디오 삭제
+            動画削除
         </DcButton>
         <DcButton right="30px" bottom="20px" onClick={handleSearch}>
-            주소 검색
+            住所検索
         </DcButton>
         </FlexDiv>
     </>

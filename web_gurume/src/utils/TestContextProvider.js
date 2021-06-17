@@ -6,6 +6,19 @@ const TestContext = createContext(null);
 const TestContextProvider = ({ children }) => {
 
     const [initValue, setInitValue] = useState(null)
+
+    // const [displayBox, setDisplayBox] = useState('none')
+    const [errorvideo, setErrorvideo] = useState()
+    // const [errVideo, setErrVideo] = useState()
+
+    const value = {
+        socket: (initValue ? initValue : null),
+        // displayBox: displayBox,
+        // setDisplayBox: setDisplayBox,
+        // errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
+        errorvideo: errorvideo,
+        // errVideo: useMemo(() => ({errVideo}), [errVideo]),
+    }
     
     useEffect(() => {
         setInitValue(
@@ -19,38 +32,20 @@ const TestContextProvider = ({ children }) => {
 
     useEffect(() => {
         if(!initValue) return ; 
-        // initValue.on('result', argErr => {
-        //     initValue.emit('plz', 'Fucking socket')
-        //     console.log(argErr)
-        //     setErrorvideo(argErr)
-        // })
+        initValue.on('result', argErr => {
+            console.log(argErr)
+            setErrorvideo(argErr)
+        })
     
         // initValue.on('errVideo', errVideo => {
         //     console.log(errVideo)
         //     setErrVideo(errVideo)
         // })
-
-        initValue.on('test', temp => {
-            console.log(temp)
-        })
     
         initValue.on('start', adminJoin => {
             console.log(adminJoin)
         })
     }, [initValue])
-
-    const [displayBox, setDisplayBox] = useState('none')
-
-    const [errorvideo, setErrorvideo] = useState()
-    const [errVideo, setErrVideo] = useState()
-
-    const value = {
-        socket: (initValue ? initValue : null),
-        displayBox: displayBox,
-        setDisplayBox: setDisplayBox,
-        errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
-        errVideo: useMemo(() => ({errVideo}), [errVideo])
-    }
     
     return (
         <TestContext.Provider value={value}>
