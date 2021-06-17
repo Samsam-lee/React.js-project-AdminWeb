@@ -1,28 +1,21 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { FlexDiv, Button } from "../../styledFile";
 import ChargeContainer from "../ChargeContainer"
 import Modal from '../Modal'
 import axios from 'axios'
-import TestContext from '../../utils/TestContextProvider'
 
 const CrawlingStatus = (props) => {
   const statusText = ['進行', 'エラー', '完了']
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [ytb, setYtb] = useState(null)
-  const [tempProgress, setTempProgress] = useState()
 
-  // const {chargeThing} = useContext(TestContext)
-
+  // 소켓 통신으로 크롤링 된 데이터
   // useEffect(() => {
-  //   setTempProgress(chargeThing)
-  //   console.log(chargeThing)
-  // }, [chargeThing])
-
-  useEffect(() => {
-    
-    setTempProgress()
-  }, [props.crawlingData])
+  //   props.crawlingSocket != null
+  //   && console.log(props.crawlingSocket)
+  //   && props.setCrawlingData(props.crawlingSocket)
+  // }, [props.crawlingSocket])
 
   const openModal = (youtuber) => {
     setModalIsOpen(true)
@@ -55,7 +48,8 @@ const CrawlingStatus = (props) => {
                   </FlexDiv>
 
                   {/* 인덱스 활용해서 props로 값 넘겨주기 */}
-                  <ChargeContainer percent={tempProgress}/>
+                  <ChargeContainer percent={Math.round((v.completeCount+v.errCount)/v.videoCount*100)}/>
+                  {/* <ChargeContainer percent={tempProgress}/> */}
                   
                   <FlexDiv alignSelf='center'>エラー : {v.errCount} + 完了 : {v.completeCount}</FlexDiv>
                   <FlexDiv alignSelf='center'>全動画の数 : {v.videoCount}</FlexDiv>

@@ -11,10 +11,12 @@ const HashtagBox = (props) => {
     setButtonState(btnState)
     setForDeleteHashtag(ht.v)
     setIsOpen(true)
+    props.setTempBool(props.tempBool + 1)
   }
 
   const closeModal = () => {
     setIsOpen(false)
+    props.setTempBool(props.tempBool + 1)
   }
 
   return (

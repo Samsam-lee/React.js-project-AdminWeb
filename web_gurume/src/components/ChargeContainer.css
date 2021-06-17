@@ -23,10 +23,10 @@ progress {
 .progress {
     display: -ms-flexbox;
     display: flex;
-    height: 1.8rem;
+    height: 1.6rem;
     overflow: hidden;
     line-height: 0;
-    font-size: 0.75rem;
+    font-size: 1rem;
     background-color: #efe9ed;
     border-radius: 0.3rem;
 }
