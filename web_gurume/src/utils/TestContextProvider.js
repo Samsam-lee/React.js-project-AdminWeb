@@ -12,7 +12,8 @@ const TestContextProvider = ({ children }) => {
     // const [errVideo, setErrVideo] = useState()
 
     const value = {
-        socket: (initValue ? initValue : null),
+        // socket: (initValue ? initValue : null),
+        socket: initValue,
         // displayBox: displayBox,
         // setDisplayBox: setDisplayBox,
         // errorvideo: useMemo(() => ({errorvideo}), [errorvideo]),
@@ -32,6 +33,7 @@ const TestContextProvider = ({ children }) => {
 
     useEffect(() => {
         if(!initValue) return ; 
+
         initValue.on('result', argErr => {
             console.log(argErr)
             setErrorvideo(argErr)
@@ -45,6 +47,7 @@ const TestContextProvider = ({ children }) => {
         initValue.on('start', adminJoin => {
             console.log(adminJoin)
         })
+
     }, [initValue])
     
     return (

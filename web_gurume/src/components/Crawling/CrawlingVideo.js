@@ -1,6 +1,5 @@
 import React from 'react'
 import {FlexDiv, Button, FixTextDiv, ImgDiv} from '../../styledFile'
-import image from '../../assets/image/tempThumnail.png'
 
 const CrawlingVideo = (props) => {
 
@@ -15,13 +14,11 @@ const CrawlingVideo = (props) => {
             <FlexDiv fontSize="22px" margin="25px">
                 エラービデオ
             </FlexDiv>
-        {console.log(props.errVideo)}
             {props.errVideo.video.map(v => 
                 <Button width="300px" height="250px" cursor='pointer'
                 border={props.index == props.errVideo.video.indexOf(v) ? '2px solid #f97583' : ''}
                 onClick={() => chooseIndex(props.errVideo.video.indexOf(v))}
                 >
-                    {/* <ImgDiv margin='10px'><img src={image} /></ImgDiv> */}
                     <ImgDiv margin='10px'><img src={v.ytbThumbnail} width='280px'/></ImgDiv>
                     <FixTextDiv fontSize="20px" padding="15px 0" >
                         {v.ytbVideoName}

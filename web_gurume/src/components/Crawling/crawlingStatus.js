@@ -49,7 +49,6 @@ const CrawlingStatus = (props) => {
 
                   {/* 인덱스 활용해서 props로 값 넘겨주기 */}
                   <ChargeContainer percent={Math.round((v.completeCount+v.errCount)/v.videoCount*100)}/>
-                  {/* <ChargeContainer percent={tempProgress}/> */}
                   
                   <FlexDiv alignSelf='center'>エラー : {v.errCount} + 完了 : {v.completeCount}</FlexDiv>
                   <FlexDiv alignSelf='center'>全動画の数 : {v.videoCount}</FlexDiv>
