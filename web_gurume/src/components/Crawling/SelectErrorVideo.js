@@ -26,6 +26,7 @@ const SelectErrorVideo = (props) => {
         setTextValue={props.setTextValue}
         platformData={platformData}
         isLoading={isLoading}
+        setErrVideo={props.setErrVideo}
         />
       ) : (
         <ErrorHashtag

@@ -17,6 +17,7 @@ const SelectAddress = (props) => {
         props.errVideo.video[props.index].storeInfo = platform.data[props.index]
         console.log(store) // storeAddress : {store}
         setLocation({'lat': store.crawlingLocation.lat + 0.0005, 'lng': store.crawlingLocation.lng}) // lat + 0.0005
+        // setLocation({'lat': store.crawlingLocation.lat + 0.001, 'lng': store.crawlingLocation.lng}) // lat + 0.0005
         setStoreName(store.crawlingStore)
         setGiveData({
             "video": [{
@@ -44,6 +45,17 @@ const SelectAddress = (props) => {
         )
         console.log(giveData)
         props.errVideo.video.length == 1 ? document.location.href='/bigGurume/collectData' : console.log('more err video')
+        // props.index -> 영상 인덱스값
+        // const temp = props.errVideo.video.splice(props.index, 1)
+        
+        const temp = props.errVideo
+        temp.video.splice(props.index, 1)
+        console.log(temp)
+        // props.setErrVideo()
+        
+
+        props.setTextValue([])
+        props.setHashCss(null);
         props.setMap(false);
     };
 
@@ -63,7 +75,7 @@ const SelectAddress = (props) => {
             border="0"
             boxShadow="0"
         >
-            {props.platformData.map(v=><>
+            {props.platformData && props.platformData.map(v=><>
                 <Button height="150px" margin="0 5px" overFlow='auto'>
                 <FlexDiv fontSize='20px' margin='5px'>{v.crawlingPlatform}</FlexDiv>
                 {v.data.length != 0 && 
@@ -81,7 +93,6 @@ const SelectAddress = (props) => {
         </Button>
 
         <Button width="700px" height="490px" position='relative'>
-            {console.log(props.platformData)}
             <GoogleMap platformData={props.platformData} location={location} storeName={storeName}/>
         </Button>
 

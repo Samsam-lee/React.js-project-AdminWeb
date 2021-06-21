@@ -26,9 +26,9 @@ const SearchData = (props) => {
     fetchErrVideo();
   }, [])
 
-  useEffect(() => {
-    setMap(false);
-  }, [index])
+  // useEffect(() => {
+  //   setMap(false);
+  // }, [index])
 
   return (
     <BodyFrame>
@@ -45,6 +45,7 @@ const SearchData = (props) => {
             setTextValue={setTextValue}/>
             <SelectErrorVideo
               errVideo={errVideo}
+              setErrVideo={setErrVideo}
               map={map}
               setMap={setMap}
               index={index}
