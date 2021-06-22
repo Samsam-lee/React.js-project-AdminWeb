@@ -5,6 +5,7 @@ const CrawlingVideo = (props) => {
 
     const chooseIndex = (index) => {
         props.setIndex(index)
+        props.setMap(false)
         props.setTextValue([])
         props.setHashCss(null)
     }
