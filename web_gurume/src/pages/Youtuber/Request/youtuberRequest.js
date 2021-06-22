@@ -5,7 +5,7 @@ import { TitleDiv, BodyFrame, FlexDiv } from '../../../styledFile'
 
 const YoutuberRequest = () => {
   const [youtuberRequest, setYoutuberRequest] = useState(null)
-  const [tempData, setTempData] = useState(1)
+  const [tempDataa, setTempDataa] = useState(1)
 
   const fetchYoutuberRequest = async () => {
     await axios.get(`http://13.125.69.16/admin/ytbReqTb`).then((res) =>
@@ -15,7 +15,7 @@ const YoutuberRequest = () => {
 
   useEffect(() => {
     fetchYoutuberRequest()
-  }, [tempData])
+  }, [tempDataa])
 
   return (
     <BodyFrame>
@@ -23,7 +23,7 @@ const YoutuberRequest = () => {
       <FlexDiv flexWrap="wrap">
         {youtuberRequest ? (
           youtuberRequest.map((v) => (
-            <Request requestData={v} tempData={tempData} setTempData={setTempData}/>
+            <Request requestData={v} tempData={tempDataa} setTempData={setTempDataa}/>
           ))
         ) : (
           <div> loading... </div>

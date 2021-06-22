@@ -3,7 +3,7 @@ import {FlexDiv} from '../styledFile'
 
 const Loading = () => {
     return (
-        <FlexDiv fontSize='20px'>
+        <FlexDiv fontSize='30px'>
             Loading...
         </FlexDiv>
     )
