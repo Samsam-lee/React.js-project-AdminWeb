@@ -6,15 +6,18 @@ const Request = (props) => {
   const reqYtbAgree = async (youtuber) => {
     await axios.put(`http://13.125.69.16/admin/ytbReqTb/recognize/${youtuber}`)
     .then(data => {
-      props.setTempData(props.tempData + 1)
+      // props.setTempData(props.tempData + 1)
       alert('申請が完了しました。')
     })
     .catch(
       e => {
         // e: 오브젝트로 넘어와서 파싱 후 alert
-        alert('エラー')
+        // alert('エラー')
+        // props.setTempData(props.tempData + 1)
+        console.log('')
       }
     )
+    props.setTempData(props.tempData + 1)
   }
 
   const reqYtbDelete = async (youtuber) => {
