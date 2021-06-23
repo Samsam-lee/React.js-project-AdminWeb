@@ -21,6 +21,8 @@ const FlexDiv = styled.div`
   cursor: ${(props) => props.cursor};
   align-items: ${props => props.alignItems};
   justify-content: ${props => props.justifyContent};
+  width: ${props => props.width};
+  height: ${props => props.height};
 `;
 
 /**

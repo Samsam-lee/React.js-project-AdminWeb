@@ -8,6 +8,7 @@ import {
 } from "../../styledFile";
 import axios from "axios";
 import TestContext from '../../utils/TestContextProvider'
+import load from '../../assets/image/loading.gif'
 
 const ErrorHashtag = (props) => {
 
