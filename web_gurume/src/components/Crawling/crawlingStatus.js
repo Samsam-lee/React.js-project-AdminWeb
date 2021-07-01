@@ -42,7 +42,7 @@ const CrawlingStatus = (props) => {
           {v == '進行' && props.crawlingData.map((v,index) => 
               v.videoCount != v.completeCount && <Button width="300px" height="300px" display='flex' justifyContent='center' alignItems='center'>
                 <FlexDiv flexDirection='column' flex='1' margin='10px'>
-                  <FlexDiv alignSelf='center' margin='10px'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
+                  <FlexDiv alignSelf='center' margin='10px'><img src={'https://'+v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
@@ -60,7 +60,7 @@ const CrawlingStatus = (props) => {
               v.errCount > 0 && <Button width="300px" height="300px" display='flex' justifyContent='center' alignItems='center'>
                 <Link to={`/bigGurume/collectData/search?youtuber=${v.ytbChannel}`}>
                   <FlexDiv flexDirection='column' margin='10px'>
-                  <FlexDiv alignSelf='center'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
+                  <FlexDiv alignSelf='center'><img src={'https://'+v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" padding="15px 0" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
@@ -74,7 +74,7 @@ const CrawlingStatus = (props) => {
           {v == '完了' && props.crawlingData.map(v => 
               v.videoCount == v.completeCount && <Button width="300px" height="300px" cursor='pointer' display='flex' justifyContent='center' alignItems='center' onClick={() => openModal(v.ytbChannel)}>
                 <FlexDiv flexDirection='column' margin='10px'>
-                  <FlexDiv alignSelf='center'><img src={v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
+                  <FlexDiv alignSelf='center'><img src={'https://'+v.ytbProfile} style={{borderRadius:'500px'}}/></FlexDiv>
                   <FlexDiv fontSize="20px" padding="15px 0" alignSelf='center'>
                     {v.ytbChannel}
                   </FlexDiv>
